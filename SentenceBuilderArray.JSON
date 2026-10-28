@@ -1,6 +1,4 @@
-Here is the formatted JSON array containing the 200 connectors, prepositions, pronouns, determiners, and particles ready to save as `SentenceBuilderArray.json`:
 
-```json
 [
   { "id": 1, "german": "und", "english": "and", "type": "Coordinating Conjunction" },
   { "id": 2, "german": "aber", "english": "but / however", "type": "Coordinating Conjunction" },
