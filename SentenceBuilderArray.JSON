@@ -1,1408 +1,211 @@
+Here is the formatted JSON array containing the 200 connectors, prepositions, pronouns, determiners, and particles ready to save as `SentenceBuilderArray.json`:
+
+```json
 [
-  {
-    "id": 1,
-    "german": "sein",
-    "english": "to be",
-    "type": "Auxiliary / Irregular",
-    "conjugation": { "ich": "bin", "du": "bist", "er_sie_es": "ist", "wir": "sind", "ihr": "seid", "sie_Sie": "sind" }
-  },
-  {
-    "id": 2,
-    "german": "haben",
-    "english": "to have",
-    "type": "Auxiliary / Irregular",
-    "conjugation": { "ich": "habe", "du": "hast", "er_sie_es": "hat", "wir": "haben", "ihr": "habt", "sie_Sie": "haben" }
-  },
-  {
-    "id": 3,
-    "german": "werden",
-    "english": "to become / will",
-    "type": "Auxiliary / Irregular",
-    "conjugation": { "ich": "werde", "du": "wirst", "er_sie_es": "wird", "wir": "werden", "ihr": "werdet", "sie_Sie": "werden" }
-  },
-  {
-    "id": 4,
-    "german": "können",
-    "english": "can / to be able to",
-    "type": "Modal Verb",
-    "conjugation": { "ich": "kann", "du": "kannst", "er_sie_es": "kann", "wir": "können", "ihr": "könnt", "sie_Sie": "können" }
-  },
-  {
-    "id": 5,
-    "german": "müssen",
-    "english": "must / to have to",
-    "type": "Modal Verb",
-    "conjugation": { "ich": "muss", "du": "musst", "er_sie_es": "muss", "wir": "müssen", "ihr": "müsst", "sie_Sie": "müssen" }
-  },
-  {
-    "id": 6,
-    "german": "wollen",
-    "english": "to want",
-    "type": "Modal Verb",
-    "conjugation": { "ich": "will", "du": "willst", "er_sie_es": "will", "wir": "wollen", "ihr": "wollt", "sie_Sie": "wollen" }
-  },
-  {
-    "id": 7,
-    "german": "sollen",
-    "english": "should / to be supposed to",
-    "type": "Modal Verb",
-    "conjugation": { "ich": "soll", "du": "sollst", "er_sie_es": "soll", "wir": "sollen", "ihr": "sollt", "sie_Sie": "sollen" }
-  },
-  {
-    "id": 8,
-    "german": "dürfen",
-    "english": "may / to be allowed to",
-    "type": "Modal Verb",
-    "conjugation": { "ich": "darf", "du": "darfst", "er_sie_es": "darf", "wir": "dürfen", "ihr": "dürft", "sie_Sie": "dürfen" }
-  },
-  {
-    "id": 9,
-    "german": "mögen",
-    "english": "to like",
-    "type": "Modal Verb",
-    "conjugation": { "ich": "mag", "du": "magst", "er_sie_es": "mag", "wir": "mögen", "ihr": "mögt", "sie_Sie": "mögen" }
-  },
-  {
-    "id": 10,
-    "german": "möchten",
-    "english": "would like",
-    "type": "Modal / Subjunctive Form",
-    "conjugation": { "ich": "möchte", "du": "möchtest", "er_sie_es": "möchte", "wir": "möchten", "ihr": "möchtet", "sie_Sie": "möchten" }
-  },
+  { "id": 1, "german": "und", "english": "and", "type": "Coordinating Conjunction" },
+  { "id": 2, "german": "aber", "english": "but / however", "type": "Coordinating Conjunction" },
+  { "id": 3, "german": "oder", "english": "or", "type": "Coordinating Conjunction" },
+  { "id": 4, "german": "denn", "english": "because / for", "type": "Coordinating Conjunction" },
+  { "id": 5, "german": "sondern", "english": "but rather", "type": "Coordinating Conjunction" },
+  { "id": 6, "german": "weil", "english": "because (subordinating)", "type": "Subordinating Conjunction" },
+  { "id": 7, "german": "dass", "english": "that (subordinating)", "type": "Subordinating Conjunction" },
+  { "id": 8, "german": "obwohl", "english": "although / even though", "type": "Subordinating Conjunction" },
+  { "id": 9, "german": "wenn", "english": "if / whenever", "type": "Subordinating Conjunction" },
+  { "id": 10, "german": "als", "english": "when (past event) / than", "type": "Subordinating Conjunction / Prep" },
+  { "id": 11, "german": "bevor", "english": "before", "type": "Subordinating Conjunction" },
+  { "id": 12, "german": "nachdem", "english": "after", "type": "Subordinating Conjunction" },
+  { "id": 13, "german": "während", "english": "while / during", "type": "Subordinating Conjunction / Prep" },
+  { "id": 14, "german": "seitdem", "english": "since (time)", "type": "Subordinating Conjunction" },
+  { "id": 15, "german": "bis", "english": "until", "type": "Subordinating Conjunction / Prep" },
+  { "id": 16, "german": "damit", "english": "so that / in order that", "type": "Subordinating Conjunction" },
+  { "id": 17, "german": "ob", "english": "whether / if", "type": "Subordinating Conjunction" },
+  { "id": 18, "german": "falls", "english": "in case / if", "type": "Subordinating Conjunction" },
+  { "id": 19, "german": "sofern", "english": "provided that / as long as", "type": "Subordinating Conjunction" },
+  { "id": 20, "german": "solange", "english": "as long as", "type": "Subordinating Conjunction" },
+  { "id": 21, "german": "deshalb", "english": "therefore / that is why", "type": "Conjunctive Adverb" },
+  { "id": 22, "german": "darum", "english": "therefore / for that reason", "type": "Conjunctive Adverb" },
+  { "id": 23, "german": "deswegen", "english": "because of that / therefore", "type": "Conjunctive Adverb" },
+  { "id": 24, "german": "trotzdem", "english": "nevertheless / anyway", "type": "Conjunctive Adverb" },
+  { "id": 25, "german": "dennoch", "english": "however / yet", "type": "Conjunctive Adverb" },
+  { "id": 26, "german": "jedoch", "english": "however / though", "type": "Conjunctive Adverb" },
+  { "id": 27, "german": "ausserdem", "english": "furthermore / besides", "type": "Conjunctive Adverb" },
+  { "id": 28, "german": "zudem", "english": "in addition / moreover", "type": "Conjunctive Adverb" },
+  { "id": 29, "german": "überdies", "english": "furthermore / moreover", "type": "Conjunctive Adverb" },
+  { "id": 30, "german": "schliesslich", "english": "eventually / after all", "type": "Conjunctive Adverb" },
+  { "id": 31, "german": "sonst", "english": "otherwise / else", "type": "Conjunctive Adverb" },
+  { "id": 32, "german": "andernfalls", "english": "otherwise", "type": "Conjunctive Adverb" },
+  { "id": 33, "german": "folglich", "english": "consequently / as a result", "type": "Conjunctive Adverb" },
+  { "id": 34, "german": "infolgedessen", "english": "consequently", "type": "Conjunctive Adverb" },
+  { "id": 35, "german": "demnach", "english": "accordingly / thus", "type": "Conjunctive Adverb" },
+  { "id": 36, "german": "sowohl ... als auch", "english": "both ... as well as", "type": "Two-Part Conjunction" },
+  { "id": 37, "german": "weder ... noch", "english": "neither ... nor", "type": "Two-Part Conjunction" },
+  { "id": 38, "german": "entweder ... oder", "english": "either ... or", "type": "Two-Part Conjunction" },
+  { "id": 39, "german": "nicht nur ... sondern auch", "english": "not only ... but also", "type": "Two-Part Conjunction" },
+  { "id": 40, "german": "zwar ... aber", "english": "admittedly ... but", "type": "Two-Part Conjunction" },
 
-  {
-    "id": 11,
-    "german": "machen",
-    "english": "to do / to make",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "mache", "du": "machst", "er_sie_es": "macht", "wir": "machen", "ihr": "macht", "sie_Sie": "machen" }
-  },
-  {
-    "id": 12,
-    "german": "sagen",
-    "english": "to say / to tell",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "sage", "du": "sagst", "er_sie_es": "sagt", "wir": "sagen", "ihr": "sagt", "sie_Sie": "sagen" }
-  },
-  {
-    "id": 13,
-    "german": "fragen",
-    "english": "to ask",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "frage", "du": "fragst", "er_sie_es": "fragt", "wir": "fragen", "ihr": "fragt", "sie_Sie": "fragen" }
-  },
-  {
-    "id": 14,
-    "german": "antworten",
-    "english": "to answer",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "antworte", "du": "antwortest", "er_sie_es": "antwortet", "wir": "antworten", "ihr": "antwortet", "sie_Sie": "antworten" }
-  },
-  {
-    "id": 15,
-    "german": "lernen",
-    "english": "to learn / to study",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "lerne", "du": "lernst", "er_sie_es": "lernt", "wir": "lernen", "ihr": "lernt", "sie_Sie": "lernen" }
-  },
-  {
-    "id": 16,
-    "german": "arbeiten",
-    "english": "to work",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "arbeite", "du": "arbeitest", "er_sie_es": "arbeitet", "wir": "arbeiten", "ihr": "arbeitet", "sie_Sie": "arbeiten" }
-  },
-  {
-    "id": 17,
-    "german": "spielen",
-    "english": "to play",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "spiele", "du": "spielst", "er_sie_es": "spielt", "wir": "spielen", "ihr": "spielt", "sie_Sie": "spielen" }
-  },
-  {
-    "id": 18,
-    "german": "wohnen",
-    "english": "to live / to reside",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "wohne", "du": "wohnst", "er_sie_es": "wohnt", "wir": "wohnen", "ihr": "wohnt", "sie_Sie": "wohnen" }
-  },
-  {
-    "id": 19,
-    "german": "leben",
-    "english": "to live (be alive)",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "lebe", "du": "lebst", "er_sie_es": "lebt", "wir": "leben", "ihr": "lebt", "sie_Sie": "leben" }
-  },
-  {
-    "id": 20,
-    "german": "brauchen",
-    "english": "to need",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "brauche", "du": "brauchst", "er_sie_es": "braucht", "wir": "brauchen", "ihr": "braucht", "sie_Sie": "brauchen" }
-  },
-  {
-    "id": 21,
-    "german": "kaufen",
-    "english": "to buy",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "kaufe", "du": "kaufst", "er_sie_es": "kauft", "wir": "kaufen", "ihr": "kauft", "sie_Sie": "kaufen" }
-  },
-  {
-    "id": 22,
-    "german": "verkaufen",
-    "english": "to sell",
-    "type": "Regular / Non-separable",
-    "conjugation": { "ich": "verkaufe", "du": "verkaufst", "er_sie_es": "verkauft", "wir": "verkaufen", "ihr": "verkauft", "sie_Sie": "verkaufen" }
-  },
-  {
-    "id": 23,
-    "german": "bezahlen",
-    "english": "to pay",
-    "type": "Regular / Non-separable",
-    "conjugation": { "ich": "bezahle", "du": "bezahlst", "er_sie_es": "bezahlt", "wir": "bezahlen", "ihr": "bezahlt", "sie_Sie": "bezahlen" }
-  },
-  {
-    "id": 24,
-    "german": "kochen",
-    "english": "to cook",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "koche", "du": "kochst", "er_sie_es": "kocht", "wir": "kochen", "ihr": "kocht", "sie_Sie": "kochen" }
-  },
-  {
-    "id": 25,
-    "german": "putzen",
-    "english": "to clean",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "putze", "du": "putzt", "er_sie_es": "putzt", "wir": "putzen", "ihr": "putzt", "sie_Sie": "putzen" }
-  },
-  {
-    "id": 26,
-    "german": "hören",
-    "english": "to hear / to listen",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "höre", "du": "hörst", "er_sie_es": "hört", "wir": "hören", "ihr": "hört", "sie_Sie": "hören" }
-  },
-  {
-    "id": 27,
-    "german": "schauen",
-    "english": "to look / to watch",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "schaue", "du": "schaust", "er_sie_es": "schaut", "wir": "schauen", "ihr": "schaut", "sie_Sie": "schauen" }
-  },
-  {
-    "id": 28,
-    "german": "suchen",
-    "english": "to search / to look for",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "suche", "du": "suchst", "er_sie_es": "sucht", "wir": "suchen", "ihr": "sucht", "sie_Sie": "suchen" }
-  },
-  {
-    "id": 29,
-    "german": "glauben",
-    "english": "to believe",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "glaube", "du": "glaubst", "er_sie_es": "glaubt", "wir": "glauben", "ihr": "glaubt", "sie_Sie": "glauben" }
-  },
-  {
-    "id": 30,
-    "german": "meinen",
-    "english": "to mean / to think",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "meine", "du": "meinst", "er_sie_es": "meint", "wir": "meinen", "ihr": "meint", "sie_Sie": "meinen" }
-  },
-  {
-    "id": 31,
-    "german": "zeigen",
-    "english": "to show",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "zeige", "du": "zeigst", "er_sie_es": "zeigt", "wir": "zeigen", "ihr": "zeigt", "sie_Sie": "zeigen" }
-  },
-  {
-    "id": 32,
-    "german": "holen",
-    "english": "to fetch / to get",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "hole", "du": "holst", "er_sie_es": "holt", "wir": "holen", "ihr": "holt", "sie_Sie": "holen" }
-  },
-  {
-    "id": 33,
-    "german": "lachen",
-    "english": "to laugh",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "lache", "du": "lachst", "er_sie_es": "lacht", "wir": "lachen", "ihr": "lacht", "sie_Sie": "lachen" }
-  },
-  {
-    "id": 34,
-    "german": "weinen",
-    "english": "to cry",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "weine", "du": "weinst", "er_sie_es": "weint", "wir": "weinen", "ihr": "weint", "sie_Sie": "weinen" }
-  },
-  {
-    "id": 35,
-    "german": "tanzen",
-    "english": "to dance",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "tanze", "du": "tanzt", "er_sie_es": "tanzt", "wir": "tanzen", "ihr": "tanzt", "sie_Sie": "tanzen" }
-  },
-  {
-    "id": 36,
-    "german": "reisen",
-    "english": "to travel",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "reise", "du": "reist", "er_sie_es": "reist", "wir": "reisen", "ihr": "reist", "sie_Sie": "reisen" }
-  },
-  {
-    "id": 37,
-    "german": "besuchen",
-    "english": "to visit",
-    "type": "Regular / Non-separable",
-    "conjugation": { "ich": "besuche", "du": "besuchst", "er_sie_es": "besucht", "wir": "besuchen", "ihr": "besucht", "sie_Sie": "besuchen" }
-  },
-  {
-    "id": 38,
-    "german": "bestellen",
-    "english": "to order",
-    "type": "Regular / Non-separable",
-    "conjugation": { "ich": "bestelle", "du": "bestellst", "er_sie_es": "bestellt", "wir": "bestellen", "ihr": "bestellt", "sie_Sie": "bestellen" }
-  },
-  {
-    "id": 39,
-    "german": "warten",
-    "english": "to wait",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "warte", "du": "wartest", "er_sie_es": "wartet", "wir": "warten", "ihr": "wartet", "sie_Sie": "warten" }
-  },
-  {
-    "id": 40,
-    "german": "lieben",
-    "english": "to love",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "liebe", "du": "liebst", "er_sie_es": "liebt", "wir": "lieben", "ihr": "liebt", "sie_Sie": "lieben" }
-  },
-  {
-    "id": 41,
-    "german": "öffnen",
-    "english": "to open",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "öffne", "du": "öffnest", "er_sie_es": "öffnet", "wir": "öffnen", "ihr": "öffnet", "sie_Sie": "öffnen" }
-  },
-  {
-    "id": 42,
-    "german": "studieren",
-    "english": "to study (at university)",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "studiere", "du": "studierst", "er_sie_es": "studiert", "wir": "studieren", "ihr": "studiert", "sie_Sie": "studieren" }
-  },
-  {
-    "id": 43,
-    "german": "erklären",
-    "english": "to explain",
-    "type": "Regular / Non-separable",
-    "conjugation": { "ich": "erkläre", "du": "erklärst", "er_sie_es": "erklärt", "wir": "erklären", "ihr": "erklärt", "sie_Sie": "erklären" }
-  },
-  {
-    "id": 44,
-    "german": "hoffen",
-    "english": "to hope",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "hoffe", "du": "hoffst", "er_sie_es": "hofft", "wir": "hoffen", "ihr": "hofft", "sie_Sie": "hoffen" }
-  },
-  {
-    "id": 45,
-    "german": "feiern",
-    "english": "to celebrate",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "feiere", "du": "feierst", "er_sie_es": "feiert", "wir": "feiern", "ihr": "feiert", "sie_Sie": "feiern" }
-  },
-  {
-    "id": 46,
-    "german": "fühlen",
-    "english": "to feel",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "fühle", "du": "fühlst", "er_sie_es": "fühlt", "wir": "fühlen", "ihr": "fühlt", "sie_Sie": "fühlen" }
-  },
-  {
-    "id": 47,
-    "german": "danken",
-    "english": "to thank",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "danke", "du": "dankst", "er_sie_es": "dankt", "wir": "danken", "ihr": "dankt", "sie_Sie": "danken" }
-  },
-  {
-    "id": 48,
-    "german": "schenken",
-    "english": "to give (a gift)",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "schenke", "du": "schenkst", "er_sie_es": "schenkt", "wir": "schenken", "ihr": "schenkt", "sie_Sie": "schenken" }
-  },
-  {
-    "id": 49,
-    "german": "stellen",
-    "english": "to place / to set up (upright)",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "stelle", "du": "stellst", "er_sie_es": "stellt", "wir": "stellen", "ihr": "stellt", "sie_Sie": "stellen" }
-  },
-  {
-    "id": 50,
-    "german": "legen",
-    "english": "to lay / to put down",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "lege", "du": "legst", "er_sie_es": "legt", "wir": "legen", "ihr": "legt", "sie_Sie": "legen" }
-  },
-  {
-    "id": 51,
-    "german": "bauen",
-    "english": "to build",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "baue", "du": "baust", "er_sie_es": "baut", "wir": "bauen", "ihr": "baut", "sie_Sie": "bauen" }
-  },
-  {
-    "id": 52,
-    "german": "rechnen",
-    "english": "to calculate / count",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "rechne", "du": "rechnest", "er_sie_es": "rechnet", "wir": "rechnen", "ihr": "rechnet", "sie_Sie": "rechnen" }
-  },
-  {
-    "id": 53,
-    "german": "zahlen",
-    "english": "to pay",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "zahle", "du": "zahlst", "er_sie_es": "zahlt", "wir": "zahlen", "ihr": "zahlt", "sie_Sie": "zahlen" }
-  },
-  {
-    "id": 54,
-    "german": "funktionieren",
-    "english": "to function / work",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "funktioniere", "du": "funktionierst", "er_sie_es": "funktioniert", "wir": "funktionieren", "ihr": "funktioniert", "sie_Sie": "funktionieren" }
-  },
-  {
-    "id": 55,
-    "german": "programmieren",
-    "english": "to code / program",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "programmiere", "du": "programmierst", "er_sie_es": "programmiert", "wir": "programmieren", "ihr": "programmiert", "sie_Sie": "programmieren" }
-  },
-  {
-    "id": 56,
-    "german": "trainieren",
-    "english": "to train / exercise",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "trainiere", "du": "trainierst", "er_sie_es": "trainiert", "wir": "trainieren", "ihr": "trainiert", "sie_Sie": "trainieren" }
-  },
-  {
-    "id": 57,
-    "german": "zeichnen",
-    "english": "to draw",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "zeichne", "du": "zeichnest", "er_sie_es": "zeichnet", "wir": "zeichnen", "ihr": "zeichnet", "sie_Sie": "zeichnen" }
-  },
-  {
-    "id": 58,
-    "german": "malen",
-    "english": "to paint",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "male", "du": "malst", "er_sie_es": "malt", "wir": "malen", "ihr": "malt", "sie_Sie": "malen" }
-  },
-  {
-    "id": 59,
-    "german": "rauchen",
-    "english": "to smoke",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "rauche", "du": "rauchst", "er_sie_es": "raucht", "wir": "rauchen", "ihr": "raucht", "sie_Sie": "rauchen" }
-  },
-  {
-    "id": 60,
-    "german": "lächeln",
-    "english": "to smile",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "lächle", "du": "lächelst", "er_sie_es": "lächelt", "wir": "lächeln", "ihr": "lächelt", "sie_Sie": "lächeln" }
-  },
+  { "id": 41, "german": "durch", "english": "through / by", "type": "Accusative Preposition" },
+  { "id": 42, "german": "für", "english": "for", "type": "Accusative Preposition" },
+  { "id": 43, "german": "gegen", "english": "against / towards", "type": "Accusative Preposition" },
+  { "id": 44, "german": "ohne", "english": "without", "type": "Accusative Preposition" },
+  { "id": 45, "german": "um", "english": "around / at (time)", "type": "Accusative Preposition" },
+  { "id": 46, "german": "bis", "english": "until / up to", "type": "Accusative Preposition" },
+  { "id": 47, "german": "entlang", "english": "along", "type": "Accusative Preposition" },
+  { "id": 48, "german": "aus", "english": "out of / from", "type": "Dative Preposition" },
+  { "id": 49, "german": "bei", "english": "at / with / near", "type": "Dative Preposition" },
+  { "id": 50, "german": "mit", "english": "with", "type": "Dative Preposition" },
+  { "id": 51, "german": "nach", "english": "after / to (destination)", "type": "Dative Preposition" },
+  { "id": 52, "german": "seit", "english": "since / for (duration)", "type": "Dative Preposition" },
+  { "id": 53, "german": "von", "english": "from / of", "type": "Dative Preposition" },
+  { "id": 54, "german": "zu", "english": "to / at", "type": "Dative Preposition" },
+  { "id": 55, "german": "gegenüber", "english": "opposite / across from", "type": "Dative Preposition" },
+  { "id": 56, "german": "ausser", "english": "except for / besides", "type": "Dative Preposition" },
+  { "id": 57, "german": "sammt", "english": "together with", "type": "Dative Preposition" },
+  { "id": 58, "german": "an", "english": "on (vertical) / at", "type": "Two-Way Preposition" },
+  { "id": 59, "german": "auf", "english": "on (horizontal) / onto", "type": "Two-Way Preposition" },
+  { "id": 60, "german": "hinter", "english": "behind", "type": "Two-Way Preposition" },
+  { "id": 61, "german": "in", "english": "in / into", "type": "Two-Way Preposition" },
+  { "id": 62, "german": "neben", "english": "next to / beside", "type": "Two-Way Preposition" },
+  { "id": 63, "german": "über", "english": "above / over / about", "type": "Two-Way Preposition" },
+  { "id": 64, "german": "unter", "english": "under / among", "type": "Two-Way Preposition" },
+  { "id": 65, "german": "vor", "english": "in front of / ago / before", "type": "Two-Way Preposition" },
+  { "id": 66, "german": "zwischen", "english": "between", "type": "Two-Way Preposition" },
+  { "id": 67, "german": "statt", "english": "instead of", "type": "Genitive Preposition" },
+  { "id": 68, "german": "anstelle", "english": "instead of / in place of", "type": "Genitive Preposition" },
+  { "id": 69, "german": "trotz", "english": "despite / in spite of", "type": "Genitive Preposition" },
+  { "id": 70, "german": "während", "english": "during", "type": "Genitive Preposition" },
+  { "id": 71, "german": "wegen", "english": "because of", "type": "Genitive Preposition" },
+  { "id": 72, "german": "aufgrund", "english": "on the basis of / due to", "type": "Genitive Preposition" },
+  { "id": 73, "german": "ausserhalb", "english": "outside of", "type": "Genitive Preposition" },
+  { "id": 74, "german": "innerhalb", "english": "inside of / within", "type": "Genitive Preposition" },
+  { "id": 75, "german": "oberhalb", "english": "above / higher than", "type": "Genitive Preposition" },
+  { "id": 76, "german": "unterhalb", "english": "below / lower than", "type": "Genitive Preposition" },
+  { "id": 77, "german": "jenseits", "english": "beyond / on the other side of", "type": "Genitive Preposition" },
+  { "id": 78, "german": "diesseits", "english": "on this side of", "type": "Genitive Preposition" },
+  { "id": 79, "german": "unweit", "english": "not far from", "type": "Genitive Preposition" },
+  { "id": 80, "german": "unweit von", "english": "close to", "type": "Dative Preposition Compound" },
+  { "id": 81, "german": "mittels", "english": "by means of", "type": "Genitive Preposition" },
+  { "id": 82, "german": "dank", "english": "thanks to", "type": "Genitive / Dative Preposition" },
+  { "id": 83, "german": "zufolge", "english": "according to", "type": "Dative / Genitive Preposition" },
+  { "id": 84, "german": "gemäss", "english": "in accordance with", "type": "Dative Preposition" },
+  { "id": 85, "german": "laut", "english": "according to", "type": "Dative / Genitive Preposition" },
 
-  {
-    "id": 61,
-    "german": "gehen",
-    "english": "to go / to walk",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "gehe", "du": "gehst", "er_sie_es": "geht", "wir": "gehen", "ihr": "geht", "sie_Sie": "gehen" }
-  },
-  {
-    "id": 62,
-    "german": "kommen",
-    "english": "to come",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "komme", "du": "kommst", "er_sie_es": "kommt", "wir": "kommen", "ihr": "kommt", "sie_Sie": "kommen" }
-  },
-  {
-    "id": 63,
-    "german": "sehen",
-    "english": "to see",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "sehe", "du": "siehst", "er_sie_es": "sieht", "wir": "sehen", "ihr": "seht", "sie_Sie": "sehen" }
-  },
-  {
-    "id": 64,
-    "german": "geben",
-    "english": "to give",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "gebe", "du": "gibst", "er_sie_es": "gibt", "wir": "geben", "ihr": "gebt", "sie_Sie": "geben" }
-  },
-  {
-    "id": 65,
-    "german": "nehmen",
-    "english": "to take",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "nehme", "du": "nimmst", "er_sie_es": "nimmt", "wir": "nehmen", "ihr": "nehmt", "sie_Sie": "nehmen" }
-  },
-  {
-    "id": 66,
-    "german": "sprechen",
-    "english": "to speak",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "spreche", "du": "sprichst", "er_sie_es": "spricht", "wir": "sprechen", "ihr": "sprecht", "sie_Sie": "sprechen" }
-  },
-  {
-    "id": 67,
-    "german": "essen",
-    "english": "to eat",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "esse", "du": "isst", "er_sie_es": "isst", "wir": "essen", "ihr": "esst", "sie_Sie": "essen" }
-  },
-  {
-    "id": 68,
-    "german": "trinken",
-    "english": "to drink",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "trinke", "du": "trinkst", "er_sie_es": "trinkt", "wir": "trinken", "ihr": "trinkt", "sie_Sie": "trinken" }
-  },
-  {
-    "id": 69,
-    "german": "fahren",
-    "english": "to drive / to travel",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "fahre", "du": "fährst", "er_sie_es": "fährt", "wir": "fahren", "ihr": "fahrt", "sie_Sie": "fahren" }
-  },
-  {
-    "id": 70,
-    "german": "lesen",
-    "english": "to read",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "lese", "du": "liest", "er_sie_es": "liest", "wir": "lesen", "ihr": "lest", "sie_Sie": "lesen" }
-  },
-  {
-    "id": 71,
-    "german": "schreiben",
-    "english": "to write",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "schreibe", "du": "schreibst", "er_sie_es": "schreibt", "wir": "schreiben", "ihr": "schreibt", "sie_Sie": "schreiben" }
-  },
-  {
-    "id": 72,
-    "german": "schlafen",
-    "english": "to sleep",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "schlafe", "du": "schläfst", "er_sie_es": "schläft", "wir": "schlafen", "ihr": "schlaft", "sie_Sie": "schlafen" }
-  },
-  {
-    "id": 73,
-    "german": "tragen",
-    "english": "to carry / to wear",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "trage", "du": "trägst", "er_sie_es": "trägt", "wir": "tragen", "ihr": "tragt", "sie_Sie": "tragen" }
-  },
-  {
-    "id": 74,
-    "german": "waschen",
-    "english": "to wash",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "wasche", "du": "wäschst", "er_sie_es": "wäscht", "wir": "waschen", "ihr": "wascht", "sie_Sie": "waschen" }
-  },
-  {
-    "id": 75,
-    "german": "helfen",
-    "english": "to help",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "helfe", "du": "hilfst", "er_sie_es": "hilft", "wir": "helfen", "ihr": "helft", "sie_Sie": "helfen" }
-  },
-  {
-    "id": 76,
-    "german": "treffen",
-    "english": "to meet",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "treffe", "du": "triffst", "er_sie_es": "trifft", "wir": "treffen", "ihr": "trefft", "sie_Sie": "treffen" }
-  },
-  {
-    "id": 77,
-    "german": "finden",
-    "english": "to find",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "finde", "du": "findest", "er_sie_es": "findet", "wir": "finden", "ihr": "findet", "sie_Sie": "finden" }
-  },
-  {
-    "id": 78,
-    "german": "bleiben",
-    "english": "to stay / to remain",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "bleibe", "du": "bleibst", "er_sie_es": "bleibt", "wir": "bleiben", "ihr": "bleibt", "sie_Sie": "bleiben" }
-  },
-  {
-    "id": 79,
-    "german": "stehen",
-    "english": "to stand",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "stehe", "du": "stehst", "er_sie_es": "steht", "wir": "stehen", "ihr": "steht", "sie_Sie": "stehen" }
-  },
-  {
-    "id": 80,
-    "german": "liegen",
-    "english": "to lie / to be located",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "liege", "du": "liegst", "er_sie_es": "liegt", "wir": "liegen", "ihr": "liegt", "sie_Sie": "liegen" }
-  },
-  {
-    "id": 81,
-    "german": "sitzen",
-    "english": "to sit",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "sitze", "du": "sitzt", "er_sie_es": "sitzt", "wir": "sitzen", "ihr": "sitzt", "sie_Sie": "sitzen" }
-  },
-  {
-    "id": 82,
-    "german": "wissen",
-    "english": "to know (a fact)",
-    "type": "Irregular / Mixed Verb",
-    "conjugation": { "ich": "weiß", "du": "weißt", "er_sie_es": "weiß", "wir": "wissen", "ihr": "wisst", "sie_Sie": "wissen" }
-  },
-  {
-    "id": 83,
-    "german": "kennen",
-    "english": "to know (a person/place)",
-    "type": "Irregular / Mixed Verb",
-    "conjugation": { "ich": "kenne", "du": "kennst", "er_sie_es": "kennt", "wir": "kennen", "ihr": "kennt", "sie_Sie": "kennen" }
-  },
-  {
-    "id": 84,
-    "german": "denken",
-    "english": "to think",
-    "type": "Irregular / Mixed Verb",
-    "conjugation": { "ich": "denke", "du": "denkst", "er_sie_es": "denkt", "wir": "denken", "ihr": "denkt", "sie_Sie": "denken" }
-  },
-  {
-    "id": 85,
-    "german": "bringen",
-    "english": "to bring",
-    "type": "Irregular / Mixed Verb",
-    "conjugation": { "ich": "bringe", "du": "bringst", "er_sie_es": "bringt", "wir": "bringen", "ihr": "bringt", "sie_Sie": "bringen" }
-  },
-  {
-    "id": 86,
-    "german": "nennen",
-    "english": "to name / to call",
-    "type": "Irregular / Mixed Verb",
-    "conjugation": { "ich": "nenne", "du": "nennst", "er_sie_es": "nennt", "wir": "nennen", "ihr": "nennt", "sie_Sie": "nennen" }
-  },
-  {
-    "id": 87,
-    "german": "halten",
-    "english": "to hold / to stop",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "halte", "du": "hältst", "er_sie_es": "hält", "wir": "halten", "ihr": "haltet", "sie_Sie": "halten" }
-  },
-  {
-    "id": 88,
-    "german": "lassen",
-    "english": "to let / to allow / to leave",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "lasse", "du": "lässt", "er_sie_es": "lässt", "wir": "lassen", "ihr": "lasst", "sie_Sie": "lassen" }
-  },
-  {
-    "id": 89,
-    "german": "laufen",
-    "english": "to run / to walk fast",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "laufe", "du": "läufst", "er_sie_es": "läuft", "wir": "laufen", "ihr": "lauft", "sie_Sie": "laufen" }
-  },
-  {
-    "id": 90,
-    "german": "singen",
-    "english": "to sing",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "singe", "du": "singst", "er_sie_es": "singt", "wir": "singen", "ihr": "singt", "sie_Sie": "singen" }
-  },
-  {
-    "id": 91,
-    "german": "fliegen",
-    "english": "to fly",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "fliege", "du": "fliegst", "er_sie_es": "fliegt", "wir": "fliegen", "ihr": "fliegt", "sie_Sie": "fliegen" }
-  },
-  {
-    "id": 92,
-    "german": "schwimmen",
-    "english": "to swim",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "schwimme", "du": "schwimmst", "er_sie_es": "schwimmt", "wir": "schwimmen", "ihr": "schwimmt", "sie_Sie": "schwimmen" }
-  },
-  {
-    "id": 93,
-    "german": "gewinnen",
-    "english": "to win",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "gewinne", "du": "gewinnst", "er_sie_es": "gewinnt", "wir": "gewinnen", "ihr": "gewinnt", "sie_Sie": "gewinnen" }
-  },
-  {
-    "id": 94,
-    "german": "verlieren",
-    "english": "to lose",
-    "type": "Irregular / Non-separable",
-    "conjugation": { "ich": "verliere", "du": "verlierst", "er_sie_es": "verliert", "wir": "verlieren", "ihr": "verliert", "sie_Sie": "verlieren" }
-  },
-  {
-    "id": 95,
-    "german": "schließen",
-    "english": "to close / to shut",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "schließe", "du": "schließt", "er_sie_es": "schließt", "wir": "schließen", "ihr": "schließt", "sie_Sie": "schließen" }
-  },
-  {
-    "id": 96,
-    "german": "schneiden",
-    "english": "to cut",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "schneide", "du": "schneidest", "er_sie_es": "schneidet", "wir": "schneiden", "ihr": "schneidet", "sie_Sie": "schneiden" }
-  },
-  {
-    "id": 97,
-    "german": "bieten",
-    "english": "to offer",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "biete", "du": "bietest", "er_sie_es": "bietet", "wir": "bieten", "ihr": "bietet", "sie_Sie": "bieten" }
-  },
-  {
-    "id": 98,
-    "german": "ziehen",
-    "english": "to pull / to move (relocate)",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "ziehe", "du": "ziehst", "er_sie_es": "zieht", "wir": "ziehen", "ihr": "zieht", "sie_Sie": "ziehen" }
-  },
-  {
-    "id": 99,
-    "german": "scheinen",
-    "english": "to shine / to seem",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "scheine", "du": "scheinst", "er_sie_es": "scheint", "wir": "scheinen", "ihr": "scheint", "sie_Sie": "scheinen" }
-  },
-  {
-    "id": 100,
-    "german": "bitten",
-    "english": "to request / to ask for",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "bitte", "du": "bittest", "er_sie_es": "bittet", "wir": "bitten", "ihr": "bittet", "sie_Sie": "bitten" }
-  },
-  {
-    "id": 101,
-    "german": "fallen",
-    "english": "to fall",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "falle", "du": "fällst", "er_sie_es": "fällt", "wir": "fallen", "ihr": "fallt", "sie_Sie": "fallen" }
-  },
-  {
-    "id": 102,
-    "german": "fangen",
-    "english": "to catch",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "fange", "du": "fängst", "er_sie_es": "fängt", "wir": "fangen", "ihr": "fangt", "sie_Sie": "fangen" }
-  },
-  {
-    "id": 103,
-    "german": "hängen",
-    "english": "to hang",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "hänge", "du": "hängst", "er_sie_es": "hängt", "wir": "hängen", "ihr": "hängt", "sie_Sie": "hängen" }
-  },
-  {
-    "id": 104,
-    "german": "riechen",
-    "english": "to smell",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "rieche", "du": "riechst", "er_sie_es": "riecht", "wir": "riechen", "ihr": "riecht", "sie_Sie": "riechen" }
-  },
-  {
-    "id": 105,
-    "german": "schmecken",
-    "english": "to taste",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "schmecke", "du": "schmeckst", "er_sie_es": "schmeckt", "wir": "schmecken", "ihr": "schmeckt", "sie_Sie": "schmecken" }
-  },
-  {
-    "id": 106,
-    "german": "rufen",
-    "english": "to call / shout",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "rufe", "du": "rufst", "er_sie_es": "ruft", "wir": "rufen", "ihr": "ruft", "sie_Sie": "rufen" }
-  },
-  {
-    "id": 107,
-    "german": "schlagen",
-    "english": "to hit / to beat",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "schlage", "du": "schlägst", "er_sie_es": "schlägt", "wir": "schlagen", "ihr": "schlagt", "sie_Sie": "schlagen" }
-  },
-  {
-    "id": 108,
-    "german": "treten",
-    "english": "to kick / to step",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "trete", "du": "trittst", "er_sie_es": "tritt", "wir": "treten", "ihr": "tretet", "sie_Sie": "treten" }
-  },
-  {
-    "id": 109,
-    "german": "vergessen",
-    "english": "to forget",
-    "type": "Irregular / Non-separable",
-    "conjugation": { "ich": "vergesse", "du": "vergisst", "er_sie_es": "vergisst", "wir": "vergessen", "ihr": "vergesst", "sie_Sie": "vergessen" }
-  },
-  {
-    "id": 110,
-    "german": "verstehen",
-    "english": "to understand",
-    "type": "Irregular / Non-separable",
-    "conjugation": { "ich": "verstehe", "du": "verstehst", "er_sie_es": "versteht", "wir": "verstehen", "ihr": "versteht", "sie_Sie": "verstehen" }
-  },
+  { "id": 86, "german": "ich", "english": "I", "type": "Personal Pronoun" },
+  { "id": 87, "german": "du", "english": "you (informal singular)", "type": "Personal Pronoun" },
+  { "id": 88, "german": "er", "english": "he", "type": "Personal Pronoun" },
+  { "id": 89, "german": "sie", "english": "she / they", "type": "Personal Pronoun" },
+  { "id": 90, "german": "es", "english": "it", "type": "Personal Pronoun" },
+  { "id": 91, "german": "wir", "english": "we", "type": "Personal Pronoun" },
+  { "id": 92, "german": "ihr", "english": "you (informal plural)", "type": "Personal Pronoun" },
+  { "id": 93, "german": "Sie", "english": "you (formal)", "type": "Personal Pronoun" },
+  { "id": 94, "german": "mich", "english": "me (accusative)", "type": "Personal Pronoun" },
+  { "id": 95, "german": "dich", "english": "you (accusative)", "type": "Personal Pronoun" },
+  { "id": 96, "german": "ihn", "english": "him (accusative)", "type": "Personal Pronoun" },
+  { "id": 97, "german": "uns", "english": "us (accusative/dative)", "type": "Personal Pronoun" },
+  { "id": 98, "german": "euch", "english": "you all (accusative/dative)", "type": "Personal Pronoun" },
+  { "id": 99, "german": "mir", "english": "me (dative)", "type": "Personal Pronoun" },
+  { "id": 100, "german": "dir", "english": "you (dative)", "type": "Personal Pronoun" },
+  { "id": 101, "german": "ihm", "english": "him / it (dative)", "type": "Personal Pronoun" },
+  { "id": 102, "german": "ihnen", "english": "them (dative)", "type": "Personal Pronoun" },
+  { "id": 103, "german": "Ihnen", "english": "you (formal dative)", "type": "Personal Pronoun" },
+  { "id": 104, "german": "mein", "english": "my", "type": "Possessive Determiner" },
+  { "id": 105, "german": "dein", "english": "your (informal)", "type": "Possessive Determiner" },
+  { "id": 106, "german": "sein", "english": "his / its", "type": "Possessive Determiner" },
+  { "id": 107, "german": "ihr", "english": "her / their", "type": "Possessive Determiner" },
+  { "id": 108, "german": "unser", "english": "our", "type": "Possessive Determiner" },
+  { "id": 109, "german": "euer", "english": "your (plural informal)", "type": "Possessive Determiner" },
+  { "id": 110, "german": "Ihr", "english": "your (formal)", "type": "Possessive Determiner" },
+  { "id": 111, "german": "dieser / diese / dieses", "english": "this / these", "type": "Demonstrative Determiner" },
+  { "id": 112, "german": "jener / jene / jenes", "english": "that / those", "type": "Demonstrative Determiner" },
+  { "id": 113, "german": "derselbe / dieselbe / dasselbe", "english": "the same", "type": "Demonstrative Pronoun" },
+  { "id": 114, "german": "derjenige / diejenige / dasjenige", "english": "that one / the one who", "type": "Demonstrative Pronoun" },
+  { "id": 115, "german": "diejenigen", "english": "those / those who", "type": "Demonstrative Pronoun (Plural)" },
+  { "id": 116, "german": "wer", "english": "who", "type": "Interrogative Pronoun" },
+  { "id": 117, "german": "wen", "english": "whom (accusative)", "type": "Interrogative Pronoun" },
+  { "id": 118, "german": "wem", "english": "whom (dative)", "type": "Interrogative Pronoun" },
+  { "id": 119, "german": "wessen", "english": "whose", "type": "Interrogative Pronoun" },
+  { "id": 120, "german": "was", "english": "what", "type": "Interrogative Pronoun" },
+  { "id": 121, "german": "welcher / welche / welches", "english": "which / which one", "type": "Interrogative Determiner" },
+  { "id": 122, "german": "was für ein", "english": "what kind of a", "type": "Interrogative Expression" },
+  { "id": 123, "german": "jemand", "english": "someone / somebody", "type": "Indefinite Pronoun" },
+  { "id": 124, "german": "niemand", "english": "no one / nobody", "type": "Indefinite Pronoun" },
+  { "id": 125, "german": "man", "english": "one / you / people in general", "type": "Indefinite Pronoun" },
 
-  {
-    "id": 111,
-    "german": "aufstehen",
-    "english": "to get up / to stand up",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "stehe auf", "du": "stehst auf", "er_sie_es": "steht auf", "wir": "stehen auf", "ihr": "steht auf", "sie_Sie": "stehen auf" }
-  },
-  {
-    "id": 112,
-    "german": "anrufen",
-    "english": "to call (on phone)",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "rufe an", "du": "rufst an", "er_sie_es": "ruft an", "wir": "rufen an", "ihr": "ruft an", "sie_Sie": "rufen an" }
-  },
-  {
-    "id": 113,
-    "german": "einkaufen",
-    "english": "to shop / go grocery shopping",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "kaufe ein", "du": "kaufst ein", "er_sie_es": "kauft ein", "wir": "kaufen ein", "ihr": "kauft ein", "sie_Sie": "kaufen ein" }
-  },
-  {
-    "id": 114,
-    "german": "fernsehen",
-    "english": "to watch TV",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "sehe fern", "du": "siehst fern", "er_sie_es": "sieht fern", "wir": "sehen fern", "ihr": "seht fern", "sie_Sie": "sehen fern" }
-  },
-  {
-    "id": 115,
-    "german": "aufmachen",
-    "english": "to open",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "mache auf", "du": "machst auf", "er_sie_es": "macht auf", "wir": "machen auf", "ihr": "macht auf", "sie_Sie": "machen auf" }
-  },
-  {
-    "id": 116,
-    "german": "zumachen",
-    "english": "to close",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "mache zu", "du": "machst zu", "er_sie_es": "macht zu", "wir": "machen zu", "ihr": "macht zu", "sie_Sie": "machen zu" }
-  },
-  {
-    "id": 117,
-    "german": "mitkommen",
-    "english": "to come along",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "komme mit", "du": "kommst mit", "er_sie_es": "kommt mit", "wir": "kommen mit", "ihr": "kommt mit", "sie_Sie": "kommen mit" }
-  },
-  {
-    "id": 118,
-    "german": "ankommen",
-    "english": "to arrive",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "komme an", "du": "kommst an", "er_sie_es": "kommt an", "wir": "kommen an", "ihr": "kommt an", "sie_Sie": "kommen an" }
-  },
-  {
-    "id": 119,
-    "german": "abfahren",
-    "english": "to depart",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "fahre ab", "du": "fährst ab", "er_sie_es": "fährt ab", "wir": "fahren ab", "ihr": "fahrt ab", "sie_Sie": "fahren ab" }
-  },
-  {
-    "id": 120,
-    "german": "weggehen",
-    "english": "to go away / to leave",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "gehe weg", "du": "gehst weg", "er_sie_es": "geht weg", "wir": "gehen weg", "ihr": "geht weg", "sie_Sie": "gehen weg" }
-  },
-  {
-    "id": 121,
-    "german": "vorbereiten",
-    "english": "to prepare",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "bereite vor", "du": "bereitest vor", "er_sie_es": "bereitet vor", "wir": "bereiten vor", "ihr": "bereitet vor", "sie_Sie": "bereiten vor" }
-  },
-  {
-    "id": 122,
-    "german": "aufräumen",
-    "english": "to tidy up",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "räume auf", "du": "räumst auf", "er_sie_es": "räumt auf", "wir": "räumen auf", "ihr": "räumt auf", "sie_Sie": "räumen auf" }
-  },
-  {
-    "id": 123,
-    "german": "anfangen",
-    "english": "to begin / start",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "fange an", "du": "fängst an", "er_sie_es": "fängt an", "wir": "fangen an", "ihr": "fangt an", "sie_Sie": "fangen an" }
-  },
-  {
-    "id": 124,
-    "german": "aufhören",
-    "english": "to stop / cease",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "höre auf", "du": "hörst auf", "er_sie_es": "hört auf", "wir": "hören auf", "ihr": "hört auf", "sie_Sie": "hören auf" }
-  },
-  {
-    "id": 125,
-    "german": "aussehen",
-    "english": "to look / to appear",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "sehe aus", "du": "siehst aus", "er_sie_es": "sieht aus", "wir": "sehen aus", "ihr": "seht aus", "sie_Sie": "sehen aus" }
-  },
-  {
-    "id": 126,
-    "german": "einladen",
-    "english": "to invite",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "lade ein", "du": "lädst ein", "er_sie_es": "lädt ein", "wir": "laden ein", "ihr": "ladet ein", "sie_Sie": "laden ein" }
-  },
-  {
-    "id": 127,
-    "german": "abholen",
-    "english": "to pick up",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "hole ab", "du": "holst ab", "er_sie_es": "holt ab", "wir": "holen ab", "ihr": "holt ab", "sie_Sie": "holen ab" }
-  },
-  {
-    "id": 128,
-    "german": "anziehen",
-    "english": "to put on (clothes)",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "ziehe an", "du": "ziehst an", "er_sie_es": "zieht an", "wir": "ziehen an", "ihr": "zieht an", "sie_Sie": "ziehen an" }
-  },
-  {
-    "id": 129,
-    "german": "ausziehen",
-    "english": "to take off (clothes) / move out",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "ziehe aus", "du": "ziehst aus", "er_sie_es": "zieht aus", "wir": "ziehen aus", "ihr": "zieht aus", "sie_Sie": "ziehen aus" }
-  },
-  {
-    "id": 130,
-    "german": "umziehen",
-    "english": "to change clothes / move house",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "ziehe um", "du": "ziehst um", "er_sie_es": "zieht um", "wir": "ziehen um", "ihr": "zieht um", "sie_Sie": "ziehen um" }
-  },
-  {
-    "id": 131,
-    "german": "einschlafen",
-    "english": "to fall asleep",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "schlafe ein", "du": "schläfst ein", "er_sie_es": "schläft ein", "wir": "schlafen ein", "ihr": "schlaft ein", "sie_Sie": "schlafen ein" }
-  },
-  {
-    "id": 132,
-    "german": "aufwachen",
-    "english": "to wake up",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "wache auf", "du": "wachst auf", "er_sie_es": "wacht auf", "wir": "wachen auf", "ihr": "wacht auf", "sie_Sie": "wachen auf" }
-  },
-  {
-    "id": 133,
-    "german": "stattfinden",
-    "english": "to take place",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "finde statt", "du": "findest statt", "er_sie_es": "findet statt", "wir": "finden statt", "ihr": "findet statt", "sie_Sie": "finden statt" }
-  },
-  {
-    "id": 134,
-    "german": "zurückkommen",
-    "english": "to return / come back",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "komme zurück", "du": "kommst zurück", "er_sie_es": "kommt zurück", "wir": "kommen zurück", "ihr": "kommt zurück", "sie_Sie": "kommen zurück" }
-  },
-  {
-    "id": 135,
-    "german": "mitnehmen",
-    "english": "to take along",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "nehme mit", "du": "nimmst mit", "er_sie_es": "nimmt mit", "wir": "nehmen mit", "ihr": "nehmt mit", "sie_Sie": "nehmen mit" }
-  },
-  {
-    "id": 136,
-    "german": "ausfüllen",
-    "english": "to fill out (form)",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "fülle aus", "du": "füllst aus", "er_sie_es": "füllt aus", "wir": "füllen aus", "ihr": "füllt aus", "sie_Sie": "füllen aus" }
-  },
-  {
-    "id": 137,
-    "german": "abgeben",
-    "english": "to hand in / submit",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "gebe ab", "du": "gibst ab", "er_sie_es": "gibt ab", "wir": "geben ab", "ihr": "gebt ab", "sie_Sie": "geben ab" }
-  },
-  {
-    "id": 138,
-    "german": "ausmachen",
-    "english": "to turn off / agree on",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "mache aus", "du": "machst aus", "er_sie_es": "macht aus", "wir": "machen aus", "ihr": "macht aus", "sie_Sie": "machen aus" }
-  },
-  {
-    "id": 139,
-    "german": "anmachen",
-    "english": "to turn on",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "mache an", "du": "machst an", "er_sie_es": "macht an", "wir": "machen an", "ihr": "macht an", "sie_Sie": "machen an" }
-  },
-  {
-    "id": 140,
-    "german": "vorschlagen",
-    "english": "to suggest / propose",
-    "type": "Separable Verb",
-    "conjugation": { "ich": "schlage vor", "du": "schlägst vor", "er_sie_es": "schlägt vor", "wir": "schlagen vor", "ihr": "schlagt vor", "sie_Sie": "schlagen vor" }
-  },
+  { "id": 126, "german": "alle", "english": "all / everyone", "type": "Quantifier" },
+  { "id": 127, "german": "alles", "english": "everything", "type": "Quantifier" },
+  { "id": 128, "german": "beide", "english": "both", "type": "Quantifier" },
+  { "id": 129, "german": "einige", "english": "some / several", "type": "Quantifier" },
+  { "id": 130, "german": "etliche", "english": "quite a few / several", "type": "Quantifier" },
+  { "id": 131, "german": "manche", "english": "some / many a", "type": "Quantifier" },
+  { "id": 132, "german": "viel", "english": "much / a lot of", "type": "Quantifier" },
+  { "id": 133, "german": "viele", "english": "many", "type": "Quantifier" },
+  { "id": 134, "german": "wenig", "english": "little / not much", "type": "Quantifier" },
+  { "id": 135, "german": "wenige", "english": "few", "type": "Quantifier" },
+  { "id": 136, "german": "ein paar", "english": "a few / a couple of", "type": "Quantifier Phrase" },
+  { "id": 137, "german": "etwas", "english": "something / a little", "type": "Indefinite Pronoun / Quantifier" },
+  { "id": 138, "german": "nichts", "english": "nothing", "type": "Indefinite Pronoun" },
+  { "id": 139, "german": "jeder / jede / jedes", "english": "each / every / everyone", "type": "Quantifier / Determiner" },
+  { "id": 140, "german": "jeglicher", "english": "any / any kind of", "type": "Quantifier" },
+  { "id": 141, "german": "sämtliche", "english": "all / entire", "type": "Quantifier" },
+  { "id": 142, "german": "ganz", "english": "whole / entire / quite", "type": "Adjective / Adverb" },
+  { "id": 143, "german": "mehrere", "english": "several / multiple", "type": "Quantifier" },
+  { "id": 144, "german": "genug", "english": "enough", "type": "Quantifier / Adverb" },
+  { "id": 145, "german": "ausreichend", "english": "sufficient / enough", "type": "Quantifier" },
+  { "id": 146, "german": "sehr", "english": "very", "type": "Degree Adverb" },
+  { "id": 147, "german": "zu", "english": "too (excessive)", "type": "Degree Adverb" },
+  { "id": 148, "german": "ziemlich", "english": "quite / fairly", "type": "Degree Adverb" },
+  { "id": 149, "german": "relativ", "english": "relatively", "type": "Degree Adverb" },
+  { "id": 150, "german": "besonders", "english": "especially / particularly", "type": "Degree Adverb" },
+  { "id": 151, "german": "insbesondere", "english": "in particular / especially", "type": "Degree Adverb" },
+  { "id": 152, "german": "extrem", "english": "extremely", "type": "Degree Adverb" },
+  { "id": 153, "german": "ausserordentlich", "english": "extraordinarily", "type": "Degree Adverb" },
+  { "id": 154, "german": "völlig", "english": "completely / totally", "type": "Degree Adverb" },
+  { "id": 155, "german": "ganz und gar", "english": "completely / entirely", "type": "Degree Expression" },
+  { "id": 156, "german": "kaum", "english": "hardly / barely", "type": "Degree Adverb" },
+  { "id": 157, "german": "fast", "english": "almost / nearly", "type": "Degree Adverb" },
+  { "id": 158, "german": "beinahe", "english": "almost / all but", "type": "Degree Adverb" },
+  { "id": 159, "german": "ungefähr", "english": "approximately / roughly", "type": "Adverb" },
+  { "id": 160, "german": "etwa", "english": "about / roughly / approximately", "type": "Adverb" },
+  { "id": 161, "german": "zirka (ca.)", "english": "approximately / circa", "type": "Adverb" },
+  { "id": 162, "german": "mehr", "english": "more", "type": "Comparative Quantifier" },
+  { "id": 163, "german": "weniger", "english": "less / fewer", "type": "Comparative Quantifier" },
+  { "id": 164, "german": "mindestens", "english": "at least (quantity)", "type": "Adverb" },
+  { "id": 165, "german": "zumindest", "english": "at least (at any rate)", "type": "Adverb" },
 
-  {
-    "id": 141,
-    "german": "bekommen",
-    "english": "to get / to receive",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "bekomme", "du": "bekommst", "er_sie_es": "bekommt", "wir": "bekommen", "ihr": "bekommt", "sie_Sie": "bekommen" }
-  },
-  {
-    "id": 142,
-    "german": "beginnen",
-    "english": "to begin",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "beginne", "du": "beginnst", "er_sie_es": "beginnt", "wir": "beginnen", "ihr": "beginnt", "sie_Sie": "beginnen" }
-  },
-  {
-    "id": 143,
-    "german": "gewinnen",
-    "english": "to win / gain",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "gewinne", "du": "gewinnst", "er_sie_es": "gewinnt", "wir": "gewinnen", "ihr": "gewinnt", "sie_Sie": "gewinnen" }
-  },
-  {
-    "id": 144,
-    "german": "gehören",
-    "english": "to belong to",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "gehöre", "du": "gehörst", "er_sie_es": "gehört", "wir": "gehören", "ihr": "gehört", "sie_Sie": "gehören" }
-  },
-  {
-    "id": 145,
-    "german": "empfehlen",
-    "english": "to recommend",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "empfehle", "du": "empfiehlst", "er_sie_es": "empfiehlt", "wir": "empfehlen", "ihr": "empfehlt", "sie_Sie": "empfehlen" }
-  },
-  {
-    "id": 146,
-    "german": "entscheiden",
-    "english": "to decide",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "entscheide", "du": "entscheidest", "er_sie_es": "entscheidet", "wir": "entscheiden", "ihr": "entscheidet", "sie_Sie": "entscheiden" }
-  },
-  {
-    "id": 147,
-    "german": "entstehen",
-    "english": "to arise / originate",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "entstehe", "du": "entstehst", "er_sie_es": "entsteht", "wir": "entstehen", "ihr": "entsteht", "sie_Sie": "entstehen" }
-  },
-  {
-    "id": 148,
-    "german": "entwickeln",
-    "english": "to develop",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "entwickle", "du": "entwickelst", "er_sie_es": "entwickelt", "wir": "entwickeln", "ihr": "entwickelt", "sie_Sie": "entwickeln" }
-  },
-  {
-    "id": 149,
-    "german": "erreichen",
-    "english": "to reach / achieve",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "erreiche", "du": "erreichst", "er_sie_es": "erreicht", "wir": "erreichen", "ihr": "erreicht", "sie_Sie": "erreichen" }
-  },
-  {
-    "id": 150,
-    "german": "erkennen",
-    "english": "to recognize",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "erkenne", "du": "erkennst", "er_sie_es": "erkennt", "wir": "erkennen", "ihr": "erkennt", "sie_Sie": "erkennen" }
-  },
-  {
-    "id": 151,
-    "german": "erinnern",
-    "english": "to remind",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "erinnere", "du": "erinnerst", "er_sie_es": "erinnert", "wir": "erinnern", "ihr": "erinnert", "sie_Sie": "erinnern" }
-  },
-  {
-    "id": 152,
-    "german": "erlauben",
-    "english": "to allow / permit",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "erlaube", "du": "erlaubst", "er_sie_es": "erlaubt", "wir": "erlauben", "ihr": "erlaubt", "sie_Sie": "erlauben" }
-  },
-  {
-    "id": 153,
-    "german": "verbessern",
-    "english": "to improve",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "verbessere", "du": "verbesserst", "er_sie_es": "verbessert", "wir": "verbessern", "ihr": "verbessert", "sie_Sie": "verbessern" }
-  },
-  {
-    "id": 154,
-    "german": "verbinden",
-    "english": "to connect",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "verbinde", "du": "verbindest", "er_sie_es": "verbindet", "wir": "verbinden", "ihr": "verbindet", "sie_Sie": "verbinden" }
-  },
-  {
-    "id": 155,
-    "german": "vergleichen",
-    "english": "to compare",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "vergleiche", "du": "vergleichst", "er_sie_es": "vergleicht", "wir": "vergleichen", "ihr": "vergleicht", "sie_Sie": "vergleichen" }
-  },
-  {
-    "id": 156,
-    "german": "versuchen",
-    "english": "to try / attempt",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "versuche", "du": "versuchst", "er_sie_es": "versucht", "wir": "versuchen", "ihr": "versucht", "sie_Sie": "versuchen" }
-  },
-  {
-    "id": 157,
-    "german": "versprechen",
-    "english": "to promise",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "verspreche", "du": "verspricht", "er_sie_es": "verspricht", "wir": "versprechen", "ihr": "versprecht", "sie_Sie": "versprechen" }
-  },
-  {
-    "id": 158,
-    "german": "zerstören",
-    "english": "to destroy",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "zerstöre", "du": "zerstörst", "er_sie_es": "zerstört", "wir": "zerstören", "ihr": "zerstört", "sie_Sie": "zerstören" }
-  },
-  {
-    "id": 159,
-    "german": "gefallen",
-    "english": "to please / to like",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "gefalle", "du": "gefällst", "er_sie_es": "gefällt", "wir": "gefallen", "ihr": "gefallt", "sie_Sie": "gefallen" }
-  },
-  {
-    "id": 160,
-    "german": "missverstehen",
-    "english": "to misunderstand",
-    "type": "Non-separable Verb",
-    "conjugation": { "ich": "missverstehe", "du": "missverstehst", "er_sie_es": "missversteht", "wir": "missverstehen", "ihr": "missversteht", "sie_Sie": "missverstehen" }
-  },
-
-  {
-    "id": 161,
-    "german": "sich freuen",
-    "english": "to be happy / look forward to",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "freue mich", "du": "freust dich", "er_sie_es": "freut sich", "wir": "freuen uns", "ihr": "freut euch", "sie_Sie": "freuen sich" }
-  },
-  {
-    "id": 162,
-    "german": "sich fühlen",
-    "english": "to feel (oneself)",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "fühle mich", "du": "fühlst dich", "er_sie_es": "fühlt sich", "wir": "fühlen uns", "ihr": "fühlt euch", "sie_Sie": "fühlen sich" }
-  },
-  {
-    "id": 163,
-    "german": "sich waschen",
-    "english": "to wash oneself",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "wasche mich", "du": "wäschst dich", "er_sie_es": "wäscht sich", "wir": "waschen uns", "ihr": "wascht euch", "sie_Sie": "waschen sich" }
-  },
-  {
-    "id": 164,
-    "german": "sich anziehen",
-    "english": "to get dressed",
-    "type": "Reflexive / Separable",
-    "conjugation": { "ich": "ziehe mich an", "du": "ziehst dich an", "er_sie_es": "zieht sich an", "wir": "ziehen uns an", "ihr": "zieht euch an", "sie_Sie": "ziehen sich an" }
-  },
-  {
-    "id": 165,
-    "german": "sich setzen",
-    "english": "to sit down",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "setze mich", "du": "setzt dich", "er_sie_es": "setzt sich", "wir": "setzen uns", "ihr": "setzt euch", "sie_Sie": "setzen sich" }
-  },
-  {
-    "id": 166,
-    "german": "sich beeilen",
-    "english": "to hurry",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "beeile mich", "du": "beeilst dich", "er_sie_es": "beeilt sich", "wir": "beeilen uns", "ihr": "beeilt euch", "sie_Sie": "beeilen sich" }
-  },
-  {
-    "id": 167,
-    "german": "sich erinnern",
-    "english": "to remember",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "erinnere mich", "du": "erinnerst dich", "er_sie_es": "erinnert sich", "wir": "erinnern uns", "ihr": "erinnert euch", "sie_Sie": "erinnern sich" }
-  },
-  {
-    "id": 168,
-    "german": "sich interessieren",
-    "english": "to be interested in",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "interessiere mich", "du": "interessierst dich", "er_sie_es": "interessiert sich", "wir": "interessieren uns", "ihr": "interessiert euch", "sie_Sie": "interessieren sich" }
-  },
-  {
-    "id": 169,
-    "german": "sich entscheiden",
-    "english": "to make up one's mind",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "entscheide mich", "du": "entscheidest dich", "er_sie_es": "entscheidet sich", "wir": "entscheiden uns", "ihr": "entscheidet euch", "sie_Sie": "entscheiden sich" }
-  },
-  {
-    "id": 170,
-    "german": "sich verabschieden",
-    "english": "to say goodbye",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "verabschiede mich", "du": "verabschiedest dich", "er_sie_es": "verabschiedet sich", "wir": "verabschieden uns", "ihr": "verabschiedet euch", "sie_Sie": "verabschieden sich" }
-  },
-  {
-    "id": 171,
-    "german": "sich vorstellen",
-    "english": "to introduce oneself / imagine",
-    "type": "Reflexive / Separable",
-    "conjugation": { "ich": "stelle mich vor", "du": "stellst dich vor", "er_sie_es": "stellt sich vor", "wir": "stellen uns vor", "ihr": "stellt euch vor", "sie_Sie": "stellen sich vor" }
-  },
-  {
-    "id": 172,
-    "german": "sich treffen",
-    "english": "to meet up",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "treffe mich", "du": "triffst dich", "er_sie_es": "trifft sich", "wir": "treffen uns", "ihr": "trefft euch", "sie_Sie": "treffen sich" }
-  },
-  {
-    "id": 173,
-    "german": "sich ausruhen",
-    "english": "to rest",
-    "type": "Reflexive / Separable",
-    "conjugation": { "ich": "ruhe mich aus", "du": "ruhst dich aus", "er_sie_es": "ruht sich aus", "wir": "ruhen uns aus", "ihr": "ruht euch aus", "sie_Sie": "ruhen sich aus" }
-  },
-  {
-    "id": 174,
-    "german": "sich verlieben",
-    "english": "to fall in love",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "verliebe mich", "du": "verliebst dich", "er_sie_es": "verliebt sich", "wir": "verlieben uns", "ihr": "verliebt euch", "sie_Sie": "verlieben sich" }
-  },
-  {
-    "id": 175,
-    "german": "sich bedanken",
-    "english": "to thank someone",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "bedanke mich", "du": "bedankst dich", "er_sie_es": "bedankt sich", "wir": "bedanken uns", "ihr": "bedankt euch", "sie_Sie": "bedanken sich" }
-  },
-  {
-    "id": 176,
-    "german": "sich sorgen",
-    "english": "to worry",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "sorge mich", "du": "sorgst dich", "er_sie_es": "sorgt sich", "wir": "sorgen uns", "ihr": "sorgt euch", "sie_Sie": "sorgen sich" }
-  },
-  {
-    "id": 177,
-    "german": "sich ärgern",
-    "english": "to get annoyed",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "ärgere mich", "du": "ärgerst dich", "er_sie_es": "ärgert sich", "wir": "ärgern uns", "ihr": "ärgert euch", "sie_Sie": "ärgern sich" }
-  },
-  {
-    "id": 178,
-    "german": "sich gewöhnen",
-    "english": "to get used to",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "gewöhne mich", "du": "gewöhnst dich", "er_sie_es": "gewöhnt sich", "wir": "gewöhnen uns", "ihr": "gewöhnt euch", "sie_Sie": "gewöhnen sich" }
-  },
-  {
-    "id": 179,
-    "german": "sich erkälten",
-    "english": "to catch a cold",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "erkälte mich", "du": "erkältest dich", "er_sie_es": "erkältet sich", "wir": "erkälten uns", "ihr": "erkältet euch", "sie_Sie": "erkälten sich" }
-  },
-  {
-    "id": 180,
-    "german": "sich unterhalten",
-    "english": "to converse / chat",
-    "type": "Reflexive Verb",
-    "conjugation": { "ich": "unterhalte mich", "du": "unterhältst dich", "er_sie_es": "unterhält sich", "wir": "unterhalten uns", "ihr": "unterhaltet euch", "sie_Sie": "unterhalten sich" }
-  },
-
-  {
-    "id": 181,
-    "german": "heißen",
-    "english": "to be called / to mean",
-    "type": "Irregular / Strong Verb",
-    "conjugation": { "ich": "heiße", "du": "heißt", "er_sie_es": "heißt", "wir": "heißen", "ihr": "heißt", "sie_Sie": "heißen" }
-  },
-  {
-    "id": 182,
-    "german": "bedeuten",
-    "english": "to signify / mean",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "bedeute", "du": "bedeutest", "er_sie_es": "bedeutet", "wir": "bedeuten", "ihr": "bedeutet", "sie_Sie": "bedeuten" }
-  },
-  {
-    "id": 183,
-    "german": "passen",
-    "english": "to fit / suit",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "passe", "du": "passt", "er_sie_es": "passt", "wir": "passen", "ihr": "passt", "sie_Sie": "passen" }
-  },
-  {
-    "id": 184,
-    "german": "klappen",
-    "english": "to work out / fold",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "klappe", "du": "klappst", "er_sie_es": "klappt", "wir": "klappen", "ihr": "klappt", "sie_Sie": "klappen" }
-  },
-  {
-    "id": 185,
-    "german": "schaffen",
-    "english": "to accomplish / create",
-    "type": "Mixed / Irregular",
-    "conjugation": { "ich": "schaffe", "du": "schaffst", "er_sie_es": "schafft", "wir": "schaffen", "ihr": "schafft", "sie_Sie": "schaffen" }
-  },
-  {
-    "id": 186,
-    "german": "ändern",
-    "english": "to change / alter",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "ändere", "du": "änderst", "er_sie_es": "ändert", "wir": "ändern", "ihr": "ändert", "sie_Sie": "ändern" }
-  },
-  {
-    "id": 187,
-    "german": "sparen",
-    "english": "to save (money/time)",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "spare", "du": "sparst", "er_sie_es": "spart", "wir": "sparen", "ihr": "spart", "sie_Sie": "sparen" }
-  },
-  {
-    "id": 188,
-    "german": "kosten",
-    "english": "to cost",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "koste", "du": "kostest", "er_sie_es": "kostet", "wir": "kosten", "ihr": "kostet", "sie_Sie": "kosten" }
-  },
-  {
-    "id": 189,
-    "german": "fehlen",
-    "english": "to miss / be lacking",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "fehle", "du": "fehlst", "er_sie_es": "fehlt", "wir": "fehlen", "ihr": "fehlt", "sie_Sie": "fehlen" }
-  },
-  {
-    "id": 190,
-    "german": "schaden",
-    "english": "to harm / damage",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "schade", "du": "schadest", "er_sie_es": "schadet", "wir": "schaden", "ihr": "schadet", "sie_Sie": "schaden" }
-  },
-  {
-    "id": 191,
-    "german": "nutzen",
-    "english": "to use / benefit",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "nutze", "du": "nutzt", "er_sie_es": "nutzt", "wir": "nutzen", "ihr": "nutzt", "sie_Sie": "nutzen" }
-  },
-  {
-    "id": 192,
-    "german": "benutzen",
-    "english": "to use / utilize",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "benutze", "du": "benutzt", "er_sie_es": "benutzt", "wir": "benutzen", "ihr": "benutzt", "sie_Sie": "benutzen" }
-  },
-  {
-    "id": 193,
-    "german": "vergleichen",
-    "english": "to compare",
-    "type": "Irregular / Non-separable",
-    "conjugation": { "ich": "vergleiche", "du": "vergleichst", "er_sie_es": "vergleicht", "wir": "vergleichen", "ihr": "vergleicht", "sie_Sie": "vergleichen" }
-  },
-  {
-    "id": 194,
-    "german": "wählen",
-    "english": "to vote / choose",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "wähle", "du": "wählst", "er_sie_es": "wählt", "wir": "wählen", "ihr": "wählt", "sie_Sie": "wählen" }
-  },
-  {
-    "id": 195,
-    "german": "wiederholen",
-    "english": "to repeat",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "wiederhole", "du": "wiederholst", "er_sie_es": "wiederholt", "wir": "wiederholen", "ihr": "wiederholt", "sie_Sie": "wiederholen" }
-  },
-  {
-    "id": 196,
-    "german": "üben",
-    "english": "to practice",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "übe", "du": "übst", "er_sie_es": "übt", "wir": "üben", "ihr": "übt", "sie_Sie": "üben" }
-  },
-  {
-    "id": 197,
-    "german": "prüfen",
-    "english": "to check / test",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "prüfe", "du": "prüfst", "er_sie_es": "prüft", "wir": "prüfen", "ihr": "prüft", "sie_Sie": "prüfen" }
-  },
-  {
-    "id": 198,
-    "german": "verschicken",
-    "english": "to send off",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "verschicke", "du": "verschickst", "er_sie_es": "verschickt", "wir": "verschicken", "ihr": "verschickt", "sie_Sie": "verschicken" }
-  },
-  {
-    "id": 199,
-    "german": "drucken",
-    "english": "to print",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "drucke", "du": "druckst", "er_sie_es": "druckt", "wir": "drucken", "ihr": "druckt", "sie_Sie": "drucken" }
-  },
-  {
-    "id": 200,
-    "german": "speichern",
-    "english": "to save (data / files)",
-    "type": "Regular Verb",
-    "conjugation": { "ich": "speichere", "du": "speicherst", "er_sie_es": "speichert", "wir": "speichern", "ihr": "speichert", "sie_Sie": "speichern" }
-  }
+  { "id": 166, "german": "doch", "english": "contradiction / emphasis / 'after all'", "type": "Modal Particle" },
+  { "id": 167, "german": "mal", "english": "just / quickly (softening commands)", "type": "Modal Particle" },
+  { "id": 168, "german": "ja", "english": "as you know / surprise / 'indeed'", "type": "Modal Particle" },
+  { "id": 169, "german": "denn", "english": "curiosity in questions / 'then'", "type": "Modal Particle" },
+  { "id": 170, "german": "schon", "english": "already / reassuring 'it'll be fine'", "type": "Modal Particle" },
+  { "id": 171, "german": "eigentlich", "english": "actually / strictly speaking", "type": "Modal Particle / Adverb" },
+  { "id": 172, "german": "halt", "english": "just / simply ('that's how it is')", "type": "Modal Particle" },
+  { "id": 173, "german": "eben", "english": "just / exactly ('precisely')", "type": "Modal Particle" },
+  { "id": 174, "german": "wohl", "english": "probably / well", "type": "Modal Particle / Adverb" },
+  { "id": 175, "german": "etwa", "english": "by any chance? / doubt in questions", "type": "Modal Particle" },
+  { "id": 176, "german": "bloß", "english": "just / only ('don't you dare')", "type": "Modal Particle" },
+  { "id": 177, "german": "nur", "english": "only / just", "type": "Adverb / Modal Particle" },
+  { "id": 178, "german": "ruhig", "english": "feel free to / calmly", "type": "Modal Particle / Adverb" },
+  { "id": 179, "german": "gar", "english": "at all (e.g. gar nicht = not at all)", "type": "Particle" },
+  { "id": 180, "german": "überhaupt", "english": "at all / in general", "type": "Adverb / Particle" },
+  { "id": 181, "german": "bereits", "english": "already / as early as", "type": "Adverb" },
+  { "id": 182, "german": "noch", "english": "still / yet / another", "type": "Adverb" },
+  { "id": 183, "german": "schon wieder", "english": "once again / yet again", "type": "Adverbial Phrase" },
+  { "id": 184, "german": "immer noch", "english": "still (ongoing)", "type": "Adverbial Phrase" },
+  { "id": 185, "german": "nie / niemals", "english": "never", "type": "Adverb" },
+  { "id": 186, "german": "selten", "english": "rarely / seldom", "type": "Adverb" },
+  { "id": 187, "german": "manchmal", "english": "sometimes", "type": "Adverb" },
+  { "id": 188, "german": "oft / häufig", "english": "often / frequently", "type": "Adverb" },
+  { "id": 189, "german": "meistens", "english": "mostly / usually", "type": "Adverb" },
+  { "id": 190, "german": "immer", "english": "always", "type": "Adverb" },
+  { "id": 191, "german": "heute", "english": "today", "type": "Temporal Adverb" },
+  { "id": 192, "german": "gestern", "english": "yesterday", "type": "Temporal Adverb" },
+  { "id": 193, "german": "morgen", "english": "tomorrow", "type": "Temporal Adverb" },
+  { "id": 194, "german": "jetzt", "english": "now", "type": "Temporal Adverb" },
+  { "id": 195, "german": "sofort", "english": "immediately / right away", "type": "Temporal Adverb" },
+  { "id": 196, "german": "später", "english": "later", "type": "Temporal Adverb" },
+  { "id": 197, "german": "damals", "english": "back then / at that time", "type": "Temporal Adverb" },
+  { "id": 198, "german": "inzwischen", "english": "in the meantime / meanwhile", "type": "Temporal Adverb" },
+  { "id": 199, "german": "mittlerweile", "english": "by now / over time", "type": "Temporal Adverb" },
+  { "id": 200, "german": "ähnlich", "english": "similar / similarly", "type": "Adjective / Adverb" }
 ]
+
+```
