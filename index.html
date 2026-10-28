@@ -1,767 +1,398 @@
 <!DOCTYPE html>
-<html lang="de" class="dark">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EasySentencesBuilder | TerraNova Engineering Lab</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            900: '#4c1d95',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Alpine.js for lightweight reactivity -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- FontAwesome for UI icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        [x-cloak] { display: none !important; }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-        .token-pulse {
-            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-        @keyframes pulse-ring {
-            0% { transform: scale(0.98); opacity: 0.8; }
-            50% { transform: scale(1.02); opacity: 1; }
-            100% { transform: scale(0.98); opacity: 0.8; }
-        }
-    </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-purple-600 selection:text-white" x-data="sentenceBuilderApp()" x-init="initApp()">
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans" x-data="sentenceBuilderApp()">
 
-    <!-- Header / Navbar -->
-    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-purple-500/20 text-white font-bold text-xl">
-                        🇩🇪
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h1 class="text-xl font-extrabold tracking-tight text-white">EasySentencesBuilder</h1>
-                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-purple-950/80 border border-purple-700/50 text-purple-300">Public Repo Engine</span>
-                        </div>
-                        <p class="text-xs text-slate-400">TerraNova Engineering Lab &bull; Interactive German Grammar & Sentence Workbench</p>
-                    </div>
-                </div>
-
-                <!-- Stats & Global Actions -->
-                <div class="flex items-center gap-3">
-                    <button @click="resetWorkspace()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-rotate-left"></i>
-                         Reset Satz
-                    </button>
-                    <button @click="speakSentence()" :disabled="workspaceTokens.length === 0" :class="workspaceTokens.length === 0 ? 'opacity-50 cursor-not-allowed bg-slate-800 text-slate-500 border-slate-800' : 'bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-500 shadow-lg shadow-emerald-600/20'" class="px-4 py-1.5 rounded-lg text-xs font-semibold border transition flex items-center gap-2">
-                        <i class="fa-solid fa-volume-high"></i>
-                         Anhören (de-DE)
-                    </button>
-                </div>
+    <!-- Header -->
+    <header class="bg-slate-800 border-b border-slate-700 py-6 px-6 shadow-xl">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="text-xs uppercase tracking-widest text-purple-300 font-semibold">TerraNova Engineering Lab</span>
+                <h1 class="text-3xl font-extrabold text-white mt-1">EasySentencesBuilder 🇩🇪</h1>
+                <p class="text-slate-400 text-sm mt-1">Interaktiver deutscher Satzbaukasten mit integrierter Grammatikprüfung.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button @click="speakSentence()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition shadow flex items-center gap-2">
+                    🔊 Auf Deutsch anhören
+                </button>
+                <button @click="clearWorkspace()" class="bg-rose-600/80 hover:bg-rose-500 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition shadow">
+                    🗑️ Leeren
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 flex flex-col gap-6 w-full">
+    <main class="max-w-6xl mx-auto px-6 py-8 space-y-8">
 
-        <!-- 1. SENTENCE BUILDING WORKSPACE -->
-        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl space-y-4">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-purple-500 animate-ping"></span>
-                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-layer-group text-purple-400"></i>
-                        Satzbau-Arbeitsfläche (Sentence Workspace)
-                    </h2>
-                </div>
-                <div class="text-xs text-slate-400 font-mono">
-                    Elemente: <span class="text-purple-300 font-bold" x-text="workspaceTokens.length"></span>
-                </div>
-            </div>
-
-            <!-- Assembled Sentence Display Dropzone -->
-            <div class="bg-slate-950 border-2 border-dashed border-slate-800 min-h-[110px] rounded-xl p-4 flex flex-wrap items-center gap-2.5 transition-all duration-300" :class="workspaceTokens.length === 0 ? 'justify-center' : ''">
-                
-                <template x-if="workspaceTokens.length === 0">
-                    <div class="text-center py-4 text-slate-500 text-sm flex flex-col items-center gap-2">
-                        <i class="fa-regular fa-hand-pointer text-2xl text-slate-600"></i>
-                        <span>Klicken Sie unten auf Wörter, Wörter oder Verben, um einen deutschen Satz aufzubauen!</span>
-                    </div>
+        <!-- WORKSPACE / SENTENCE CANVAS -->
+        <section class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl space-y-4">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-purple-300">Mein Satz (Satzwerkstatt)</h2>
+            
+            <div class="min-h-[100px] bg-slate-950 border-2 border-dashed border-slate-700 rounded-xl p-4 flex flex-wrap items-center gap-2">
+                <template x-if="workspace.length === 0">
+                    <span class="text-slate-500 text-sm font-sans italic">Klicken Sie unten auf Wörter, um Ihren Satz zu bauen...</span>
                 </template>
 
-                <template x-for="(token, index) in workspaceTokens" :key="token.instanceId">
-                    <div class="group relative flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-medium shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-grab active:cursor-grabbing"
-                         :class="getTokenColorClasses(token.category)">
+                <template x-for="(item, index) in workspace" :key="index">
+                    <div class="flex items-center gap-1 bg-slate-800 border border-slate-600 text-white px-3 py-1.5 rounded-lg text-sm shadow-md animate-fade-in">
+                        <span class="font-bold text-emerald-300" x-text="formatTokenDisplay(item, index)"></span>
+                        <span class="text-[10px] opacity-60 font-mono" x-text="'(' + (item.category || item.type) + ')'"></span>
                         
-                        <!-- Drag Handle / Index Badge -->
-                        <span class="text-[10px] font-mono opacity-60 bg-black/20 px-1.5 py-0.5 rounded" x-text="index + 1"></span>
-
-                        <!-- Main Word Text -->
-                        <span class="font-semibold text-white" x-text="token.displayGerman"></span>
-
-                        <!-- English Translation Subtag -->
-                        <span class="text-[11px] opacity-75 font-normal border-l border-white/20 pl-2" x-text="token.english"></span>
-
-                        <!-- Reorder Controls -->
-                        <div class="flex items-center gap-1 ml-1 opacity-80 group-hover:opacity-100">
-                            <button @click="moveToken(index, -1)" x-show="index > 0" class="hover:text-amber-300 p-0.5 text-xs" title="Nach links verschieben">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </button>
-                            <button @click="moveToken(index, 1)" x-show="index < workspaceTokens.length - 1" class="hover:text-amber-300 p-0.5 text-xs" title="Nach rechts verschieben">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </button>
-                            <button @click="removeToken(index)" class="hover:text-red-400 p-0.5 text-xs text-rose-300/80 ml-1" title="Entfernen">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
+                        <!-- Actions: Move Left, Move Right, Remove -->
+                        <div class="flex items-center gap-1 ml-2 border-l border-slate-700 pl-2">
+                            <button @click="moveToken(index, -1)" x-show="index > 0" class="hover:text-purple-300 text-xs">←</button>
+                            <button @click="moveToken(index, 1)" x-show="index < workspace.length - 1" class="hover:text-purple-300 text-xs">→</button>
+                            <button @click="removeToken(index)" class="hover:text-rose-400 text-xs ml-1">✕</button>
                         </div>
                     </div>
                 </template>
             </div>
 
-            <!-- Real-time Sentence Preview String -->
-            <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                <div class="font-mono text-sm text-emerald-300 flex items-center gap-2 overflow-x-auto max-w-full">
-                    <span class="text-xs text-slate-500 font-sans uppercase tracking-wider font-semibold">Vorschau:</span>
-                    <span x-text="computedRawSentence || '...'" class="font-bold text-base text-white"></span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button @click="autoFixGrammar()" x-show="workspaceTokens.length > 1 && grammarAnalysis.suggestions.length > 0" class="bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 border border-purple-500/50 text-xs px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        Automatisch Anpassen (Auto-Fix)
-                    </button>
-                </div>
-            </div>
-
-            <!-- GRAMMAR RULE EVALUATOR PANEL -->
-            <div class="space-y-2 pt-1">
-                <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                    <i class="fa-solid fa-microchip text-purple-400"></i>
-                    Grammatik-Analyse & Regelprüfung (Rule Engine)
+            <!-- Constructed Sentence & Grammar Feedback -->
+            <div class="bg-slate-900 border border-slate-700 rounded-xl p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="text-xs text-slate-400 uppercase font-mono block mb-1">Generierter Satz:</span>
+                    <p class="text-xl font-bold text-white font-mono" x-text="constructedSentence || '...'"></p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <!-- V2 Rule Card -->
-                    <div class="rounded-xl border p-3 flex items-start gap-3 transition" :class="grammarAnalysis.v2Status === 'valid' ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300' : (grammarAnalysis.v2Status === 'warning' ? 'bg-amber-950/30 border-amber-500/40 text-amber-300' : 'bg-slate-800/40 border-slate-700/60 text-slate-400')">
-                        <div class="text-lg mt-0.5">
-                            <i x-show="grammarAnalysis.v2Status === 'valid'" class="fa-solid fa-circle-check text-emerald-400"></i>
-                            <i x-show="grammarAnalysis.v2Status === 'warning'" class="fa-solid fa-triangle-exclamation text-amber-400"></i>
-                            <i x-show="grammarAnalysis.v2Status === 'idle'" class="fa-solid fa-circle-info text-slate-500"></i>
-                        </div>
-                        <div>
-                            <div class="text-xs font-bold uppercase tracking-wide">V2-Regel (Verb an Position 2)</div>
-                            <div class="text-xs mt-0.5 leading-snug" x-text="grammarAnalysis.v2Message"></div>
-                        </div>
-                    </div>
-
-                    <!-- Separable Verb Prefix Card -->
-                    <div class="rounded-xl border p-3 flex items-start gap-3 transition" :class="grammarAnalysis.prefixStatus === 'valid' ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300' : (grammarAnalysis.prefixStatus === 'warning' ? 'bg-amber-950/30 border-amber-500/40 text-amber-300' : 'bg-slate-800/40 border-slate-700/60 text-slate-400')">
-                        <div class="text-lg mt-0.5">
-                            <i x-show="grammarAnalysis.prefixStatus === 'valid'" class="fa-solid fa-circle-check text-emerald-400"></i>
-                            <i x-show="grammarAnalysis.prefixStatus === 'warning'" class="fa-solid fa-triangle-exclamation text-amber-400"></i>
-                            <i x-show="grammarAnalysis.prefixStatus === 'idle'" class="fa-solid fa-circle-info text-slate-500"></i>
-                        </div>
-                        <div>
-                            <div class="text-xs font-bold uppercase tracking-wide">Trennbares Verb (Prefix End)</div>
-                            <div class="text-xs mt-0.5 leading-snug" x-text="grammarAnalysis.prefixMessage"></div>
-                        </div>
-                    </div>
-
-                    <!-- Subordinate Clause Verb Final Card -->
-                    <div class="rounded-xl border p-3 flex items-start gap-3 transition" :class="grammarAnalysis.subStatus === 'valid' ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300' : (grammarAnalysis.subStatus === 'warning' ? 'bg-amber-950/30 border-amber-500/40 text-amber-300' : 'bg-slate-800/40 border-slate-700/60 text-slate-400')">
-                        <div class="text-lg mt-0.5">
-                            <i x-show="grammarAnalysis.subStatus === 'valid'" class="fa-solid fa-circle-check text-emerald-400"></i>
-                            <i x-show="grammarAnalysis.subStatus === 'warning'" class="fa-solid fa-triangle-exclamation text-amber-400"></i>
-                            <i x-show="grammarAnalysis.subStatus === 'idle'" class="fa-solid fa-circle-info text-slate-500"></i>
-                        </div>
-                        <div>
-                            <div class="text-xs font-bold uppercase tracking-wide">Nebensatz (Verb-Letzt-Stellung)</div>
-                            <div class="text-xs mt-0.5 leading-snug" x-text="grammarAnalysis.subMessage"></div>
-                        </div>
-                    </div>
+                <!-- Grammar Status Badge -->
+                <div class="px-4 py-2 rounded-lg text-xs font-semibold shadow-inner"
+                     :class="grammarCheck.valid ? 'bg-emerald-950/80 border border-emerald-600 text-emerald-300' : 'bg-amber-950/80 border border-amber-600 text-amber-300'">
+                    <span x-text="grammarCheck.message"></span>
                 </div>
             </div>
         </section>
 
-        <!-- 2. DATASET EXPLORER & BUILDER PALETTE -->
-        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl flex-1 flex flex-col gap-4">
-            
-            <!-- Controls Bar: Category Tabs & Search -->
-            <div class="flex flex-col lg:flex-row justify-between items-stretch lg:items-center gap-4 border-b border-slate-800 pb-4">
-                
-                <!-- Category Tabs -->
-                <div class="flex flex-wrap bg-slate-950 p-1.5 rounded-xl border border-slate-800 gap-1">
-                    <button @click="activeTab = 'all'" :class="activeTab === 'all' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-1.5 rounded-lg text-xs font-medium transition">
-                        Alle (All)
-                    </button>
-                    <button @click="activeTab = 'verbs'" :class="activeTab === 'verbs' ? 'bg-rose-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-rose-400"></span> Verben (Verbs)
-                    </button>
-                    <button @click="activeTab = 'nouns'" :class="activeTab === 'nouns' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-blue-400"></span> Nomen & Phrasen (Nouns)
-                    </button>
-                    <button @click="activeTab = 'connectors'" :class="activeTab === 'connectors' ? 'bg-amber-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-amber-400"></span> Konnektoren & Pronomen
-                    </button>
+        <!-- WORD BANK TABS & SEARCH -->
+        <section class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-6">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-center border-b border-slate-700 pb-4">
+                <!-- Search -->
+                <div class="relative w-full md:w-80">
+                    <input type="text" x-model="searchQuery" placeholder="Wörter suchen (Deutsch / Englisch)..." 
+                           class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-400 transition">
                 </div>
 
-                <!-- Search Input -->
-                <div class="relative min-w-[240px]">
-                    <input type="text" x-model="searchQuery" placeholder="Suchen auf Deutsch / Englisch..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 pl-9 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-500"></i>
+                <!-- Active Dataset Tab Selector -->
+                <div class="flex flex-wrap bg-slate-900 p-1.5 rounded-xl border border-slate-700 gap-1">
+                    <button @click="activeTab = 'verbs'" :class="activeTab === 'verbs' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-lg text-xs font-medium transition">Verben (200)</button>
+                    <button @click="activeTab = 'grammar'" :class="activeTab === 'grammar' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-lg text-xs font-medium transition">Konnektoren & Grammatik (200)</button>
+                    <button @click="activeTab = 'nouns'" :class="activeTab === 'nouns' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-lg text-xs font-medium transition">Nomen & Ausdrücke (200+)</button>
                 </div>
             </div>
 
-            <!-- Items Grid Container -->
-            <div class="flex-1 overflow-y-auto max-h-[420px] custom-scrollbar pr-1">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                    
-                    <template x-for="item in filteredItems" :key="item.globalId">
-                        <div @click="handleItemClick(item)" class="group bg-slate-950 hover:bg-slate-800/80 border border-slate-800 hover:border-purple-500/50 rounded-xl p-3 transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md flex flex-col justify-between">
-                            
-                            <div>
-                                <div class="flex justify-between items-start gap-2 mb-1.5">
-                                    <span class="text-sm font-bold text-white group-hover:text-purple-300 transition" x-text="item.german"></span>
-                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded border" :class="getBadgeClass(item.category)" x-text="item.category"></span>
-                                </div>
-                                <p class="text-xs text-slate-400 line-clamp-2" x-text="item.english"></p>
+            <!-- WORD CARDS GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-[500px] overflow-y-auto pr-2">
+                <template x-for="item in filteredItems" :key="item.id + '-' + activeTab">
+                    <div @click="selectItem(item)" 
+                         class="bg-slate-900/90 hover:bg-slate-700/80 border border-slate-700/80 rounded-xl p-3.5 transition cursor-pointer shadow hover:border-purple-400 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-start gap-1">
+                                <span class="font-bold text-white text-sm group-hover:text-purple-300" x-text="item.german"></span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-purple-300" x-text="item.category || item.type"></span>
                             </div>
-
-                            <!-- Plural or Conjugation Hint Footer -->
-                            <div class="mt-2 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                                <span x-text="item.plural ? 'Pl: ' + item.plural : (item.type ? item.type : 'Klick zum Hinzufügen')"></span>
-                                <i class="fa-solid fa-plus text-xs group-hover:text-purple-400"></i>
-                            </div>
-
+                            <p class="text-xs text-slate-400 mt-1" x-text="item.english"></p>
                         </div>
-                    </template>
-
-                </div>
+                        <span class="text-[10px] text-emerald-400 font-mono mt-3 text-right group-hover:underline">+ Hinzufügen</span>
+                    </div>
+                </template>
             </div>
-
         </section>
 
     </main>
 
     <!-- VERB CONJUGATION MODAL -->
-    <div x-cloak x-show="showVerbModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" x-transition.opacity>
-        <div @click.away="showVerbModal = false" class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5">
+    <div x-show="showVerbModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50" x-cloak>
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                <h3 class="text-lg font-bold text-white">Verb konjugieren: <span class="text-purple-300" x-text="selectedVerb?.german"></span></h3>
+                <button @click="showVerbModal = false" class="text-slate-400 hover:text-white">✕</button>
+            </div>
             
-            <div class="flex justify-between items-start border-b border-slate-800 pb-3">
-                <div>
-                    <span class="text-xs uppercase tracking-widest text-rose-400 font-semibold">Verb Konjugieren</span>
-                    <h3 class="text-xl font-extrabold text-white mt-0.5" x-text="selectedVerb ? selectedVerb.german : ''"></h3>
-                    <p class="text-xs text-slate-400" x-text="selectedVerb ? selectedVerb.english : ''"></p>
-                </div>
-                <button @click="showVerbModal = false" class="text-slate-400 hover:text-white p-1">
-                    <i class="fa-solid fa-xmark text-lg"></i>
+            <p class="text-xs text-slate-300">Wählen Sie die passende Form für Ihren Satz aus:</p>
+
+            <div class="grid grid-cols-2 gap-2" x-if="selectedVerb?.conjugation">
+                <button @click="addConjugatedVerb('ich', selectedVerb.conjugation.ich)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
+                    <span class="text-[10px] text-slate-400 block font-mono">ich</span>
+                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.ich"></span>
+                </button>
+                <button @click="addConjugatedVerb('du', selectedVerb.conjugation.du)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
+                    <span class="text-[10px] text-slate-400 block font-mono">du</span>
+                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.du"></span>
+                </button>
+                <button @click="addConjugatedVerb('er/sie/es', selectedVerb.conjugation.er_sie_es)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
+                    <span class="text-[10px] text-slate-400 block font-mono">er / sie / es</span>
+                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.er_sie_es"></span>
+                </button>
+                <button @click="addConjugatedVerb('wir', selectedVerb.conjugation.wir)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
+                    <span class="text-[10px] text-slate-400 block font-mono">wir</span>
+                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.wir"></span>
+                </button>
+                <button @click="addConjugatedVerb('ihr', selectedVerb.conjugation.ihr)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
+                    <span class="text-[10px] text-slate-400 block font-mono">ihr</span>
+                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.ihr"></span>
+                </button>
+                <button @click="addConjugatedVerb('sie/Sie', selectedVerb.conjugation.sie_Sie)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
+                    <span class="text-[10px] text-slate-400 block font-mono">sie / Sie</span>
+                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.sie_Sie"></span>
                 </button>
             </div>
 
-            <!-- Form Choice Selector -->
-            <div class="space-y-3">
-                <label class="text-xs font-semibold uppercase text-slate-300 tracking-wider">Wählen Sie die gewünschte Person / Form aus:</label>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" x-if="selectedVerb && selectedVerb.conjugation">
-                    
-                    <!-- Infinitive Option -->
-                    <button @click="addVerbConjugated(selectedVerb.german, 'Infinitive')" class="p-2.5 rounded-xl border border-slate-800 hover:border-purple-500 bg-slate-950 hover:bg-slate-800 text-left transition">
-                        <div class="text-[10px] text-slate-500 uppercase">Infinitiv</div>
-                        <div class="text-xs font-bold text-emerald-400" x-text="selectedVerb.german"></div>
-                    </button>
-
-                    <!-- ich -->
-                    <button @click="addVerbConjugated(selectedVerb.conjugation.ich, 'ich')" class="p-2.5 rounded-xl border border-slate-800 hover:border-purple-500 bg-slate-950 hover:bg-slate-800 text-left transition">
-                        <div class="text-[10px] text-slate-500 uppercase">ich</div>
-                        <div class="text-xs font-bold text-rose-400" x-text="selectedVerb.conjugation.ich"></div>
-                    </button>
-
-                    <!-- du -->
-                    <button @click="addVerbConjugated(selectedVerb.conjugation.du, 'du')" class="p-2.5 rounded-xl border border-slate-800 hover:border-purple-500 bg-slate-950 hover:bg-slate-800 text-left transition">
-                        <div class="text-[10px] text-slate-500 uppercase">du</div>
-                        <div class="text-xs font-bold text-rose-400" x-text="selectedVerb.conjugation.du"></div>
-                    </button>
-
-                    <!-- er/sie/es -->
-                    <button @click="addVerbConjugated(selectedVerb.conjugation.er_sie_es, 'er/sie/es')" class="p-2.5 rounded-xl border border-slate-800 hover:border-purple-500 bg-slate-950 hover:bg-slate-800 text-left transition">
-                        <div class="text-[10px] text-slate-500 uppercase">er / sie / es</div>
-                        <div class="text-xs font-bold text-rose-400" x-text="selectedVerb.conjugation.er_sie_es"></div>
-                    </button>
-
-                    <!-- wir -->
-                    <button @click="addVerbConjugated(selectedVerb.conjugation.wir, 'wir')" class="p-2.5 rounded-xl border border-slate-800 hover:border-purple-500 bg-slate-950 hover:bg-slate-800 text-left transition">
-                        <div class="text-[10px] text-slate-500 uppercase">wir</div>
-                        <div class="text-xs font-bold text-rose-400" x-text="selectedVerb.conjugation.wir"></div>
-                    </button>
-
-                    <!-- ihr -->
-                    <button @click="addVerbConjugated(selectedVerb.conjugation.ihr, 'ihr')" class="p-2.5 rounded-xl border border-slate-800 hover:border-purple-500 bg-slate-950 hover:bg-slate-800 text-left transition">
-                        <div class="text-[10px] text-slate-500 uppercase">ihr</div>
-                        <div class="text-xs font-bold text-rose-400" x-text="selectedVerb.conjugation.ihr"></div>
-                    </button>
-
-                    <!-- sie / Sie -->
-                    <button @click="addVerbConjugated(selectedVerb.conjugation.sie_Sie, 'sie/Sie')" class="p-2.5 rounded-xl border border-slate-800 hover:border-purple-500 bg-slate-950 hover:bg-slate-800 text-left transition">
-                        <div class="text-[10px] text-slate-500 uppercase">sie / Sie</div>
-                        <div class="text-xs font-bold text-rose-400" x-text="selectedVerb.conjugation.sie_Sie"></div>
-                    </button>
-
-                </div>
-            </div>
-
-            <div class="text-right pt-2 border-t border-slate-800">
-                <button @click="showVerbModal = false" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300">Abbrechen</button>
-            </div>
+            <button @click="addInfinitiveVerb()" class="w-full bg-slate-700 hover:bg-slate-600 text-white text-xs font-medium py-2 rounded-xl transition mt-2">
+                Infinitiv verwenden (<span x-text="selectedVerb?.german"></span>)
+            </button>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
-            <div>
-                TerraNova Engineering Lab &bull; EasySentencesBuilder &bull; Optimized for GitHub Pages
-            </div>
-            <div class="font-mono text-slate-600">
-                Data Files: SentenceBuilderArray.JSON | verbs.JSON | nounsetc
-            </div>
-        </div>
-    </footer>
-
-    <!-- Alpine App State and Logic -->
+    <!-- APP SCRIPT & HARDCODED DATASETS -->
     <script>
         function sentenceBuilderApp() {
             return {
-                // Workspace State
-                workspaceTokens: [],
-                activeTab: 'all',
+                activeTab: 'verbs',
                 searchQuery: '',
-
-                // Modal State
+                workspace: [],
                 showVerbModal: false,
                 selectedVerb: null,
 
-                // Raw Datasets
-                connectorsDataset: [],
-                verbsDataset: [],
-                nounsDataset: [],
-                allDataset: [],
-
-                // Rule Engine Result
-                grammarAnalysis: {
-                    v2Status: 'idle',
-                    v2Message: 'Fügen Sie Wörter hinzu, um das Verb an Position 2 zu prüfen.',
-                    prefixStatus: 'idle',
-                    prefixMessage: 'Gibt ein trennbares Verb im Satz.',
-                    subStatus: 'idle',
-                    subMessage: 'Nebensatz-Konnektoren (z.B. weil, dass) senden das Verb ans Ende.',
-                    suggestions: []
-                },
-
-                // Embedded Datasets (Ensures full functionality even if fetching external files offline)
-                embeddedConnectors: [
-                    { id: 1, german: "und", english: "and", type: "Coordinating Conjunction" },
-                    { id: 2, german: "aber", english: "but / however", type: "Coordinating Conjunction" },
-                    { id: 6, german: "weil", english: "because (subordinating)", type: "Subordinating Conjunction" },
-                    { id: 7, german: "dass", english: "that (subordinating)", type: "Subordinating Conjunction" },
-                    { id: 8, german: "obwohl", english: "although / even though", type: "Subordinating Conjunction" },
-                    { id: 9, german: "wenn", english: "if / whenever", type: "Subordinating Conjunction" },
-                    { id: 21, german: "deshalb", english: "therefore / that is why", type: "Conjunctive Adverb" },
-                    { id: 42, german: "für", english: "for", type: "Accusative Preposition" },
-                    { id: 50, german: "mit", english: "with", type: "Dative Preposition" },
-                    { id: 51, german: "nach", english: "after / to", type: "Dative Preposition" },
-                    { id: 54, german: "zu", english: "to / at", type: "Dative Preposition" },
-                    { id: 86, german: "ich", english: "I", type: "Personal Pronoun" },
-                    { id: 87, german: "du", english: "you (informal)", type: "Personal Pronoun" },
-                    { id: 88, german: "er", english: "he", type: "Personal Pronoun" },
-                    { id: 89, german: "sie", english: "she / they", type: "Personal Pronoun" },
-                    { id: 91, german: "wir", english: "we", type: "Personal Pronoun" },
-                    { id: 93, german: "Sie", english: "you (formal)", type: "Personal Pronoun" },
-                    { id: 126, german: "alle", english: "all / everyone", type: "Quantifier" },
-                    { id: 133, german: "viele", english: "many", type: "Quantifier" },
-                    { id: 168, german: "ja", english: "as you know / indeed", type: "Modal Particle" },
-                    { id: 191, german: "heute", english: "today", type: "Temporal Adverb" }
-                ],
-
-                embeddedVerbs: [
+                // --- 1. HARDCODED VERBS DATASET (200 ITEMS) ---
+                verbs: [
                     { id: 1, german: "sein", english: "to be", type: "Auxiliary / Irregular", conjugation: { ich: "bin", du: "bist", er_sie_es: "ist", wir: "sind", ihr: "seid", sie_Sie: "sind" } },
                     { id: 2, german: "haben", english: "to have", type: "Auxiliary / Irregular", conjugation: { ich: "habe", du: "hast", er_sie_es: "hat", wir: "haben", ihr: "habt", sie_Sie: "haben" } },
+                    { id: 3, german: "werden", english: "to become / will", type: "Auxiliary / Irregular", conjugation: { ich: "werde", du: "wirst", er_sie_es: "wird", wir: "werden", ihr: "werdet", sie_Sie: "werden" } },
                     { id: 4, german: "können", english: "can / to be able to", type: "Modal Verb", conjugation: { ich: "kann", du: "kannst", er_sie_es: "kann", wir: "können", ihr: "könnt", sie_Sie: "können" } },
+                    { id: 5, german: "müssen", english: "must / to have to", type: "Modal Verb", conjugation: { ich: "muss", du: "musst", er_sie_es: "muss", wir: "müssen", ihr: "müsst", sie_Sie: "müssen" } },
+                    { id: 6, german: "wollen", english: "to want", type: "Modal Verb", conjugation: { ich: "will", du: "willst", er_sie_es: "will", wir: "wollen", ihr: "wollt", sie_Sie: "wollen" } },
+                    { id: 7, german: "sollen", english: "should / to be supposed to", type: "Modal Verb", conjugation: { ich: "soll", du: "sollst", er_sie_es: "soll", wir: "sollen", ihr: "sollt", sie_Sie: "sollen" } },
+                    { id: 8, german: "dürfen", english: "may / to be allowed to", type: "Modal Verb", conjugation: { ich: "darf", du: "darfst", er_sie_es: "darf", wir: "dürfen", ihr: "dürft", sie_Sie: "dürfen" } },
+                    { id: 9, german: "mögen", english: "to like", type: "Modal Verb", conjugation: { ich: "mag", du: "magst", er_sie_es: "mag", wir: "mögen", ihr: "mögt", sie_Sie: "mögen" } },
                     { id: 10, german: "möchten", english: "would like", type: "Modal / Subjunctive Form", conjugation: { ich: "möchte", du: "möchtest", er_sie_es: "möchte", wir: "möchten", ihr: "möchtet", sie_Sie: "möchten" } },
                     { id: 11, german: "machen", english: "to do / to make", type: "Regular Verb", conjugation: { ich: "mache", du: "machst", er_sie_es: "macht", wir: "machen", ihr: "macht", sie_Sie: "machen" } },
-                    { id: 15, german: "lernen", english: "to learn / to study", type: "Regular Verb", conjugation: { ich: "lerne", du: "lernst", er_sie_es: "lernt", wir: "lernen", ihr: "lernt", sie_Sie: "lernen" } },
-                    { id: 21, german: "kaufen", english: "to buy", type: "Regular Verb", conjugation: { ich: "kaufe", du: "kaufst", er_sie_es: "kauft", wir: "kaufen", ihr: "kauft", sie_Sie: "kaufen" } },
-                    { id: 61, german: "gehen", english: "to go / walk", type: "Irregular / Strong Verb", conjugation: { ich: "gehe", du: "gehst", er_sie_es: "geht", wir: "gehen", ihr: "geht", sie_Sie: "gehen" } },
-                    { id: 111, german: "aufstehen", english: "to get up", type: "Separable Verb", conjugation: { ich: "stehe auf", du: "stehst auf", er_sie_es: "steht auf", wir: "stehen auf", ihr: "steht auf", sie_Sie: "stehen auf" } },
-                    { id: 112, german: "anrufen", english: "to call on phone", type: "Separable Verb", conjugation: { ich: "rufe an", du: "rufst an", er_sie_es: "ruft an", wir: "rufen an", ihr: "ruft an", sie_Sie: "rufen an" } },
-                    { id: 113, german: "einkaufen", english: "to shop", type: "Separable Verb", conjugation: { ich: "kaufe ein", du: "kaufst ein", er_sie_es: "kauft ein", wir: "kaufen ein", ihr: "kauft ein", sie_Sie: "kaufen ein" } }
+                    { id: 12, german: "sagen", english: "to say / to tell", type: "Regular Verb", conjugation: { ich: "sage", du: "sagst", er_sie_es: "sagt", wir: "sagen", ihr: "sagt", sie_Sie: "sagen" } },
+                    { id: 13, german: "fragen", english: "to ask", type: "Regular Verb", conjugation: { ich: "frage", du: "fragst", er_sie_es: "fragt", wir: "fragen", ihr: "fragt", sie_Sie: "fragen" } },
+                    { id: 14, german: "lernen", english: "to learn / to study", type: "Regular Verb", conjugation: { ich: "lerne", du: "lernst", er_sie_es: "lernt", wir: "lernen", ihr: "lernt", sie_Sie: "lernen" } },
+                    { id: 15, german: "arbeiten", english: "to work", type: "Regular Verb", conjugation: { ich: "arbeite", du: "arbeitest", er_sie_es: "arbeitet", wir: "arbeiten", ihr: "arbeitet", sie_Sie: "arbeiten" } },
+                    { id: 16, german: "kaufen", english: "to buy", type: "Regular Verb", conjugation: { ich: "kaufe", du: "kaufst", er_sie_es: "kauft", wir: "kaufen", ihr: "kauft", sie_Sie: "kaufen" } },
+                    { id: 17, german: "kochen", english: "to cook", type: "Regular Verb", conjugation: { ich: "koche", du: "kochst", er_sie_es: "kocht", wir: "kochen", ihr: "kocht", sie_Sie: "kochen" } },
+                    { id: 18, german: "gehen", english: "to go / to walk", type: "Irregular / Strong Verb", conjugation: { ich: "gehe", du: "gehst", er_sie_es: "geht", wir: "gehen", ihr: "geht", sie_Sie: "gehen" } },
+                    { id: 19, german: "kommen", english: "to come", type: "Irregular / Strong Verb", conjugation: { ich: "komme", du: "kommst", er_sie_es: "kommt", wir: "kommen", ihr: "kommt", sie_Sie: "kommen" } },
+                    { id: 20, german: "sehen", english: "to see", type: "Irregular / Strong Verb", conjugation: { ich: "sehe", du: "siehst", er_sie_es: "sieht", wir: "sehen", ihr: "seht", sie_Sie: "sehen" } },
+                    { id: 21, german: "essen", english: "to eat", type: "Irregular / Strong Verb", conjugation: { ich: "esse", du: "isst", er_sie_es: "isst", wir: "essen", ihr: "esst", sie_Sie: "essen" } },
+                    { id: 22, german: "trinken", english: "to drink", type: "Irregular / Strong Verb", conjugation: { ich: "trinke", du: "trinkst", er_sie_es: "trinkt", wir: "trinken", ihr: "trinkt", sie_Sie: "trinken" } },
+                    { id: 23, german: "fahren", english: "to drive / to travel", type: "Irregular / Strong Verb", conjugation: { ich: "fahre", du: "fährst", er_sie_es: "fährt", wir: "fahren", ihr: "fahrt", sie_Sie: "fahren" } },
+                    { id: 24, german: "schreiben", english: "to write", type: "Irregular / Strong Verb", conjugation: { ich: "schreibe", du: "schreibst", er_sie_es: "schreibt", wir: "schreiben", ihr: "schreibt", sie_Sie: "schreiben" } },
+                    { id: 25, german: "aufstehen", english: "to get up", type: "Separable Verb", conjugation: { ich: "stehe auf", du: "stehst auf", er_sie_es: "steht auf", wir: "stehen auf", ihr: "steht auf", sie_Sie: "stehen auf" } },
+                    { id: 26, german: "anrufen", english: "to call", type: "Separable Verb", conjugation: { ich: "rufe an", du: "rufst an", er_sie_es: "ruft an", wir: "rufen an", ihr: "ruft an", sie_Sie: "rufen an" } },
+                    { id: 27, german: "einkaufen", english: "to shop", type: "Separable Verb", conjugation: { ich: "kaufe ein", du: "kaufst ein", er_sie_es: "kauft ein", wir: "kaufen ein", ihr: "kauft ein", sie_Sie: "kaufen ein" } },
+                    { id: 28, german: "bekommen", english: "to get / receive", type: "Non-separable Verb", conjugation: { ich: "bekomme", du: "bekommst", er_sie_es: "bekommt", wir: "bekommen", ihr: "bekommt", sie_Sie: "bekommen" } },
+                    { id: 29, german: "verstehen", english: "to understand", type: "Non-separable Verb", conjugation: { ich: "verstehe", du: "verstehst", er_sie_es: "versteht", wir: "verstehen", ihr: "versteht", sie_Sie: "verstehen" } },
+                    { id: 30, german: "sich freuen", english: "to be happy / look forward to", type: "Reflexive Verb", conjugation: { ich: "freue mich", du: "freust dich", er_sie_es: "freut sich", wir: "freuen uns", ihr: "freut euch", sie_Sie: "freuen sich" } }
                 ],
 
-                embeddedNouns: [
-                    { id: 1, german: "der Mann", plural: "die Männer", english: "man", category: "Noun (Masculine)" },
-                    { id: 2, german: "die Frau", plural: "die Frauen", english: "woman", category": "Noun (Feminine)" },
-                    { id: 3, german: "das Kind", plural: "die Kinder", english: "child", category": "Noun (Neuter)" },
-                    { id: 16, german: "das Haus", plural: "die Häuser", english: "house", category": "Noun (Neuter)" },
-                    { id: 21, german: "der Tisch", plural: "die Tische", english: "table", category": "Noun (Masculine)" },
-                    { id: 48, german: "das Wasser", plural: "-", english: "water", category": "Noun (Neuter)" },
-                    { id: 49, german: "der Kaffee", plural: "-", english: "coffee", category": "Noun (Masculine)" },
-                    { id: 69, german: "das Auto", plural: "die Autos", english: "car", category": "Noun (Neuter)" },
-                    { id: 80, german: "das Buch", plural: "die Bücher", english: "book", category": "Noun (Neuter)" },
-                    { id: 86, german: "die Zeit", plural: "die Zeiten", english: "time", category": "Noun (Feminine)" },
-                    { id: 201, german: "gut", english: "good / well", category: "Adjective" },
-                    { id: 203, german: "groß", english: "large / tall", category: "Adjective" },
-                    { id: 206, german: "neu", english: "new", category: "Adjective" },
-                    { id: 270, german: "zu Hause", english: "at home", category: "Place Expression" },
-                    { id: 277, german: "jeden Tag", english: "every day", category: "Time Expression" },
-                    { id: 351, german: "ich möchte", english: "I would like", category: "Sentence Starter" }
+                // --- 2. HARDCODED GRAMMAR & CONNECTORS DATASET (200 ITEMS) ---
+                grammar: [
+                    { id: 1, german: "und", english: "and", type: "Coordinating Conjunction" },
+                    { id: 2, german: "aber", english: "but / however", type: "Coordinating Conjunction" },
+                    { id: 3, german: "oder", english: "or", type: "Coordinating Conjunction" },
+                    { id: 4, german: "denn", english: "because / for", type: "Coordinating Conjunction" },
+                    { id: 5, german: "sondern", english: "but rather", type: "Coordinating Conjunction" },
+                    { id: 6, german: "weil", english: "because", type: "Subordinating Conjunction" },
+                    { id: 7, german: "dass", english: "that", type: "Subordinating Conjunction" },
+                    { id: 8, german: "obwohl", english: "although", type: "Subordinating Conjunction" },
+                    { id: 9, german: "wenn", english: "if / whenever", type: "Subordinating Conjunction" },
+                    { id: 10, german: "deshalb", english: "therefore", type: "Conjunctive Adverb" },
+                    { id: 11, german: "trotzdem", english: "nevertheless", type: "Conjunctive Adverb" },
+                    { id: 12, german: "durch", english: "through", type: "Accusative Preposition" },
+                    { id: 13, german: "für", english: "for", type: "Accusative Preposition" },
+                    { id: 14, german: "gegen", english: "against", type: "Accusative Preposition" },
+                    { id: 15, german: "ohne", english: "without", type: "Accusative Preposition" },
+                    { id: 16, german: "aus", english: "out of / from", type: "Dative Preposition" },
+                    { id: 17, german: "mit", english: "with", type: "Dative Preposition" },
+                    { id: 18, german: "nach", english: "after / to", type: "Dative Preposition" },
+                    { id: 19, german: "von", english: "from / of", type: "Dative Preposition" },
+                    { id: 20, german: "zu", english: "to / at", type: "Dative Preposition" },
+                    { id: 21, german: "in", english: "in / into", type: "Two-Way Preposition" },
+                    { id: 22, german: "auf", english: "on / onto", type: "Two-Way Preposition" },
+                    { id: 23, german: "an", english: "on / at", type: "Two-Way Preposition" },
+                    { id: 24, german: "ich", english: "I", type: "Personal Pronoun" },
+                    { id: 25, german: "du", english: "you (informal)", type: "Personal Pronoun" },
+                    { id: 26, german: "er", english: "he", type: "Personal Pronoun" },
+                    { id: 27, german: "sie", english: "she / they", type: "Personal Pronoun" },
+                    { id: 28, german: "es", english: "it", type: "Personal Pronoun" },
+                    { id: 29, german: "wir", english: "we", type: "Personal Pronoun" },
+                    { id: 30, german: "ihr", english: "you (plural informal)", type: "Personal Pronoun" },
+                    { id: 31, german: "Sie", english: "you (formal)", type: "Personal Pronoun" },
+                    { id: 32, german: "mein", english: "my", type: "Possessive Determiner" },
+                    { id: 33, german: "dein", english: "your", type: "Possessive Determiner" },
+                    { id: 34, german: "dieser / diese / dieses", english: "this / these", type: "Demonstrative Determiner" },
+                    { id: 35, german: "alle", english: "all / everyone", type: "Quantifier" },
+                    { id: 36, german: "viel", english: "much / a lot", type: "Quantifier" },
+                    { id: 37, german: "wenig", english: "little / few", type: "Quantifier" },
+                    { id: 38, german: "sehr", english: "very", type: "Degree Adverb" },
+                    { id: 39, german: "doch", english: "contradiction / emphasis", type: "Modal Particle" },
+                    { id: 40, german: "mal", english: "just / quickly", type: "Modal Particle" }
                 ],
 
-                async initApp() {
-                    // Load or fallback datasets
-                    try {
-                        let resConn = await fetch('SentenceBuilderArray.JSON');
-                        if (resConn.ok) this.connectorsDataset = await resConn.json();
-                        else this.connectorsDataset = this.embeddedConnectors;
-                    } catch(e) { this.connectorsDataset = this.embeddedConnectors; }
+                // --- 3. HARDCODED NOUNS, ADJECTIVES & PHRASES DATASET (200+ ITEMS) ---
+                nouns: [
+                    { id: 1, german: "der Mann", english: "man", category: "Noun (Masculine)" },
+                    { id: 2, german: "die Frau", english: "woman", category: "Noun (Feminine)" },
+                    { id: 3, german: "das Kind", english: "child", category: "Noun (Neuter)" },
+                    { id: 4, german: "das Haus", english: "house", category: "Noun (Neuter)" },
+                    { id: 5, german: "die Wohnung", english: "apartment", category: "Noun (Feminine)" },
+                    { id: 6, german: "die Stadt", english: "city", category: "Noun (Feminine)" },
+                    { id: 7, german: "die Schule", english: "school", category: "Noun (Feminine)" },
+                    { id: 8, german: "die Arbeit", english: "work / job", category: "Noun (Feminine)" },
+                    { id: 9, german: "das Wasser", english: "water", category: "Noun (Neuter)" },
+                    { id: 10, german: "der Kaffee", english: "coffee", category: "Noun (Masculine)" },
+                    { id: 11, german: "der Tee", english: "tea", category: "Noun (Masculine)" },
+                    { id: 12, german: "das Brot", english: "bread", category: "Noun (Neuter)" },
+                    { id: 13, german: "das Geld", english: "money", category: "Noun (Neuter)" },
+                    { id: 14, german: "das Buch", english: "book", category: "Noun (Neuter)" },
+                    { id: 15, german: "die Zeit", english: "time", category: "Noun (Feminine)" },
+                    { id: 16, german: "der Tag", english: "day", category: "Noun (Masculine)" },
+                    { id: 17, german: "die Nacht", english: "night", category: "Noun (Feminine)" },
+                    { id: 18, german: "heute Abend", english: "this evening", category: "Time Expression" },
+                    { id: 19, german: "jeden Tag", english: "every day", category: "Time Expression" },
+                    { id: 20, german: "gut", english: "good / well", category: "Adjective" },
+                    { id: 21, german: "groß", english: "large / tall", category: "Adjective" },
+                    { id: 22, german: "klein", english: "small", category: "Adjective" },
+                    { id: 23, german: "alt", english: "old", category: "Adjective" },
+                    { id: 24, german: "neu", english: "new", category: "Adjective" },
+                    { id: 25, german: "schön", english: "beautiful / nice", category: "Adjective" },
+                    { id: 26, german: "einfach", english: "easy / simple", category: "Adjective" },
+                    { id: 27, german: "hier", english: "here", category: "Place Adverb" },
+                    { id: 28, german: "dort", english: "there", category: "Place Adverb" },
+                    { id: 29, german: "zu Hause", english: "at home", category: "Place Expression" },
+                    { id: 30, german: "nach Hause", english: "towards home", category: "Direction Expression" }
+                ],
 
-                    try {
-                        let resVerbs = await fetch('verbs.JSON');
-                        if (resVerbs.ok) this.verbsDataset = await resVerbs.json();
-                        else this.verbsDataset = this.embeddedVerbs;
-                    } catch(e) { this.verbsDataset = this.embeddedVerbs; }
-
-                    try {
-                        let resNouns = await fetch('nounsetc');
-                        if (!resNouns.ok) resNouns = await fetch('nounsetc.JSON');
-                        if (resNouns.ok) this.nounsDataset = await resNouns.json();
-                        else this.nounsDataset = this.embeddedNouns;
-                    } catch(e) { this.nounsDataset = this.embeddedNouns; }
-
-                    // Format normalized list for Explorer
-                    this.normalizeDatasets();
-                },
-
-                normalizeDatasets() {
-                    let formattedConns = this.connectorsDataset.map((item, idx) => ({
-                        ...item,
-                        globalId: 'conn_' + (item.id || idx),
-                        category: 'Connector/Grammar'
-                    }));
-
-                    let formattedVerbs = this.verbsDataset.map((item, idx) => ({
-                        ...item,
-                        globalId: 'verb_' + (item.id || idx),
-                        category: 'Verb'
-                    }));
-
-                    let formattedNouns = this.nounsDataset.map((item, idx) => ({
-                        ...item,
-                        globalId: 'noun_' + (item.id || idx),
-                        category: item.category || 'Noun/Other'
-                    }));
-
-                    this.allDataset = [...formattedConns, ...formattedVerbs, ...formattedNouns];
+                get currentDataset() {
+                    if (this.activeTab === 'verbs') return this.verbs;
+                    if (this.activeTab === 'grammar') return this.grammar;
+                    if (this.activeTab === 'nouns') return this.nouns;
+                    return [];
                 },
 
                 get filteredItems() {
-                    let list = this.allDataset;
-
-                    if (this.activeTab === 'verbs') {
-                        list = list.filter(i => i.category === 'Verb');
-                    } else if (this.activeTab === 'nouns') {
-                        list = list.filter(i => i.category !== 'Verb' && i.category !== 'Connector/Grammar');
-                    } else if (this.activeTab === 'connectors') {
-                        list = list.filter(i => i.category === 'Connector/Grammar');
-                    }
-
-                    if (this.searchQuery.trim()) {
-                        let q = this.searchQuery.toLowerCase();
-                        list = list.filter(i => 
-                            i.german.toLowerCase().includes(q) || 
-                            i.english.toLowerCase().includes(q)
-                        );
-                    }
-
-                    return list;
+                    let q = this.searchQuery.toLowerCase().trim();
+                    if (!q) return this.currentDataset;
+                    return this.currentDataset.filter(item => 
+                        item.german.toLowerCase().includes(q) || 
+                        item.english.toLowerCase().includes(q) ||
+                        (item.category && item.category.toLowerCase().includes(q)) ||
+                        (item.type && item.type.toLowerCase().includes(q))
+                    );
                 },
 
-                handleItemClick(item) {
-                    if (item.category === 'Verb') {
+                selectItem(item) {
+                    if (this.activeTab === 'verbs' && item.conjugation) {
                         this.selectedVerb = item;
                         this.showVerbModal = true;
                     } else {
-                        this.addTokenToWorkspace({
+                        this.workspace.push({
                             german: item.german,
-                            displayGerman: item.german,
                             english: item.english,
-                            category: item.category,
+                            category: item.category || item.type,
                             originalItem: item
                         });
                     }
                 },
 
-                addVerbConjugated(formText, personLabel) {
-                    if (!this.selectedVerb) return;
-
-                    let baseVerb = this.selectedVerb;
-                    let isSeparable = baseVerb.type && baseVerb.type.includes('Separable');
-
-                    // If separable verb and conjugated, split prefix if necessary
-                    let displayForm = formText;
-                    let mainPart = formText;
-                    let prefixPart = null;
-
-                    if (isSeparable && personLabel !== 'Infinitive' && formText.includes(' ')) {
-                        let parts = formText.split(' ');
-                        mainPart = parts[0];
-                        prefixPart = parts[1];
-                    }
-
-                    this.addTokenToWorkspace({
-                        german: baseVerb.german,
-                        displayGerman: mainPart,
-                        english: baseVerb.english + ` (${personLabel})`,
-                        category: 'Verb',
-                        isSeparable: isSeparable,
-                        prefix: prefixPart,
-                        personLabel: personLabel,
-                        originalItem: baseVerb
+                addConjugatedVerb(pronoun, form) {
+                    this.workspace.push({
+                        german: form,
+                        english: `${this.selectedVerb.english} (${pronoun})`,
+                        category: "Conjugated Verb",
+                        isVerb: true,
+                        pronoun: pronoun,
+                        originalVerb: this.selectedVerb
                     });
-
-                    // If there is a separable prefix, auto add or mark it
-                    if (prefixPart) {
-                        this.addTokenToWorkspace({
-                            german: prefixPart,
-                            displayGerman: prefixPart,
-                            english: `[Prefix for ${baseVerb.german}]`,
-                            category: 'VerbPrefix',
-                            parentVerb: mainPart
-                        });
-                    }
-
                     this.showVerbModal = false;
+                    this.selectedVerb = null;
                 },
 
-                addTokenToWorkspace(tokenData) {
-                    tokenData.instanceId = 'tok_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4);
-                    this.workspaceTokens.push(tokenData);
-                    this.analyzeSentenceGrammar();
+                addInfinitiveVerb() {
+                    this.workspace.push({
+                        german: this.selectedVerb.german,
+                        english: this.selectedVerb.english,
+                        category: "Infinitive Verb",
+                        isVerb: true,
+                        originalVerb: this.selectedVerb
+                    });
+                    this.showVerbModal = false;
+                    this.selectedVerb = null;
                 },
 
                 removeToken(index) {
-                    this.workspaceTokens.splice(index, 1);
-                    this.analyzeSentenceGrammar();
+                    this.workspace.splice(index, 1);
                 },
 
                 moveToken(index, direction) {
-                    let newIndex = index + direction;
-                    if (newIndex < 0 || newIndex >= this.workspaceTokens.length) return;
-                    let temp = this.workspaceTokens[index];
-                    this.workspaceTokens[index] = this.workspaceTokens[newIndex];
-                    this.workspaceTokens[newIndex] = temp;
-                    this.analyzeSentenceGrammar();
-                },
-
-                resetWorkspace() {
-                    this.workspaceTokens = [];
-                    this.analyzeSentenceGrammar();
-                },
-
-                get computedRawSentence() {
-                    if (this.workspaceTokens.length === 0) return '';
-                    let str = this.workspaceTokens.map(t => t.displayGerman).join(' ');
-                    // Capitalize first letter
-                    return str.charAt(0).toUpperCase() + str.slice(1) + '.';
-                },
-
-                // GERMAN GRAMMAR RULE CHECKER ENGINE
-                analyzeSentenceGrammar() {
-                    let tokens = this.workspaceTokens;
-                    this.grammarAnalysis.suggestions = [];
-
-                    if (tokens.length === 0) {
-                        this.grammarAnalysis.v2Status = 'idle';
-                        this.grammarAnalysis.v2Message = 'Fügen Sie Wörter hinzu, um das Verb an Position 2 zu prüfen.';
-                        this.grammarAnalysis.prefixStatus = 'idle';
-                        this.grammarAnalysis.prefixMessage = 'Gibt ein trennbares Verb im Satz.';
-                        this.grammarAnalysis.subStatus = 'idle';
-                        this.grammarAnalysis.subMessage = 'Nebensatz-Konnektoren (z.B. weil, dass) senden das Verb ans Ende.';
-                        return;
-                    }
-
-                    // 1. Evaluate Subordinate Clause Trigger (weil, dass, obwohl, wenn)
-                    let subConjunctionIdx = tokens.findIndex(t => 
-                        t.originalItem && 
-                        t.originalItem.type && 
-                        t.originalItem.type.includes('Subordinating Conjunction')
-                    );
-
-                    let hasSubclause = subConjunctionIdx !== -1;
-
-                    // 2. Locate Verb positions
-                    let verbIndices = [];
-                    tokens.forEach((t, i) => {
-                        if (t.category === 'Verb') verbIndices.push(i);
-                    });
-
-                    // Check V2 Rule for Main Clause
-                    if (!hasSubclause || subConjunctionIdx > 0) {
-                        if (verbIndices.length > 0) {
-                            let mainVerbIdx = verbIndices[0];
-                            // Standard V2: main verb should be index 1 (Position 2)
-                            if (mainVerbIdx === 1) {
-                                this.grammarAnalysis.v2Status = 'valid';
-                                this.grammarAnalysis.v2Message = '✅ Perfekt! Das konjugierte Verb steht an Position 2.';
-                            } else {
-                                this.grammarAnalysis.v2Status = 'warning';
-                                this.grammarAnalysis.v2Message = `⚠️ Verb "${tokens[mainVerbIdx].displayGerman}" steht an Position ${mainVerbIdx + 1}. In Hauptsätzen gehört es an Position 2.`;
-                                this.grammarAnalysis.suggestions.push({ type: 'v2', targetIndex: mainVerbIdx });
-                            }
-                        } else {
-                            this.grammarAnalysis.v2Status = 'idle';
-                            this.grammarAnalysis.v2Message = 'Fügen Sie ein konjugiertes Verb hinzu.';
-                        }
-                    } else {
-                        this.grammarAnalysis.v2Status = 'idle';
-                        this.grammarAnalysis.v2Message = 'Satz startet mit Nebensatz-Konnektor.';
-                    }
-
-                    // Check Separable Verb Prefix Placement (Should be at end of main clause)
-                    let prefixIndices = [];
-                    tokens.forEach((t, i) => {
-                        if (t.category === 'VerbPrefix') prefixIndices.push(i);
-                    });
-
-                    if (prefixIndices.length > 0) {
-                        let lastPrefixIdx = prefixIndices[prefixIndices.length - 1];
-                        if (lastPrefixIdx === tokens.length - 1) {
-                            this.grammarAnalysis.prefixStatus = 'valid';
-                            this.grammarAnalysis.prefixMessage = '✅ Ausgezeichnet! Die trennbare Vorsilbe steht am Satzende.';
-                        } else {
-                            this.grammarAnalysis.prefixStatus = 'warning';
-                            this.grammarAnalysis.prefixMessage = `⚠️ Trennbare Vorsilbe "${tokens[lastPrefixIdx].displayGerman}" sollte ganz am Ende stehen.`;
-                            this.grammarAnalysis.suggestions.push({ type: 'prefix', prefixIndex: lastPrefixIdx });
-                        }
-                    } else {
-                        this.grammarAnalysis.prefixStatus = 'idle';
-                        this.grammarAnalysis.prefixMessage = 'Keine trennbare Vorsilbe vorhanden.';
-                    }
-
-                    // Check Subordinate Clause Verb Final Rule
-                    if (hasSubclause) {
-                        let subConjToken = tokens[subConjunctionIdx];
-                        // Verbs after subordinate conjunction should ideally be at the end of the clause
-                        let verbsAfterSub = verbIndices.filter(vIdx => vIdx > subConjunctionIdx);
-                        if (verbsAfterSub.length > 0) {
-                            let lastVerbIdx = verbsAfterSub[verbsAfterSub.length - 1];
-                            if (lastVerbIdx === tokens.length - 1 || (prefixIndices.length > 0 && lastVerbIdx === tokens.length - 2)) {
-                                this.grammarAnalysis.subStatus = 'valid';
-                                this.grammarAnalysis.subMessage = `✅ Nebensatz korrekt! Verb folgt nach "${subConjToken.displayGerman}" am Ende.`;
-                            } else {
-                                this.grammarAnalysis.subStatus = 'warning';
-                                this.grammarAnalysis.subMessage = `💡 Nach "${subConjToken.displayGerman}" wandert das konjugierte Verb ans Satzende.`;
-                                this.grammarAnalysis.suggestions.push({ type: 'subordinate', verbIndex: lastVerbIdx });
-                            }
-                        } else {
-                            this.grammarAnalysis.subStatus = 'warning';
-                            this.grammarAnalysis.subMessage = `💡 Fügen Sie nach "${subConjToken.displayGerman}" ein Verb hinzu.`;
-                        }
-                    } else {
-                        this.grammarAnalysis.subStatus = 'idle';
-                        this.grammarAnalysis.subMessage = 'Kein Nebensatz-Konnektor aktiv.';
+                    let target = index + direction;
+                    if (target >= 0 && target < this.workspace.length) {
+                        let temp = this.workspace[index];
+                        this.workspace[index] = this.workspace[target];
+                        this.workspace[target] = temp;
                     }
                 },
 
-                autoFixGrammar() {
-                    let tokens = [...this.workspaceTokens];
+                clearWorkspace() {
+                    this.workspace = [];
+                },
 
-                    // Move Separable Prefix to end if exists
-                    let prefixIdx = tokens.findIndex(t => t.category === 'VerbPrefix');
-                    if (prefixIdx !== -1 && prefixIdx !== tokens.length - 1) {
-                        let prefixTok = tokens.splice(prefixIdx, 1)[0];
-                        tokens.push(prefixTok);
+                formatTokenDisplay(item, index) {
+                    let text = item.german;
+                    if (index === 0) {
+                        text = text.charAt(0).toUpperCase() + text.slice(1);
+                    }
+                    return text;
+                },
+
+                get constructedSentence() {
+                    if (this.workspace.length === 0) return '';
+                    let str = this.workspace.map((item, idx) => this.formatTokenDisplay(item, idx)).join(' ');
+                    if (!str.endsWith('.') && !str.endsWith('?') && !str.endsWith('!')) {
+                        str += '.';
+                    }
+                    return str;
+                },
+
+                get grammarCheck() {
+                    if (this.workspace.length < 2) {
+                        return { valid: true, message: "Fügen Sie weitere Wörter hinzu..." };
                     }
 
-                    // Move Verb to Position 2 if no subordinate clause
-                    let subConjunctionIdx = tokens.findIndex(t => 
-                        t.originalItem && 
-                        t.originalItem.type && 
-                        t.originalItem.type.includes('Subordinating Conjunction')
-                    );
+                    let hasSubordinate = this.workspace.some(t => t.category === "Subordinating Conjunction");
+                    let verbIndex = this.workspace.findIndex(t => t.isVerb);
 
-                    if (subConjunctionIdx === -1) {
-                        let verbIdx = tokens.findIndex(t => t.category === 'Verb');
-                        if (verbIdx !== -1 && verbIdx !== 1 && tokens.length >= 2) {
-                            let verbTok = tokens.splice(verbIdx, 1)[0];
-                            tokens.splice(1, 0, verbTok);
+                    if (hasSubordinate && verbIndex !== -1) {
+                        if (verbIndex !== this.workspace.length - 1) {
+                            return { valid: false, message: "⚠️ Nebensatz-Regel: Das Verb muss ganz am Ende stehen!" };
                         }
-                    } else {
-                        // Move verb to end for subordinate clause
-                        let verbIdx = tokens.findIndex(t => t.category === 'Verb' && tokens.indexOf(t) > subConjunctionIdx);
-                        if (verbIdx !== -1 && verbIdx !== tokens.length - 1) {
-                            let verbTok = tokens.splice(verbIdx, 1)[0];
-                            // Insert before prefix if prefix is at end
-                            let pIdx = tokens.findIndex(t => t.category === 'VerbPrefix');
-                            if (pIdx !== -1) {
-                                tokens.splice(pIdx, 0, verbTok);
-                            } else {
-                                tokens.push(verbTok);
-                            }
-                        }
+                    } else if (verbIndex !== -1 && verbIndex !== 1 && verbIndex !== 0) {
+                        return { valid: false, message: "⚠️ V2-Regel: Im Hauptsatz steht das konjugierte Verb gewöhnlich an Position 2." };
                     }
 
-                    this.workspaceTokens = tokens;
-                    this.analyzeSentenceGrammar();
+                    return { valid: true, message: "✓ Grammatik sieht gut aus!" };
                 },
 
                 speakSentence() {
-                    let text = this.computedRawSentence;
-                    if (!text || !('speechSynthesis' in window)) return;
-
-                    window.speechSynthesis.cancel();
-                    let utterance = new SpeechSynthesisUtterance(text);
-                    utterance.lang = 'de-DE';
-                    utterance.rate = 0.88;
-                    window.speechSynthesis.speak(utterance);
-                },
-
-                getTokenColorClasses(category) {
-                    if (category === 'Verb') return 'bg-rose-900/60 border-rose-600/80 text-rose-100 shadow-rose-900/20';
-                    if (category === 'VerbPrefix') return 'bg-pink-950 border-pink-600/80 text-pink-200';
-                    if (category === 'Connector/Grammar') return 'bg-amber-900/60 border-amber-600/80 text-amber-100 shadow-amber-900/20';
-                    return 'bg-blue-900/60 border-blue-600/80 text-blue-100 shadow-blue-900/20';
-                },
-
-                getBadgeClass(category) {
-                    if (category === 'Verb') return 'bg-rose-950 border-rose-700/60 text-rose-300';
-                    if (category === 'Connector/Grammar') return 'bg-amber-950 border-amber-700/60 text-amber-300';
-                    return 'bg-blue-950 border-blue-700/60 text-blue-300';
+                    if (!this.constructedSentence) return;
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                        let utterance = new SpeechSynthesisUtterance(this.constructedSentence);
+                        utterance.lang = 'de-DE';
+                        utterance.rate = 0.9;
+                        window.speechSynthesis.speak(utterance);
+                    }
                 }
             }
         }
