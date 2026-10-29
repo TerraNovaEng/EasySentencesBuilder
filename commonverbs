@@ -1,0 +1,1217 @@
+[
+  {
+    "infinitive": "sein",
+    "english": "to be",
+    "indicative": {
+      "praesens": {
+        "ich": "bin",
+        "du": "bist",
+        "er_sie_es": "ist",
+        "wir": "sind",
+        "ihr": "seid",
+        "sie_Sie": "sind"
+      },
+      "praeteritum": {
+        "ich": "war",
+        "du": "warst",
+        "er_sie_es": "war",
+        "wir": "waren",
+        "ihr": "wart",
+        "sie_Sie": "waren"
+      },
+      "perfekt": {
+        "ich": "bin gewesen",
+        "du": "bist gewesen",
+        "er_sie_es": "ist gewesen",
+        "wir": "sind gewesen",
+        "ihr": "seid gewesen",
+        "sie_Sie": "sind gewesen"
+      },
+      "plusquamperfekt": {
+        "ich": "war gewesen",
+        "du": "warst gewesen",
+        "er_sie_es": "war gewesen",
+        "wir": "waren gewesen",
+        "ihr": "wart gewesen",
+        "sie_Sie": "waren gewesen"
+      },
+      "futur_1": {
+        "ich": "werde sein",
+        "du": "wirst sein",
+        "er_sie_es": "wird sein",
+        "wir": "werden sein",
+        "ihr": "werdet sein",
+        "sie_Sie": "werden sein"
+      },
+      "futur_2": {
+        "ich": "werde gewesen sein",
+        "du": "wirst gewesen sein",
+        "er_sie_es": "wird gewesen sein",
+        "wir": "werden gewesen sein",
+        "ihr": "werdet gewesen sein",
+        "sie_Sie": "werden gewesen sein"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "sei",
+        "du": "seiest",
+        "er_sie_es": "sei",
+        "wir": "seien",
+        "ihr": "seiet",
+        "sie_Sie": "seien"
+      },
+      "konjunktiv_2": {
+        "ich": "wäre",
+        "du": "wärest",
+        "er_sie_es": "wäre",
+        "wir": "wären",
+        "ihr": "wäret",
+        "sie_Sie": "wären"
+      }
+    },
+    "imperativ": {
+      "du": "sei",
+      "ihr": "seid",
+      "Sie": "seien Sie"
+    },
+    "partizip": {
+      "partizip_1": "seiend",
+      "partizip_2": "gewesen"
+    }
+  },
+  {
+    "infinitive": "haben",
+    "english": "to have",
+    "indicative": {
+      "praesens": {
+        "ich": "habe",
+        "du": "hast",
+        "er_sie_es": "hat",
+        "wir": "haben",
+        "ihr": "habt",
+        "sie_Sie": "haben"
+      },
+      "praeteritum": {
+        "ich": "hatte",
+        "du": "hattest",
+        "er_sie_es": "hatte",
+        "wir": "hatten",
+        "ihr": "hattet",
+        "sie_Sie": "hatten"
+      },
+      "perfekt": {
+        "ich": "habe gehabt",
+        "du": "hast gehabt",
+        "er_sie_es": "hat gehabt",
+        "wir": "haben gehabt",
+        "ihr": "habt gehabt",
+        "sie_Sie": "haben gehabt"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gehabt",
+        "du": "hattest gehabt",
+        "er_sie_es": "hatte gehabt",
+        "wir": "hatten gehabt",
+        "ihr": "hattet gehabt",
+        "sie_Sie": "hatten gehabt"
+      },
+      "futur_1": {
+        "ich": "werde haben",
+        "du": "wirst haben",
+        "er_sie_es": "wird haben",
+        "wir": "werden haben",
+        "ihr": "werdet haben",
+        "sie_Sie": "werden haben"
+      },
+      "futur_2": {
+        "ich": "werde gehabt haben",
+        "du": "wirst gehabt haben",
+        "er_sie_es": "wird gehabt haben",
+        "wir": "werden gehabt haben",
+        "ihr": "werdet gehabt haben",
+        "sie_Sie": "werden gehabt haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "habe",
+        "du": "habest",
+        "er_sie_es": "habe",
+        "wir": "haben",
+        "ihr": "habet",
+        "sie_Sie": "haben"
+      },
+      "konjunktiv_2": {
+        "ich": "hätte",
+        "du": "hättest",
+        "er_sie_es": "hätte",
+        "wir": "hätten",
+        "ihr": "hüttet",
+        "sie_Sie": "hätten"
+      }
+    },
+    "imperativ": {
+      "du": "habe",
+      "ihr": "habt",
+      "Sie": "haben Sie"
+    },
+    "partizip": {
+      "partizip_1": "habend",
+      "partizip_2": "gehabt"
+    }
+  },
+  {
+    "infinitive": "werden",
+    "english": "to become / will",
+    "indicative": {
+      "praesens": {
+        "ich": "werde",
+        "du": "wirst",
+        "er_sie_es": "wird",
+        "wir": "werden",
+        "ihr": "werdet",
+        "sie_Sie": "werden"
+      },
+      "praeteritum": {
+        "ich": "wurde",
+        "du": "wurdest",
+        "er_sie_es": "wurde",
+        "wir": "wurden",
+        "ihr": "wurdet",
+        "sie_Sie": "wurden"
+      },
+      "perfekt": {
+        "ich": "bin geworden",
+        "du": "bist geworden",
+        "er_sie_es": "ist geworden",
+        "wir": "sind geworden",
+        "ihr": "seid geworden",
+        "sie_Sie": "sind geworden"
+      },
+      "plusquamperfekt": {
+        "ich": "war geworden",
+        "du": "warst geworden",
+        "er_sie_es": "war geworden",
+        "wir": "waren geworden",
+        "ihr": "wart geworden",
+        "sie_Sie": "waren geworden"
+      },
+      "futur_1": {
+        "ich": "werde werden",
+        "du": "wirst werden",
+        "er_sie_es": "wird werden",
+        "wir": "werden werden",
+        "ihr": "werdet werden",
+        "sie_Sie": "werden werden"
+      },
+      "futur_2": {
+        "ich": "werde geworden sein",
+        "du": "wirst geworden sein",
+        "er_sie_es": "wird geworden sein",
+        "wir": "werden geworden sein",
+        "ihr": "werdet geworden sein",
+        "sie_Sie": "werden geworden sein"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "werde",
+        "du": "werdest",
+        "er_sie_es": "werde",
+        "wir": "werden",
+        "ihr": "werdet",
+        "sie_Sie": "werden"
+      },
+      "konjunktiv_2": {
+        "ich": "würde",
+        "du": "würdest",
+        "er_sie_es": "würde",
+        "wir": "würden",
+        "ihr": "würdet",
+        "sie_Sie": "würden"
+      }
+    },
+    "imperativ": {
+      "du": "werde",
+      "ihr": "werdet",
+      "Sie": "werden Sie"
+    },
+    "partizip": {
+      "partizip_1": "werdend",
+      "partizip_2": "geworden"
+    }
+  },
+  {
+    "infinitive": "gehen",
+    "english": "to go / walk",
+    "indicative": {
+      "praesens": {
+        "ich": "gehe",
+        "du": "gehst",
+        "er_sie_es": "geht",
+        "wir": "gehen",
+        "ihr": "geht",
+        "sie_Sie": "gehen"
+      },
+      "praeteritum": {
+        "ich": "ging",
+        "du": "gingst",
+        "er_sie_es": "ging",
+        "wir": "gingen",
+        "ihr": "gingt",
+        "sie_Sie": "gingen"
+      },
+      "perfekt": {
+        "ich": "bin gegangen",
+        "du": "bist gegangen",
+        "er_sie_es": "ist gegangen",
+        "wir": "sind gegangen",
+        "ihr": "seid gegangen",
+        "sie_Sie": "sind gegangen"
+      },
+      "plusquamperfekt": {
+        "ich": "war gegangen",
+        "du": "warst gegangen",
+        "er_sie_es": "war gegangen",
+        "wir": "waren gegangen",
+        "ihr": "wart gegangen",
+        "sie_Sie": "waren gegangen"
+      },
+      "futur_1": {
+        "ich": "werde gehen",
+        "du": "wirst gehen",
+        "er_sie_es": "wird gehen",
+        "wir": "werden gehen",
+        "ihr": "werdet gehen",
+        "sie_Sie": "werden gehen"
+      },
+      "futur_2": {
+        "ich": "werde gegangen sein",
+        "du": "wirst gegangen sein",
+        "er_sie_es": "wird gegangen sein",
+        "wir": "werden gegangen sein",
+        "ihr": "werdet gegangen sein",
+        "sie_Sie": "werden gegangen sein"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "gehe",
+        "du": "gehest",
+        "er_sie_es": "gehe",
+        "wir": "gehen",
+        "ihr": "gehet",
+        "sie_Sie": "gehen"
+      },
+      "konjunktiv_2": {
+        "ich": "ginge",
+        "du": "gingest",
+        "er_sie_es": "ginge",
+        "wir": "gingen",
+        "ihr": "ginget",
+        "sie_Sie": "gingen"
+      }
+    },
+    "imperativ": {
+      "du": "geh / gehe",
+      "ihr": "geht",
+      "Sie": "gehen Sie"
+    },
+    "partizip": {
+      "partizip_1": "gehend",
+      "partizip_2": "gegangen"
+    }
+  },
+  {
+    "infinitive": "können",
+    "english": "can / to be able to",
+    "indicative": {
+      "praesens": {
+        "ich": "kann",
+        "du": "kannst",
+        "er_sie_es": "kann",
+        "wir": "können",
+        "ihr": "könnt",
+        "sie_Sie": "können"
+      },
+      "praeteritum": {
+        "ich": "konnte",
+        "du": "konntest",
+        "er_sie_es": "konnte",
+        "wir": "konnten",
+        "ihr": "konntet",
+        "sie_Sie": "konnten"
+      },
+      "perfekt": {
+        "ich": "habe gekonnt",
+        "du": "hast gekonnt",
+        "er_sie_es": "hat gekonnt",
+        "wir": "haben gekonnt",
+        "ihr": "habt gekonnt",
+        "sie_Sie": "haben gekonnt"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gekonnt",
+        "du": "hattest gekonnt",
+        "er_sie_es": "hatte gekonnt",
+        "wir": "hatten gekonnt",
+        "ihr": "hattet gekonnt",
+        "sie_Sie": "hatten gekonnt"
+      },
+      "futur_1": {
+        "ich": "werde können",
+        "du": "wirst können",
+        "er_sie_es": "wird können",
+        "wir": "werden können",
+        "ihr": "werdet können",
+        "sie_Sie": "werden können"
+      },
+      "futur_2": {
+        "ich": "werde gekonnt haben",
+        "du": "wirst gekonnt haben",
+        "er_sie_es": "wird gekonnt haben",
+        "wir": "werden gekonnt haben",
+        "ihr": "werdet gekonnt haben",
+        "sie_Sie": "werden gekonnt haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "könne",
+        "du": "könnest",
+        "er_sie_es": "könne",
+        "wir": "können",
+        "ihr": "könnet",
+        "sie_Sie": "können"
+      },
+      "konjunktiv_2": {
+        "ich": "könnte",
+        "du": "könntest",
+        "er_sie_es": "könnte",
+        "wir": "könnten",
+        "ihr": "könntet",
+        "sie_Sie": "könnten"
+      }
+    },
+    "imperativ": {
+      "du": "N/A",
+      "ihr": "N/A",
+      "Sie": "N/A"
+    },
+    "partizip": {
+      "partizip_1": "könnend",
+      "partizip_2": "gekonnt"
+    }
+  },
+  {
+    "infinitive": "müssen",
+    "english": "must / to have to",
+    "indicative": {
+      "praesens": {
+        "ich": "muss",
+        "du": "musst",
+        "er_sie_es": "muss",
+        "wir": "müssen",
+        "ihr": "müsst",
+        "sie_Sie": "müssen"
+      },
+      "praeteritum": {
+        "ich": "musste",
+        "du": "musstest",
+        "er_sie_es": "musste",
+        "wir": "mussten",
+        "ihr": "musstet",
+        "sie_Sie": "mussten"
+      },
+      "perfekt": {
+        "ich": "habe gemusst",
+        "du": "hast gemusst",
+        "er_sie_es": "hat gemusst",
+        "wir": "haben gemusst",
+        "ihr": "habt gemusst",
+        "sie_Sie": "haben gemusst"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gemusst",
+        "du": "hattest gemusst",
+        "er_sie_es": "hatte gemusst",
+        "wir": "hatten gemusst",
+        "ihr": "hattet gemusst",
+        "sie_Sie": "haben gemusst"
+      },
+      "futur_1": {
+        "ich": "werde müssen",
+        "du": "wirst müssen",
+        "er_sie_es": "wird müssen",
+        "wir": "werden müssen",
+        "ihr": "werdet müssen",
+        "sie_Sie": "werden müssen"
+      },
+      "futur_2": {
+        "ich": "werde gemusst haben",
+        "du": "wirst gemusst haben",
+        "er_sie_es": "wird gemusst haben",
+        "wir": "werden gemusst haben",
+        "ihr": "werdet gemusst haben",
+        "sie_Sie": "werden gemusst haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "müsse",
+        "du": "müssest",
+        "er_sie_es": "müsse",
+        "wir": "müssen",
+        "ihr": "müsset",
+        "sie_Sie": "müssen"
+      },
+      "konjunktiv_2": {
+        "ich": "müsste",
+        "du": "müsstest",
+        "er_sie_es": "müsste",
+        "wir": "müssten",
+        "ihr": "müsstet",
+        "sie_Sie": "müssten"
+      }
+    },
+    "imperativ": {
+      "du": "N/A",
+      "ihr": "N/A",
+      "Sie": "N/A"
+    },
+    "partizip": {
+      "partizip_1": "müssend",
+      "partizip_2": "gemusst"
+    }
+  },
+  {
+    "infinitive": "wollen",
+    "english": "to want (also was going to / intended to)",
+    "indicative": {
+      "praesens": {
+        "ich": "will",
+        "du": "willst",
+        "er_sie_es": "will",
+        "wir": "wollen",
+        "ihr": "wollt",
+        "sie_Sie": "wollen"
+      },
+      "praeteritum": {
+        "ich": "wollte",
+        "du": "wolltest",
+        "er_sie_es": "wollte",
+        "wir": "wollten",
+        "ihr": "wolltet",
+        "sie_Sie": "wollten"
+      },
+      "perfekt": {
+        "ich": "habe gewollt",
+        "du": "hast gewollt",
+        "er_sie_es": "hat gewollt",
+        "wir": "haben gewollt",
+        "ihr": "habt gewollt",
+        "sie_Sie": "haben gewollt"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gewollt",
+        "du": "hattest gewollt",
+        "er_sie_es": "hatte gewollt",
+        "wir": "hatten gewollt",
+        "ihr": "hattet gewollt",
+        "sie_Sie": "hatten gewollt"
+      },
+      "futur_1": {
+        "ich": "werde wollen",
+        "du": "wirst wollen",
+        "er_sie_es": "wird wollen",
+        "wir": "werden wollen",
+        "ihr": "werdet wollen",
+        "sie_Sie": "werden wollen"
+      },
+      "futur_2": {
+        "ich": "werde gewollt haben",
+        "du": "wirst gewollt haben",
+        "er_sie_es": "wird gewollt haben",
+        "wir": "werden gewollt haben",
+        "ihr": "werdet gewollt haben",
+        "sie_Sie": "werden gewollt haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "wolle",
+        "du": "wollest",
+        "er_sie_es": "wolle",
+        "wir": "wollen",
+        "ihr": "wollet",
+        "sie_Sie": "wollen"
+      },
+      "konjunktiv_2": {
+        "ich": "wollte",
+        "du": "wolltest",
+        "er_sie_es": "wollte",
+        "wir": "wollten",
+        "ihr": "wolltet",
+        "sie_Sie": "wollten"
+      }
+    },
+    "imperativ": {
+      "du": "wolle",
+      "ihr": "wollt",
+      "Sie": "wollen Sie"
+    },
+    "partizip": {
+      "partizip_1": "wollend",
+      "partizip_2": "gewollt"
+    }
+  },
+  {
+    "infinitive": "sollen",
+    "english": "should / to be supposed to",
+    "indicative": {
+      "praesens": {
+        "ich": "soll",
+        "du": "sollst",
+        "er_sie_es": "soll",
+        "wir": "sollen",
+        "ihr": "sollt",
+        "sie_Sie": "sollen"
+      },
+      "praeteritum": {
+        "ich": "sollte",
+        "du": "solltest",
+        "er_sie_es": "sollte",
+        "wir": "sollten",
+        "ihr": "solltet",
+        "sie_Sie": "sollten"
+      },
+      "perfekt": {
+        "ich": "habe gesollt",
+        "du": "hast gesollt",
+        "er_sie_es": "hat gesollt",
+        "wir": "haben gesollt",
+        "ihr": "habt gesollt",
+        "sie_Sie": "haben gesollt"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gesollt",
+        "du": "hattest gesollt",
+        "er_sie_es": "hatte gesollt",
+        "wir": "hatten gesollt",
+        "ihr": "hattet gesollt",
+        "sie_Sie": "hatten gesollt"
+      },
+      "futur_1": {
+        "ich": "werde sollen",
+        "du": "wirst sollen",
+        "er_sie_es": "wird sollen",
+        "wir": "werden sollen",
+        "ihr": "werdet sollen",
+        "sie_Sie": "werden sollen"
+      },
+      "futur_2": {
+        "ich": "werde gesollt haben",
+        "du": "wirst gesollt haben",
+        "er_sie_es": "wird gesollt haben",
+        "wir": "werden gesollt haben",
+        "ihr": "werdet gesollt haben",
+        "sie_Sie": "werden gesollt haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "solle",
+        "du": "sollest",
+        "er_sie_es": "solle",
+        "wir": "sollen",
+        "ihr": "sollet",
+        "sie_Sie": "sollen"
+      },
+      "konjunktiv_2": {
+        "ich": "sollte",
+        "du": "solltest",
+        "er_sie_es": "sollte",
+        "wir": "sollten",
+        "ihr": "solltet",
+        "sie_Sie": "sollten"
+      }
+    },
+    "imperativ": {
+      "du": "N/A",
+      "ihr": "N/A",
+      "Sie": "N/A"
+    },
+    "partizip": {
+      "partizip_1": "sollend",
+      "partizip_2": "gesollt"
+    }
+  },
+  {
+    "infinitive": "sagen",
+    "english": "to say",
+    "indicative": {
+      "praesens": {
+        "ich": "sage",
+        "du": "sagst",
+        "er_sie_es": "sagt",
+        "wir": "sagen",
+        "ihr": "sagt",
+        "sie_Sie": "sagen"
+      },
+      "praeteritum": {
+        "ich": "sagte",
+        "du": "sagtest",
+        "er_sie_es": "sagte",
+        "wir": "sagten",
+        "ihr": "sagtet",
+        "sie_Sie": "sagten"
+      },
+      "perfekt": {
+        "ich": "habe gesagt",
+        "du": "hast gesagt",
+        "er_sie_es": "hat gesagt",
+        "wir": "haben gesagt",
+        "ihr": "habt gesagt",
+        "sie_Sie": "haben gesagt"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gesagt",
+        "du": "hattest gesagt",
+        "er_sie_es": "hatte gesagt",
+        "wir": "hatten gesagt",
+        "ihr": "hattet gesagt",
+        "sie_Sie": "hatten gesagt"
+      },
+      "futur_1": {
+        "ich": "werde sagen",
+        "du": "wirst sagen",
+        "er_sie_es": "wird sagen",
+        "wir": "werden sagen",
+        "ihr": "werdet sagen",
+        "sie_Sie": "werden sagen"
+      },
+      "futur_2": {
+        "ich": "werde gesagt haben",
+        "du": "wirst gesagt haben",
+        "er_sie_es": "wird gesagt haben",
+        "wir": "werden gesagt haben",
+        "ihr": "werdet gesagt haben",
+        "sie_Sie": "werden gesagt haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "sage",
+        "du": "sagest",
+        "er_sie_es": "sage",
+        "wir": "sagen",
+        "ihr": "saget",
+        "sie_Sie": "sagen"
+      },
+      "konjunktiv_2": {
+        "ich": "sagte",
+        "du": "sagtest",
+        "er_sie_es": "sagte",
+        "wir": "sagten",
+        "ihr": "sagtet",
+        "sie_Sie": "sagten"
+      }
+    },
+    "imperativ": {
+      "du": "sag / sage",
+      "ihr": "sagt",
+      "Sie": "sagen Sie"
+    },
+    "partizip": {
+      "partizip_1": "sagend",
+      "partizip_2": "gesagt"
+    }
+  },
+  {
+    "infinitive": "machen",
+    "english": "to make / do",
+    "indicative": {
+      "praesens": {
+        "ich": "mache",
+        "du": "machst",
+        "er_sie_es": "macht",
+        "wir": "machen",
+        "ihr": "macht",
+        "sie_Sie": "machen"
+      },
+      "praeteritum": {
+        "ich": "machte",
+        "du": "machtest",
+        "er_sie_es": "machte",
+        "wir": "machten",
+        "ihr": "machtet",
+        "sie_Sie": "machten"
+      },
+      "perfekt": {
+        "ich": "habe gemacht",
+        "du": "hast gemacht",
+        "er_sie_es": "hat gemacht",
+        "wir": "haben gemacht",
+        "ihr": "habt gemacht",
+        "sie_Sie": "haben gemacht"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gemacht",
+        "du": "hattest gemacht",
+        "er_sie_es": "hatte gemacht",
+        "wir": "hatten gemacht",
+        "ihr": "hattet gemacht",
+        "sie_Sie": "hatten gemacht"
+      },
+      "futur_1": {
+        "ich": "werde machen",
+        "du": "wirst machen",
+        "er_sie_es": "wird machen",
+        "wir": "werden machen",
+        "ihr": "werdet machen",
+        "sie_Sie": "werden machen"
+      },
+      "futur_2": {
+        "ich": "werde gemacht haben",
+        "du": "wirst gemacht haben",
+        "er_sie_es": "wird gemacht haben",
+        "wir": "werden gemacht haben",
+        "ihr": "werdet gemacht haben",
+        "sie_Sie": "werden gemacht haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "mache",
+        "du": "machest",
+        "er_sie_es": "mache",
+        "wir": "machen",
+        "ihr": "machet",
+        "sie_Sie": "machen"
+      },
+      "konjunktiv_2": {
+        "ich": "machte",
+        "du": "machtest",
+        "er_sie_es": "machte",
+        "wir": "machten",
+        "ihr": "machtet",
+        "sie_Sie": "machten"
+      }
+    },
+    "imperativ": {
+      "du": "mach / mache",
+      "ihr": "macht",
+      "Sie": "machen Sie"
+    },
+    "partizip": {
+      "partizip_1": "machend",
+      "partizip_2": "gemacht"
+    }
+  },
+  {
+    "infinitive": "geben",
+    "english": "to give",
+    "indicative": {
+      "praesens": {
+        "ich": "gebe",
+        "du": "gibst",
+        "er_sie_es": "gibt",
+        "wir": "geben",
+        "ihr": "gebt",
+        "sie_Sie": "geben"
+      },
+      "praeteritum": {
+        "ich": "gab",
+        "du": "gabst",
+        "er_sie_es": "gab",
+        "wir": "gaben",
+        "ihr": "gabt",
+        "sie_Sie": "gaben"
+      },
+      "perfekt": {
+        "ich": "habe gegeben",
+        "du": "hast gegeben",
+        "er_sie_es": "hat gegeben",
+        "wir": "haben gegeben",
+        "ihr": "habt gegeben",
+        "sie_Sie": "haben gegeben"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gegeben",
+        "du": "hattest gegeben",
+        "er_sie_es": "hatte gegeben",
+        "wir": "hatten gegeben",
+        "ihr": "hattet gegeben",
+        "sie_Sie": "hatten gegeben"
+      },
+      "futur_1": {
+        "ich": "werde geben",
+        "du": "wirst geben",
+        "er_sie_es": "wird geben",
+        "wir": "werden geben",
+        "ihr": "werdet geben",
+        "sie_Sie": "werden geben"
+      },
+      "futur_2": {
+        "ich": "werde gegeben haben",
+        "du": "wirst gegeben haben",
+        "er_sie_es": "wird gegeben haben",
+        "wir": "werden gegeben haben",
+        "ihr": "werdet gegeben haben",
+        "sie_Sie": "werden gegeben haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "gebe",
+        "du": "gebest",
+        "er_sie_es": "gebe",
+        "wir": "geben",
+        "ihr": "gebet",
+        "sie_Sie": "geben"
+      },
+      "konjunktiv_2": {
+        "ich": "gäbe",
+        "du": "gäbest",
+        "er_sie_es": "gäbe",
+        "wir": "gäben",
+        "ihr": "gäbet",
+        "sie_Sie": "gäben"
+      }
+    },
+    "imperativ": {
+      "du": "gib",
+      "ihr": "gebt",
+      "Sie": "geben Sie"
+    },
+    "partizip": {
+      "partizip_1": "gebend",
+      "partizip_2": "gegeben"
+    }
+  },
+  {
+    "infinitive": "kommen",
+    "english": "to come",
+    "indicative": {
+      "praesens": {
+        "ich": "komme",
+        "du": "kommst",
+        "er_sie_es": "kommt",
+        "wir": "kommen",
+        "ihr": "kommt",
+        "sie_Sie": "kommen"
+      },
+      "praeteritum": {
+        "ich": "kam",
+        "du": "kamst",
+        "er_sie_es": "kam",
+        "wir": "kamen",
+        "ihr": "kamt",
+        "sie_Sie": "kamen"
+      },
+      "perfekt": {
+        "ich": "bin gekommen",
+        "du": "bist gekommen",
+        "er_sie_es": "ist gekommen",
+        "wir": "sind gekommen",
+        "ihr": "seid gekommen",
+        "sie_Sie": "sind gekommen"
+      },
+      "plusquamperfekt": {
+        "ich": "war gekommen",
+        "du": "warst gekommen",
+        "er_sie_es": "war gekommen",
+        "wir": "waren gekommen",
+        "ihr": "wart gekommen",
+        "sie_Sie": "waren gekommen"
+      },
+      "futur_1": {
+        "ich": "werde kommen",
+        "du": "wirst kommen",
+        "er_sie_es": "wird kommen",
+        "wir": "werden kommen",
+        "ihr": "werdet kommen",
+        "sie_Sie": "werden kommen"
+      },
+      "futur_2": {
+        "ich": "werde gekommen sein",
+        "du": "wirst gekommen sein",
+        "er_sie_es": "wird gekommen sein",
+        "wir": "werden gekommen sein",
+        "ihr": "werdet gekommen sein",
+        "sie_Sie": "werden gekommen sein"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "komme",
+        "du": "kommest",
+        "er_sie_es": "komme",
+        "wir": "kommen",
+        "ihr": "kommet",
+        "sie_Sie": "kommen"
+      },
+      "konjunktiv_2": {
+        "ich": "käme",
+        "du": "kämest",
+        "er_sie_es": "käme",
+        "wir": "kämen",
+        "ihr": "kämet",
+        "sie_Sie": "kämen"
+      }
+    },
+    "imperativ": {
+      "du": "komm / komme",
+      "ihr": "kommt",
+      "Sie": "kommen Sie"
+    },
+    "partizip": {
+      "partizip_1": "kommend",
+      "partizip_2": "gekommen"
+    }
+  },
+  {
+    "infinitive": "wissen",
+    "english": "to know (a fact)",
+    "indicative": {
+      "praesens": {
+        "ich": "weiß",
+        "du": "weißt",
+        "er_sie_es": "weiß",
+        "wir": "wissen",
+        "ihr": "wisst",
+        "sie_Sie": "wissen"
+      },
+      "praeteritum": {
+        "ich": "wusste",
+        "du": "wusstest",
+        "er_sie_es": "wusste",
+        "wir": "wussten",
+        "ihr": "wusstet",
+        "sie_Sie": "wussten"
+      },
+      "perfekt": {
+        "ich": "habe gewusst",
+        "du": "hast gewusst",
+        "er_sie_es": "hat gewusst",
+        "wir": "haben gewusst",
+        "ihr": "habt gewusst",
+        "sie_Sie": "haben gewusst"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gewusst",
+        "du": "hattest gewusst",
+        "er_sie_es": "hatte gewusst",
+        "wir": "hatten gewusst",
+        "ihr": "hattet gewusst",
+        "sie_Sie": "hatten gewusst"
+      },
+      "futur_1": {
+        "ich": "werde wissen",
+        "du": "wirst wissen",
+        "er_sie_es": "wird wissen",
+        "wir": "werden wissen",
+        "ihr": "werdet wissen",
+        "sie_Sie": "werden wissen"
+      },
+      "futur_2": {
+        "ich": "werde gewusst haben",
+        "du": "wirst gewusst haben",
+        "er_sie_es": "wird gewusst haben",
+        "wir": "werden gewusst haben",
+        "ihr": "werdet gewusst haben",
+        "sie_Sie": "werden gewusst haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "wisse",
+        "du": "wissest",
+        "er_sie_es": "wisse",
+        "wir": "wissen",
+        "ihr": "wisset",
+        "sie_Sie": "wissen"
+      },
+      "konjunktiv_2": {
+        "ich": "wüsste",
+        "du": "wüsstest",
+        "er_sie_es": "wüsste",
+        "wir": "wüssten",
+        "ihr": "wüsstet",
+        "sie_Sie": "wüssten"
+      }
+    },
+    "imperativ": {
+      "du": "wisse",
+      "ihr": "wisst",
+      "Sie": "wissen Sie"
+    },
+    "partizip": {
+      "partizip_1": "wissend",
+      "partizip_2": "gewusst"
+    }
+  },
+  {
+    "infinitive": "sehen",
+    "english": "to see",
+    "indicative": {
+      "praesens": {
+        "ich": "sehe",
+        "du": "siehst",
+        "er_sie_es": "sieht",
+        "wir": "sehen",
+        "ihr": "seht",
+        "sie_Sie": "sehen"
+      },
+      "praeteritum": {
+        "ich": "sah",
+        "du": "sahst",
+        "er_sie_es": "sah",
+        "wir": "sahen",
+        "ihr": "saht",
+        "sie_Sie": "sahen"
+      },
+      "perfekt": {
+        "ich": "habe gesehen",
+        "du": "hast gesehen",
+        "er_sie_es": "hat gesehen",
+        "wir": "haben gesehen",
+        "ihr": "habt gesehen",
+        "sie_Sie": "haben gesehen"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gesehen",
+        "du": "hattest gesehen",
+        "er_sie_es": "hatte gesehen",
+        "wir": "hatten gesehen",
+        "ihr": "hattet gesehen",
+        "sie_Sie": "hatten gesehen"
+      },
+      "futur_1": {
+        "ich": "werde sehen",
+        "du": "wirst sehen",
+        "er_sie_es": "wird sehen",
+        "wir": "werden sehen",
+        "ihr": "werdet sehen",
+        "sie_Sie": "werden sehen"
+      },
+      "futur_2": {
+        "ich": "werde gesehen haben",
+        "du": "wirst gesehen haben",
+        "er_sie_es": "wird gesehen haben",
+        "wir": "werden gesehen haben",
+        "ihr": "werdet gesehen haben",
+        "sie_Sie": "werden gesehen haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "sehe",
+        "du": "sehest",
+        "er_sie_es": "sehe",
+        "wir": "sehen",
+        "ihr": "sehet",
+        "sie_Sie": "sehen"
+      },
+      "konjunktiv_2": {
+        "ich": "sähe",
+        "du": "sähest",
+        "er_sie_es": "sähe",
+        "wir": "sähen",
+        "ihr": "sähet",
+        "sie_Sie": "sähen"
+      }
+    },
+    "imperativ": {
+      "du": "sieh / siehe",
+      "ihr": "seht",
+      "Sie": "sehen Sie"
+    },
+    "partizip": {
+      "partizip_1": "sehend",
+      "partizip_2": "gesehen"
+    }
+  },
+  {
+    "infinitive": "lassen",
+    "english": "to let / allow / have done",
+    "indicative": {
+      "praesens": {
+        "ich": "lasse",
+        "du": "lässt",
+        "er_sie_es": "lässt",
+        "wir": "lassen",
+        "ihr": "lasst",
+        "sie_Sie": "lassen"
+      },
+      "praeteritum": {
+        "ich": "ließ",
+        "du": "ließest",
+        "er_sie_es": "ließ",
+        "wir": "ließen",
+        "ihr": "ließt",
+        "sie_Sie": "ließen"
+      },
+      "perfekt": {
+        "ich": "habe gelassen",
+        "du": "hast gelassen",
+        "er_sie_es": "hat gelassen",
+        "wir": "haben gelassen",
+        "ihr": "habt gelassen",
+        "sie_Sie": "haben gelassen"
+      },
+      "plusquamperfekt": {
+        "ich": "hatte gelassen",
+        "du": "hattest gelassen",
+        "er_sie_es": "hatte gelassen",
+        "wir": "hatten gelassen",
+        "ihr": "hattet gelassen",
+        "sie_Sie": "hatten gelassen"
+      },
+      "futur_1": {
+        "ich": "werde lassen",
+        "du": "wirst lassen",
+        "er_sie_es": "wird lassen",
+        "wir": "werden lassen",
+        "ihr": "werdet lassen",
+        "sie_Sie": "werden lassen"
+      },
+      "futur_2": {
+        "ich": "werde gelassen haben",
+        "du": "wirst gelassen haben",
+        "er_sie_es": "wird gelassen haben",
+        "wir": "werden gelassen haben",
+        "ihr": "werdet gelassen haben",
+        "sie_Sie": "werden gelassen haben"
+      }
+    },
+    "konjunktiv": {
+      "konjunktiv_1": {
+        "ich": "lasse",
+        "du": "lassest",
+        "er_sie_es": "lasse",
+        "wir": "lassen",
+        "ihr": "lasset",
+        "sie_Sie": "lassen"
+      },
+      "konjunktiv_2": {
+        "ich": "ließe",
+        "du": "ließest",
+        "er_sie_es": "ließe",
+        "wir": "ließen",
+        "ihr": "ließet",
+        "sie_Sie": "ließen"
+      }
+    },
+    "imperativ": {
+      "du": "lass / lasse",
+      "ihr": "lasst",
+      "Sie": "lassen Sie"
+    },
+    "partizip": {
+      "partizip_1": "lassend",
+      "partizip_2": "gelassen"
+    }
+  }
+]
