@@ -84,15 +84,16 @@
 
                 <!-- Active Dataset Tab Selector -->
                 <div class="flex flex-wrap bg-slate-900 p-1.5 rounded-xl border border-slate-700 gap-1">
-                    <button @click="activeTab = 'verbs'" :class="activeTab === 'verbs' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-lg text-xs font-medium transition">Verben (200)</button>
-                    <button @click="activeTab = 'grammar'" :class="activeTab === 'grammar' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-lg text-xs font-medium transition">Konnektoren & Grammatik (200)</button>
-                    <button @click="activeTab = 'nouns'" :class="activeTab === 'nouns' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-2 rounded-lg text-xs font-medium transition">Nomen & Ausdrücke (200+)</button>
+                    <button @click="activeTab = 'verbs'" :class="activeTab === 'verbs' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-2 rounded-lg text-xs font-medium transition">Verben</button>
+                    <button @click="activeTab = 'grammar'" :class="activeTab === 'grammar' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-2 rounded-lg text-xs font-medium transition">Konnektoren & Grammatik</button>
+                    <button @click="activeTab = 'nouns'" :class="activeTab === 'nouns' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-2 rounded-lg text-xs font-medium transition">Nomen</button>
+                    <button @click="activeTab = 'articles_pronouns'" :class="activeTab === 'articles_pronouns' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-2 rounded-lg text-xs font-medium transition">Artikel & Pronomen</button>
                 </div>
             </div>
 
             <!-- WORD CARDS GRID -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-[500px] overflow-y-auto pr-2">
-                <template x-for="item in filteredItems" :key="item.id + '-' + activeTab">
+                <template x-for="item in filteredItems" :key="(item.id || item.german) + '-' + activeTab">
                     <div @click="selectItem(item)" 
                          class="bg-slate-900/90 hover:bg-slate-700/80 border border-slate-700/80 rounded-xl p-3.5 transition cursor-pointer shadow hover:border-purple-400 flex flex-col justify-between group">
                         <div>
@@ -153,7 +154,7 @@
         </div>
     </div>
 
-    <!-- APP SCRIPT & HARDCODED DATASETS -->
+    <!-- APP SCRIPT & INTEGRATED DATASETS -->
     <script>
         function sentenceBuilderApp() {
             return {
@@ -163,7 +164,7 @@
                 showVerbModal: false,
                 selectedVerb: null,
 
-                // --- 1. HARDCODED VERBS DATASET (200 ITEMS) ---
+                // --- 1. VERBS DATASET (Combining verbs.JSON & commonverbs.json) ---
                 verbs: [
                     { id: 1, german: "sein", english: "to be", type: "Auxiliary / Irregular", conjugation: { ich: "bin", du: "bist", er_sie_es: "ist", wir: "sind", ihr: "seid", sie_Sie: "sind" } },
                     { id: 2, german: "haben", english: "to have", type: "Auxiliary / Irregular", conjugation: { ich: "habe", du: "hast", er_sie_es: "hat", wir: "haben", ihr: "habt", sie_Sie: "haben" } },
@@ -194,91 +195,106 @@
                     { id: 27, german: "einkaufen", english: "to shop", type: "Separable Verb", conjugation: { ich: "kaufe ein", du: "kaufst ein", er_sie_es: "kauft ein", wir: "kaufen ein", ihr: "kauft ein", sie_Sie: "kaufen ein" } },
                     { id: 28, german: "bekommen", english: "to get / receive", type: "Non-separable Verb", conjugation: { ich: "bekomme", du: "bekommst", er_sie_es: "bekommt", wir: "bekommen", ihr: "bekommt", sie_Sie: "bekommen" } },
                     { id: 29, german: "verstehen", english: "to understand", type: "Non-separable Verb", conjugation: { ich: "verstehe", du: "verstehst", er_sie_es: "versteht", wir: "verstehen", ihr: "versteht", sie_Sie: "verstehen" } },
-                    { id: 30, german: "sich freuen", english: "to be happy / look forward to", type: "Reflexive Verb", conjugation: { ich: "freue mich", du: "freust dich", er_sie_es: "freut sich", wir: "freuen uns", ihr: "freut euch", sie_Sie: "freuen sich" } }
+                    { id: 30, german: "sich freuen", english: "to be happy / look forward to", type: "Reflexive Verb", conjugation: { ich: "freue mich", du: "freust dich", er_sie_es: "freut sich", wir: "freuen uns", ihr: "freut euch", sie_Sie: "freuen sich" } },
+                    // commonverbs.json additions
+                    { id: 31, german: "sprechen", english: "to speak", type: "Irregular Verb", conjugation: { ich: "spreche", du: "sprichst", er_sie_es: "spricht", wir: "sprechen", ihr: "sprecht", sie_Sie: "sprechen" } },
+                    { id: 32, german: "lesen", english: "to read", type: "Irregular Verb", conjugation: { ich: "lese", du: "liest", er_sie_es: "liest", wir: "lesen", ihr: "lest", sie_Sie: "lesen" } },
+                    { id: 33, german: "hören", english: "to hear / listen", type: "Regular Verb", conjugation: { ich: "höre", du: "hörst", er_sie_es: "hört", wir: "hören", ihr: "hört", sie_Sie: "hören" } },
+                    { id: 34, german: "spielen", english: "to play", type: "Regular Verb", conjugation: { ich: "spiele", du: "spielst", er_sie_es: "spielt", wir: "spielen", ihr: "spielt", sie_Sie: "spielen" } },
+                    { id: 35, german: "wohnen", english: "to live / reside", type: "Regular Verb", conjugation: { ich: "wohne", du: "wohnst", er_sie_es: "wohnt", wir: "wohnen", ihr: "wohnt", sie_Sie: "wohnen" } }
                 ],
 
-                // --- 2. HARDCODED GRAMMAR & CONNECTORS DATASET (200 ITEMS) ---
+                // --- 2. GRAMMAR & CONNECTORS DATASET (From SentenceBuilderArray.JSON) ---
                 grammar: [
                     { id: 1, german: "und", english: "and", type: "Coordinating Conjunction" },
                     { id: 2, german: "aber", english: "but / however", type: "Coordinating Conjunction" },
                     { id: 3, german: "oder", english: "or", type: "Coordinating Conjunction" },
                     { id: 4, german: "denn", english: "because / for", type: "Coordinating Conjunction" },
                     { id: 5, german: "sondern", english: "but rather", type: "Coordinating Conjunction" },
-                    { id: 6, german: "weil", english: "because", type: "Subordinating Conjunction" },
-                    { id: 7, german: "dass", english: "that", type: "Subordinating Conjunction" },
-                    { id: 8, german: "obwohl", english: "although", type: "Subordinating Conjunction" },
+                    { id: 6, german: "weil", english: "because (subordinating)", type: "Subordinating Conjunction" },
+                    { id: 7, german: "dass", english: "that (subordinating)", type: "Subordinating Conjunction" },
+                    { id: 8, german: "obwohl", english: "although / even though", type: "Subordinating Conjunction" },
                     { id: 9, german: "wenn", english: "if / whenever", type: "Subordinating Conjunction" },
-                    { id: 10, german: "deshalb", english: "therefore", type: "Conjunctive Adverb" },
-                    { id: 11, german: "trotzdem", english: "nevertheless", type: "Conjunctive Adverb" },
-                    { id: 12, german: "durch", english: "through", type: "Accusative Preposition" },
-                    { id: 13, german: "für", english: "for", type: "Accusative Preposition" },
-                    { id: 14, german: "gegen", english: "against", type: "Accusative Preposition" },
-                    { id: 15, german: "ohne", english: "without", type: "Accusative Preposition" },
-                    { id: 16, german: "aus", english: "out of / from", type: "Dative Preposition" },
-                    { id: 17, german: "mit", english: "with", type: "Dative Preposition" },
-                    { id: 18, german: "nach", english: "after / to", type: "Dative Preposition" },
-                    { id: 19, german: "von", english: "from / of", type: "Dative Preposition" },
-                    { id: 20, german: "zu", english: "to / at", type: "Dative Preposition" },
-                    { id: 21, german: "in", english: "in / into", type: "Two-Way Preposition" },
-                    { id: 22, german: "auf", english: "on / onto", type: "Two-Way Preposition" },
-                    { id: 23, german: "an", english: "on / at", type: "Two-Way Preposition" },
-                    { id: 24, german: "ich", english: "I", type: "Personal Pronoun" },
-                    { id: 25, german: "du", english: "you (informal)", type: "Personal Pronoun" },
-                    { id: 26, german: "er", english: "he", type: "Personal Pronoun" },
-                    { id: 27, german: "sie", english: "she / they", type: "Personal Pronoun" },
-                    { id: 28, german: "es", english: "it", type: "Personal Pronoun" },
-                    { id: 29, german: "wir", english: "we", type: "Personal Pronoun" },
-                    { id: 30, german: "ihr", english: "you (plural informal)", type: "Personal Pronoun" },
-                    { id: 31, german: "Sie", english: "you (formal)", type: "Personal Pronoun" },
-                    { id: 32, german: "mein", english: "my", type: "Possessive Determiner" },
-                    { id: 33, german: "dein", english: "your", type: "Possessive Determiner" },
-                    { id: 34, german: "dieser / diese / dieses", english: "this / these", type: "Demonstrative Determiner" },
-                    { id: 35, german: "alle", english: "all / everyone", type: "Quantifier" },
-                    { id: 36, german: "viel", english: "much / a lot", type: "Quantifier" },
-                    { id: 37, german: "wenig", english: "little / few", type: "Quantifier" },
-                    { id: 38, german: "sehr", english: "very", type: "Degree Adverb" },
-                    { id: 39, german: "doch", english: "contradiction / emphasis", type: "Modal Particle" },
-                    { id: 40, german: "mal", english: "just / quickly", type: "Modal Particle" }
+                    { id: 10, german: "als", english: "when (past event) / than", type: "Subordinating Conjunction / Prep" },
+                    { id: 11, german: "bevor", english: "before", type: "Subordinating Conjunction" },
+                    { id: 12, german: "nachdem", english: "after", type: "Subordinating Conjunction" },
+                    { id: 13, german: "während", english: "while / during", type: "Subordinating Conjunction / Prep" },
+                    { id: 14, german: "seitdem", english: "since (time)", type: "Subordinating Conjunction" },
+                    { id: 15, german: "bis", english: "until", type: "Subordinating Conjunction / Prep" },
+                    { id: 16, german: "damit", english: "so that / in order that", type: "Subordinating Conjunction" },
+                    { id: 17, german: "ob", english: "whether / if", type: "Subordinating Conjunction" },
+                    { id: 18, german: "falls", english: "in case / if", type: "Subordinating Conjunction" },
+                    { id: 19, german: "sofern", english: "provided that / as long as", type: "Subordinating Conjunction" },
+                    { id: 20, german: "solange", english: "as long as", type: "Subordinating Conjunction" },
+                    { id: 21, german: "deshalb", english: "therefore / that is why", type: "Conjunctive Adverb" },
+                    { id: 22, german: "darum", english: "therefore / for that reason", type: "Conjunctive Adverb" },
+                    { id: 23, german: "deswegen", english: "because of that / therefore", type: "Conjunctive Adverb" },
+                    { id: 24, german: "trotzdem", english: "nevertheless / anyway", type: "Conjunctive Adverb" },
+                    { id: 25, german: "dennoch", english: "however / yet", type: "Conjunctive Adverb" },
+                    { id: 26, german: "jedoch", english: "however / though", type: "Conjunctive Adverb" },
+                    { id: 27, german: "ausserdem", english: "furthermore / besides", type: "Conjunctive Adverb" },
+                    { id: 28, german: "zudem", english: "in addition / moreover", type: "Conjunctive Adverb" },
+                    { id: 29, german: "überdies", english: "furthermore / moreover", type: "Conjunctive Adverb" },
+                    { id: 30, german: "schliesslich", english: "eventually / after all", type: "Conjunctive Adverb" }
                 ],
 
-                // --- 3. HARDCODED NOUNS, ADJECTIVES & PHRASES DATASET (200+ ITEMS) ---
+                // --- 3. NOUNS DATASET (Combining nounswitharticle & nounsohnearticles) ---
                 nouns: [
-                    { id: 1, german: "der Mann", english: "man", category: "Noun (Masculine)" },
-                    { id: 2, german: "die Frau", english: "woman", category: "Noun (Feminine)" },
-                    { id: 3, german: "das Kind", english: "child", category: "Noun (Neuter)" },
-                    { id: 4, german: "das Haus", english: "house", category: "Noun (Neuter)" },
-                    { id: 5, german: "die Wohnung", english: "apartment", category: "Noun (Feminine)" },
-                    { id: 6, german: "die Stadt", english: "city", category: "Noun (Feminine)" },
-                    { id: 7, german: "die Schule", english: "school", category: "Noun (Feminine)" },
-                    { id: 8, german: "die Arbeit", english: "work / job", category: "Noun (Feminine)" },
-                    { id: 9, german: "das Wasser", english: "water", category: "Noun (Neuter)" },
-                    { id: 10, german: "der Kaffee", english: "coffee", category: "Noun (Masculine)" },
-                    { id: 11, german: "der Tee", english: "tea", category: "Noun (Masculine)" },
-                    { id: 12, german: "das Brot", english: "bread", category: "Noun (Neuter)" },
-                    { id: 13, german: "das Geld", english: "money", category: "Noun (Neuter)" },
-                    { id: 14, german: "das Buch", english: "book", category: "Noun (Neuter)" },
-                    { id: 15, german: "die Zeit", english: "time", category: "Noun (Feminine)" },
-                    { id: 16, german: "der Tag", english: "day", category: "Noun (Masculine)" },
-                    { id: 17, german: "die Nacht", english: "night", category: "Noun (Feminine)" },
-                    { id: 18, german: "heute Abend", english: "this evening", category: "Time Expression" },
-                    { id: 19, german: "jeden Tag", english: "every day", category: "Time Expression" },
-                    { id: 20, german: "gut", english: "good / well", category: "Adjective" },
-                    { id: 21, german: "groß", english: "large / tall", category: "Adjective" },
-                    { id: 22, german: "klein", english: "small", category: "Adjective" },
-                    { id: 23, german: "alt", english: "old", category: "Adjective" },
-                    { id: 24, german: "neu", english: "new", category: "Adjective" },
-                    { id: 25, german: "schön", english: "beautiful / nice", category: "Adjective" },
-                    { id: 26, german: "einfach", english: "easy / simple", category: "Adjective" },
-                    { id: 27, german: "hier", english: "here", category: "Place Adverb" },
-                    { id: 28, german: "dort", english: "there", category: "Place Adverb" },
-                    { id: 29, german: "zu Hause", english: "at home", category: "Place Expression" },
-                    { id: 30, german: "nach Hause", english: "towards home", category: "Direction Expression" }
+                    { id: 1, german: "der Mann", english: "man", category: "Noun with Article" },
+                    { id: 2, german: "die Frau", english: "woman", category: "Noun with Article" },
+                    { id: 3, german: "das Kind", english: "child", category: "Noun with Article" },
+                    { id: 4, german: "das Haus", english: "house", category: "Noun with Article" },
+                    { id: 5, german: "die Wohnung", english: "apartment", category: "Noun with Article" },
+                    { id: 6, german: "die Stadt", english: "city", category: "Noun with Article" },
+                    { id: 7, german: "die Schule", english: "school", category: "Noun with Article" },
+                    { id: 8, german: "die Arbeit", english: "work / job", category: "Noun with Article" },
+                    { id: 9, german: "das Wasser", english: "water", category: "Noun with Article" },
+                    { id: 10, german: "der Kaffee", english: "coffee", category: "Noun with Article" },
+                    { id: 11, german: "Mann", english: "man (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 12, german: "Frau", english: "woman (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 13, german: "Kind", english: "child (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 14, german: "Haus", english: "house (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 15, german: "Stadt", english: "city (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 16, german: "Schule", english: "school (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 17, german: "Wasser", english: "water (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 18, german: "Kaffee", english: "coffee (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 19, german: "Zeit", english: "time (bare noun)", category: "Noun ohne Artikel" },
+                    { id: 20, german: "Geld", english: "money (bare noun)", category: "Noun ohne Artikel" }
+                ],
+
+                // --- 4. ARTICLES & PRONOUNS DATASET (Combining articles.json & basicpronouns.json) ---
+                articles_pronouns: [
+                    { id: 101, german: "der", english: "the (masc. nom.)", type: "Definite Article" },
+                    { id: 102, german: "die", english: "the (fem./pl. nom.)", type: "Definite Article" },
+                    { id: 103, german: "das", english: "the (neuter nom.)", type: "Definite Article" },
+                    { id: 104, german: "dem", english: "the (masc./neut. dat.)", type: "Definite Article" },
+                    { id: 105, german: "den", english: "the (masc. acc. / pl. dat.)", type: "Definite Article" },
+                    { id: 106, german: "des", english: "the (masc./neut. gen.)", type: "Definite Article" },
+                    { id: 107, german: "ein", english: "a / an (masc./neut. nom.)", type: "Indefinite Article" },
+                    { id: 108, german: "eine", english: "a / an (fem. nom.)", type: "Indefinite Article" },
+                    { id: 109, german: "einer", english: "one / of them (fem. gen./dat.)", type: "Indefinite Article" },
+                    { id: 110, german: "eines", english: "one's / of a (masc./neut. gen.)", type: "Indefinite Article" },
+                    { id: 111, german: "einem", english: "to a (masc./neut. dat.)", type: "Indefinite Article" },
+                    { id: 112, german: "einen", english: "a / an (masc. acc.)", type: "Indefinite Article" },
+                    { id: 201, german: "ich", english: "I", type: "Personal Pronoun" },
+                    { id: 202, german: "du", english: "you (informal singular)", type: "Personal Pronoun" },
+                    { id: 203, german: "er", english: "he", type: "Personal Pronoun" },
+                    { id: 204, german: "sie", english: "she / they", type: "Personal Pronoun" },
+                    { id: 205, german: "es", english: "it", type: "Personal Pronoun" },
+                    { id: 206, german: "wir", english: "we", type: "Personal Pronoun" },
+                    { id: 207, german: "ihr", english: "you (informal plural)", type: "Personal Pronoun" },
+                    { id: 208, german: "Sie", english: "you (formal)", type: "Personal Pronoun" },
+                    { id: 209, german: "mich", english: "me (accusative)", type: "Personal Pronoun" },
+                    { id: 210, german: "dich", english: "you (accusative)", type: "Personal Pronoun" },
+                    { id: 211, german: "mir", english: "me (dative)", type: "Personal Pronoun" },
+                    { id: 212, german: "dir", english: "you (dative)", type: "Personal Pronoun" }
                 ],
 
                 get currentDataset() {
                     if (this.activeTab === 'verbs') return this.verbs;
                     if (this.activeTab === 'grammar') return this.grammar;
                     if (this.activeTab === 'nouns') return this.nouns;
+                    if (this.activeTab === 'articles_pronouns') return this.articles_pronouns;
                     return [];
                 },
 
