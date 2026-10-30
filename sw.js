@@ -1,33 +1,32 @@
-const CACHE_NAME = 'terranova-physics-v1';
+const CACHE_NAME = 'easysentences-v1';
 const ASSETS_TO_CACHE = [
   './index.html',
   './manifest.json',
-  './physics.json',
-  './nounsohnearticle.json',
+  './verbsconjugated.json',
+  './commonverbs.json',
+  './SentenceBuilderArray.JSON',
+  './articles.json',
   './basicpronouns.json',
-  './verbs.json',
-  './modifiers.json'
-  './nounswitharticle.json'
-  './verbsconjugated.json'
-  './commonverbs.json'
-  './basicpronouns.json'
-  './articles.json'
-
-  
+  './nounswitharticle',
+  './nounsohnearticles',
+  'https://cdn.tailwindcss.com',
+  'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js'
 ];
 
-// Install Event: Cache essential assets
+// Install Event - Caching Assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[Service Worker] Caching app shell & data assets');
-      return cache.addAll(ASSETS_TO_CACHE);
+      console.log('[Service Worker] Caching app shell and data');
+      return cache.addAll(ASSETS_TO_CACHE).catch((err) => {
+        console.warn('[Service Worker] Some non-critical assets failed to cache during install:', err);
+      });
     })
   );
   self.skipWaiting();
 });
 
-// Activate Event: Clean up old caches
+// Activate Event - Clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keyList) => {
@@ -41,10 +40,10 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
-  self.clientsClaim();
+  self.clients.claim();
 });
 
-// Fetch Event: Serve from cache, fallback to network
+// Fetch Event - Serve from Cache, Fallback to Network
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
@@ -53,14 +52,14 @@ self.addEventListener('fetch', (event) => {
       }
       return fetch(event.request).then((networkResponse) => {
         return caches.open(CACHE_NAME).then((cache) => {
-          // Dynamically cache new requests if successful
-          if (event.request.method === 'GET' && networkResponse.status === 200) {
+          // Dynamically cache new requests if needed
+          if (event.request.method === 'GET' && event.request.url.startsWith('http')) {
             cache.put(event.request, networkResponse.clone());
           }
           return networkResponse;
         });
       }).catch(() => {
-        // Fallback for offline if needed
+        // Fallback offline behavior if necessary
         if (event.request.headers.get('accept').includes('text/html')) {
           return caches.match('./index.html');
         }
