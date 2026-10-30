@@ -104,7 +104,7 @@
                 </div>
             </div>
 
-            <!-- WORD CARDS GRID with Color-Coded Category Styling -->
+            <!-- WORD CARDS GRID -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-[500px] overflow-y-auto pr-2">
                 <template x-for="item in filteredItems" :key="(item.id || item.german) + '-' + activeTab">
                     <div @click="selectItem(item)" 
@@ -155,7 +155,7 @@
         </div>
     </div>
 
-    <!-- APP SCRIPT & INTEGRATED DATASETS -->
+    <!-- APP SCRIPT -->
     <script>
         function sentenceBuilderApp() {
             return {
@@ -174,21 +174,23 @@
                 async initData() {
                     console.log("Initializing EasySentencesBuilder...");
                     
-                    // Helper to safely fetch JSON files with fallback
+                    // Improved JSON loader with detailed error logging for debugging syntax/404 errors
                     const loadJSON = async (filename, fallback) => {
                         try {
                             let res = await fetch('./' + filename);
                             if (res.ok) {
                                 let data = await res.json();
                                 return Array.isArray(data) ? data : (data.words || data.items || data.verbs || fallback);
+                            } else {
+                                console.error(`[Fetch Error] Could not find ${filename}. Server returned: ${res.status}`);
                             }
                         } catch (e) {
-                            console.warn(`Could not load ${filename}, using fallback.`);
+                            console.error(`[Syntax Error] Failed to parse ${filename}. Check your JSON file for missing commas or quotes! Error details:`, e);
                         }
                         return fallback;
                     };
 
-                    // 1. Verbs
+                    // 1. Verbs (Checks verbsconjugated.json first, then commonverbs.json)
                     let rawVerbs = await loadJSON('verbsconjugated.json', await loadJSON('commonverbs.json', []));
                     this.verbs = rawVerbs.map((v, idx) => ({
                         id: v.id || idx + 1,
@@ -205,8 +207,8 @@
                         ];
                     }
 
-                    // 2. Grammar / Connectors
-                    let rawGrammar = await loadJSON('SentenceBuilderArray.JSON', await loadJSON('SentenceBuilderArray.json', []));
+                    // 2. Grammar / Connectors (Strict lowercase filename)
+                    let rawGrammar = await loadJSON('SentenceBuilderArray.json', []);
                     this.grammar = rawGrammar.map((g, idx) => ({
                         id: g.id || idx + 1,
                         german: g.german || g.word,
@@ -217,14 +219,13 @@
                     if (this.grammar.length === 0) {
                         this.grammar = [
                             { id: 1, german: "und", english: "and", category: "Coordinating Conjunction" },
-                            { id: 2, german: "aber", english: "but / however", category: "Coordinating Conjunction" },
-                            { id: 3, german: "weil", english: "because (subordinating)", category: "Subordinating Conjunction" }
+                            { id: 2, german: "weil", english: "because (subordinating)", category: "Subordinating Conjunction" }
                         ];
                     }
 
-                    // 3. Nouns
-                    let rawNounsWith = await loadJSON('nounswitharticle.json', await loadJSON('nounswitharticle', []));
-                    let rawNounsWithout = await loadJSON('nounsohnearticles.json', await loadJSON('nounsohnearticles', []));
+                    // 3. Nouns (Strict .json extensions added)
+                    let rawNounsWith = await loadJSON('nounswitharticle.json', []);
+                    let rawNounsWithout = await loadJSON('nounsohnearticles.json', []);
                     
                     let formattedNouns = [...rawNounsWith, ...rawNounsWithout].map((n, idx) => ({
                         id: n.id || idx + 1,
@@ -239,8 +240,8 @@
                     ];
 
                     // 4. Articles & Pronouns
-                    let rawArticles = await loadJSON('articles.json', await loadJSON('articles', []));
-                    let rawPronouns = await loadJSON('basicpronouns.json', await loadJSON('basicpronouns', []));
+                    let rawArticles = await loadJSON('articles.json', []);
+                    let rawPronouns = await loadJSON('basicpronouns.json', []);
 
                     let formattedAP = [...rawArticles, ...rawPronouns].map((item, idx) => ({
                         id: item.id || idx + 100,
