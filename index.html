@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EasySentencesBuilder | TerraNova Engineering Lab</title>
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#2563eb">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen font-sans" x-data="sentenceBuilderApp()">
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans" x-data="sentenceBuilderApp()" x-init="initData()">
     <span lang="de" class="notranslate" translate="no">EasySentencesBuilder</span>
 
     <!-- Header -->
@@ -164,131 +167,46 @@
                 showVerbModal: false,
                 selectedVerb: null,
 
-                // --- 1. VERBS DATASET (Combining verbs.JSON & commonverbs.json) ---
-                verbs: [
-                    { id: 1, german: "sein", english: "to be", type: "Auxiliary / Irregular", conjugation: { ich: "bin", du: "bist", er_sie_es: "ist", wir: "sind", ihr: "seid", sie_Sie: "sind" } },
-                    { id: 2, german: "haben", english: "to have", type: "Auxiliary / Irregular", conjugation: { ich: "habe", du: "hast", er_sie_es: "hat", wir: "haben", ihr: "habt", sie_Sie: "haben" } },
-                    { id: 3, german: "werden", english: "to become / will", type: "Auxiliary / Irregular", conjugation: { ich: "werde", du: "wirst", er_sie_es: "wird", wir: "werden", ihr: "werdet", sie_Sie: "werden" } },
-                    { id: 4, german: "können", english: "can / to be able to", type: "Modal Verb", conjugation: { ich: "kann", du: "kannst", er_sie_es: "kann", wir: "können", ihr: "könnt", sie_Sie: "können" } },
-                    { id: 5, german: "müssen", english: "must / to have to", type: "Modal Verb", conjugation: { ich: "muss", du: "musst", er_sie_es: "muss", wir: "müssen", ihr: "müsst", sie_Sie: "müssen" } },
-                    { id: 6, german: "wollen", english: "to want", type: "Modal Verb", conjugation: { ich: "will", du: "willst", er_sie_es: "will", wir: "wollen", ihr: "wollt", sie_Sie: "wollen" } },
-                    { id: 7, german: "sollen", english: "should / to be supposed to", type: "Modal Verb", conjugation: { ich: "soll", du: "sollst", er_sie_es: "soll", wir: "sollen", ihr: "sollt", sie_Sie: "sollen" } },
-                    { id: 8, german: "dürfen", english: "may / to be allowed to", type: "Modal Verb", conjugation: { ich: "darf", du: "darfst", er_sie_es: "darf", wir: "dürfen", ihr: "dürft", sie_Sie: "dürfen" } },
-                    { id: 9, german: "mögen", english: "to like", type: "Modal Verb", conjugation: { ich: "mag", du: "magst", er_sie_es: "mag", wir: "mögen", ihr: "mögt", sie_Sie: "mögen" } },
-                    { id: 10, german: "möchten", english: "would like", type: "Modal / Subjunctive Form", conjugation: { ich: "möchte", du: "möchtest", er_sie_es: "möchte", wir: "möchten", ihr: "möchtet", sie_Sie: "möchten" } },
-                    { id: 11, german: "machen", english: "to do / to make", type: "Regular Verb", conjugation: { ich: "mache", du: "machst", er_sie_es: "macht", wir: "machen", ihr: "macht", sie_Sie: "machen" } },
-                    { id: 12, german: "sagen", english: "to say / to tell", type: "Regular Verb", conjugation: { ich: "sage", du: "sagst", er_sie_es: "sagt", wir: "sagen", ihr: "sagt", sie_Sie: "sagen" } },
-                    { id: 13, german: "fragen", english: "to ask", type: "Regular Verb", conjugation: { ich: "frage", du: "fragst", er_sie_es: "fragt", wir: "fragen", ihr: "fragt", sie_Sie: "fragen" } },
-                    { id: 14, german: "lernen", english: "to learn / to study", type: "Regular Verb", conjugation: { ich: "lerne", du: "lernst", er_sie_es: "lernt", wir: "lernen", ihr: "lernt", sie_Sie: "lernen" } },
-                    { id: 15, german: "arbeiten", english: "to work", type: "Regular Verb", conjugation: { ich: "arbeite", du: "arbeitest", er_sie_es: "arbeitet", wir: "arbeiten", ihr: "arbeitet", sie_Sie: "arbeiten" } },
-                    { id: 16, german: "kaufen", english: "to buy", type: "Regular Verb", conjugation: { ich: "kaufe", du: "kaufst", er_sie_es: "kauft", wir: "kaufen", ihr: "kauft", sie_Sie: "kaufen" } },
-                    { id: 17, german: "kochen", english: "to cook", type: "Regular Verb", conjugation: { ich: "koche", du: "kochst", er_sie_es: "kocht", wir: "kochen", ihr: "kocht", sie_Sie: "kochen" } },
-                    { id: 18, german: "gehen", english: "to go / to walk", type: "Irregular / Strong Verb", conjugation: { ich: "gehe", du: "gehst", er_sie_es: "geht", wir: "gehen", ihr: "geht", sie_Sie: "gehen" } },
-                    { id: 19, german: "kommen", english: "to come", type: "Irregular / Strong Verb", conjugation: { ich: "komme", du: "kommst", er_sie_es: "kommt", wir: "kommen", ihr: "kommt", sie_Sie: "kommen" } },
-                    { id: 20, german: "sehen", english: "to see", type: "Irregular / Strong Verb", conjugation: { ich: "sehe", du: "siehst", er_sie_es: "sieht", wir: "sehen", ihr: "seht", sie_Sie: "sehen" } },
-                    { id: 21, german: "essen", english: "to eat", type: "Irregular / Strong Verb", conjugation: { ich: "esse", du: "isst", er_sie_es: "isst", wir: "essen", ihr: "esst", sie_Sie: "essen" } },
-                    { id: 22, german: "trinken", english: "to drink", type: "Irregular / Strong Verb", conjugation: { ich: "trinke", du: "trinkst", er_sie_es: "trinkt", wir: "trinken", ihr: "trinkt", sie_Sie: "trinken" } },
-                    { id: 23, german: "fahren", english: "to drive / to travel", type: "Irregular / Strong Verb", conjugation: { ich: "fahre", du: "fährst", er_sie_es: "fährt", wir: "fahren", ihr: "fahrt", sie_Sie: "fahren" } },
-                    { id: 24, german: "schreiben", english: "to write", type: "Irregular / Strong Verb", conjugation: { ich: "schreibe", du: "schreibst", er_sie_es: "schreibt", wir: "schreiben", ihr: "schreibt", sie_Sie: "schreiben" } },
-                    { id: 25, german: "aufstehen", english: "to get up", type: "Separable Verb", conjugation: { ich: "stehe auf", du: "stehst auf", er_sie_es: "steht auf", wir: "stehen auf", ihr: "steht auf", sie_Sie: "stehen auf" } },
-                    { id: 26, german: "anrufen", english: "to call", type: "Separable Verb", conjugation: { ich: "rufe an", du: "rufst an", er_sie_es: "ruft an", wir: "rufen an", ihr: "ruft an", sie_Sie: "rufen an" } },
-                    { id: 27, german: "einkaufen", english: "to shop", type: "Separable Verb", conjugation: { ich: "kaufe ein", du: "kaufst ein", er_sie_es: "kauft ein", wir: "kaufen ein", ihr: "kauft ein", sie_Sie: "kaufen ein" } },
-                    { id: 28, german: "bekommen", english: "to get / receive", type: "Non-separable Verb", conjugation: { ich: "bekomme", du: "bekommst", er_sie_es: "bekommt", wir: "bekommen", ihr: "bekommt", sie_Sie: "bekommen" } },
-                    { id: 29, german: "verstehen", english: "to understand", type: "Non-separable Verb", conjugation: { ich: "verstehe", du: "verstehst", er_sie_es: "versteht", wir: "verstehen", ihr: "versteht", sie_Sie: "verstehen" } },
-                    { id: 30, german: "sich freuen", english: "to be happy / look forward to", type: "Reflexive Verb", conjugation: { ich: "freue mich", du: "freust dich", er_sie_es: "freut sich", wir: "freuen uns", ihr: "freut euch", sie_Sie: "freuen sich" } },
-                    // commonverbs.json additions
-                    { id: 31, german: "sprechen", english: "to speak", type: "Irregular Verb", conjugation: { ich: "spreche", du: "sprichst", er_sie_es: "spricht", wir: "sprechen", ihr: "sprecht", sie_Sie: "sprechen" } },
-                    { id: 32, german: "lesen", english: "to read", type: "Irregular Verb", conjugation: { ich: "lese", du: "liest", er_sie_es: "liest", wir: "lesen", ihr: "lest", sie_Sie: "lesen" } },
-                    { id: 33, german: "hören", english: "to hear / listen", type: "Regular Verb", conjugation: { ich: "höre", du: "hörst", er_sie_es: "hört", wir: "hören", ihr: "hört", sie_Sie: "hören" } },
-                    { id: 34, german: "spielen", english: "to play", type: "Regular Verb", conjugation: { ich: "spiele", du: "spielst", er_sie_es: "spielt", wir: "spielen", ihr: "spielt", sie_Sie: "spielen" } },
-                    { id: 35, german: "wohnen", english: "to live / reside", type: "Regular Verb", conjugation: { ich: "wohne", du: "wohnst", er_sie_es: "wohnt", wir: "wohnen", ihr: "wohnt", sie_Sie: "wohnen" } }
-                ],
+                verbs: [],
+                grammar: [],
+                nouns: [],
+                articles_pronouns: [],
 
-                // --- 2. GRAMMAR & CONNECTORS DATASET (From SentenceBuilderArray.JSON) ---
-                grammar: [
-                    { id: 1, german: "und", english: "and", type: "Coordinating Conjunction" },
-                    { id: 2, german: "aber", english: "but / however", type: "Coordinating Conjunction" },
-                    { id: 3, german: "oder", english: "or", type: "Coordinating Conjunction" },
-                    { id: 4, german: "denn", english: "because / for", type: "Coordinating Conjunction" },
-                    { id: 5, german: "sondern", english: "but rather", type: "Coordinating Conjunction" },
-                    { id: 6, german: "weil", english: "because (subordinating)", type: "Subordinating Conjunction" },
-                    { id: 7, german: "dass", english: "that (subordinating)", type: "Subordinating Conjunction" },
-                    { id: 8, german: "obwohl", english: "although / even though", type: "Subordinating Conjunction" },
-                    { id: 9, german: "wenn", english: "if / whenever", type: "Subordinating Conjunction" },
-                    { id: 10, german: "als", english: "when (past event) / than", type: "Subordinating Conjunction / Prep" },
-                    { id: 11, german: "bevor", english: "before", type: "Subordinating Conjunction" },
-                    { id: 12, german: "nachdem", english: "after", type: "Subordinating Conjunction" },
-                    { id: 13, german: "während", english: "while / during", type: "Subordinating Conjunction / Prep" },
-                    { id: 14, german: "seitdem", english: "since (time)", type: "Subordinating Conjunction" },
-                    { id: 15, german: "bis", english: "until", type: "Subordinating Conjunction / Prep" },
-                    { id: 16, german: "damit", english: "so that / in order that", type: "Subordinating Conjunction" },
-                    { id: 17, german: "ob", english: "whether / if", type: "Subordinating Conjunction" },
-                    { id: 18, german: "falls", english: "in case / if", type: "Subordinating Conjunction" },
-                    { id: 19, german: "sofern", english: "provided that / as long as", type: "Subordinating Conjunction" },
-                    { id: 20, german: "solange", english: "as long as", type: "Subordinating Conjunction" },
-                    { id: 21, german: "deshalb", english: "therefore / that is why", type: "Conjunctive Adverb" },
-                    { id: 22, german: "darum", english: "therefore / for that reason", type: "Conjunctive Adverb" },
-                    { id: 23, german: "deswegen", english: "because of that / therefore", type: "Conjunctive Adverb" },
-                    { id: 24, german: "trotzdem", english: "nevertheless / anyway", type: "Conjunctive Adverb" },
-                    { id: 25, german: "dennoch", english: "however / yet", type: "Conjunctive Adverb" },
-                    { id: 26, german: "jedoch", english: "however / though", type: "Conjunctive Adverb" },
-                    { id: 27, german: "ausserdem", english: "furthermore / besides", type: "Conjunctive Adverb" },
-                    { id: 28, german: "zudem", english: "in addition / moreover", type: "Conjunctive Adverb" },
-                    { id: 29, german: "überdies", english: "furthermore / moreover", type: "Conjunctive Adverb" },
-                    { id: 30, german: "schliesslich", english: "eventually / after all", type: "Conjunctive Adverb" }
-                ],
+                async initData() {
+                    try {
+                        let res = await fetch('./verbsconjugated.json');
+                        if (res.ok) {
+                            this.verbs = await res.json();
+                        }
+                    } catch (e) {
+                        console.log('Falling back to default verbs list:', e);
+                        this.verbs = [
+                            { id: 1, german: "sein", english: "to be", type: "Auxiliary / Irregular", conjugation: { ich: "bin", du: "bist", er_sie_es: "ist", wir: "sind", ihr: "seid", sie_Sie: "sind" } },
+                            { id: 2, german: "haben", english: "to have", type: "Auxiliary / Irregular", conjugation: { ich: "habe", du: "hast", er_sie_es: "hat", wir: "haben", ihr: "habt", sie_Sie: "haben" } }
+                        ];
+                    }
 
-                // --- 3. NOUNS DATASET (Combining nounswitharticle & nounsohnearticles) ---
-                nouns: [
-                    { id: 1, german: "der Mann", english: "man", category: "Noun with Article" },
-                    { id: 2, german: "die Frau", english: "woman", category: "Noun with Article" },
-                    { id: 3, german: "das Kind", english: "child", category: "Noun with Article" },
-                    { id: 4, german: "das Haus", english: "house", category: "Noun with Article" },
-                    { id: 5, german: "die Wohnung", english: "apartment", category: "Noun with Article" },
-                    { id: 6, german: "die Stadt", english: "city", category: "Noun with Article" },
-                    { id: 7, german: "die Schule", english: "school", category: "Noun with Article" },
-                    { id: 8, german: "die Arbeit", english: "work / job", category: "Noun with Article" },
-                    { id: 9, german: "das Wasser", english: "water", category: "Noun with Article" },
-                    { id: 10, german: "der Kaffee", english: "coffee", category: "Noun with Article" },
-                    { id: 11, german: "Mann", english: "man (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 12, german: "Frau", english: "woman (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 13, german: "Kind", english: "child (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 14, german: "Haus", english: "house (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 15, german: "Stadt", english: "city (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 16, german: "Schule", english: "school (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 17, german: "Wasser", english: "water (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 18, german: "Kaffee", english: "coffee (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 19, german: "Zeit", english: "time (bare noun)", category: "Noun ohne Artikel" },
-                    { id: 20, german: "Geld", english: "money (bare noun)", category: "Noun ohne Artikel" }
-                ],
+                    // Default static datasets for grammar, nouns, and articles/pronouns if not fetched separately
+                    this.grammar = [
+                        { id: 1, german: "und", english: "and", type: "Coordinating Conjunction" },
+                        { id: 2, german: "aber", english: "but / however", type: "Coordinating Conjunction" },
+                        { id: 6, german: "weil", english: "because (subordinating)", type: "Subordinating Conjunction" },
+                        { id: 7, german: "dass", english: "that (subordinating)", type: "Subordinating Conjunction" },
+                        { id: 21, german: "deshalb", english: "therefore / that is why", type: "Conjunctive Adverb" }
+                    ];
 
-                // --- 4. ARTICLES & PRONOUNS DATASET (Combining articles.json & basicpronouns.json) ---
-                articles_pronouns: [
-                    { id: 101, german: "der", english: "the (masc. nom.)", type: "Definite Article" },
-                    { id: 102, german: "die", english: "the (fem./pl. nom.)", type: "Definite Article" },
-                    { id: 103, german: "das", english: "the (neuter nom.)", type: "Definite Article" },
-                    { id: 104, german: "dem", english: "the (masc./neut. dat.)", type: "Definite Article" },
-                    { id: 105, german: "den", english: "the (masc. acc. / pl. dat.)", type: "Definite Article" },
-                    { id: 106, german: "des", english: "the (masc./neut. gen.)", type: "Definite Article" },
-                    { id: 107, german: "ein", english: "a / an (masc./neut. nom.)", type: "Indefinite Article" },
-                    { id: 108, german: "eine", english: "a / an (fem. nom.)", type: "Indefinite Article" },
-                    { id: 109, german: "einer", english: "one / of them (fem. gen./dat.)", type: "Indefinite Article" },
-                    { id: 110, german: "eines", english: "one's / of a (masc./neut. gen.)", type: "Indefinite Article" },
-                    { id: 111, german: "einem", english: "to a (masc./neut. dat.)", type: "Indefinite Article" },
-                    { id: 112, german: "einen", english: "a / an (masc. acc.)", type: "Indefinite Article" },
-                    { id: 201, german: "ich", english: "I", type: "Personal Pronoun" },
-                    { id: 202, german: "du", english: "you (informal singular)", type: "Personal Pronoun" },
-                    { id: 203, german: "er", english: "he", type: "Personal Pronoun" },
-                    { id: 204, german: "sie", english: "she / they", type: "Personal Pronoun" },
-                    { id: 205, german: "es", english: "it", type: "Personal Pronoun" },
-                    { id: 206, german: "wir", english: "we", type: "Personal Pronoun" },
-                    { id: 207, german: "ihr", english: "you (informal plural)", type: "Personal Pronoun" },
-                    { id: 208, german: "Sie", english: "you (formal)", type: "Personal Pronoun" },
-                    { id: 209, german: "mich", english: "me (accusative)", type: "Personal Pronoun" },
-                    { id: 210, german: "dich", english: "you (accusative)", type: "Personal Pronoun" },
-                    { id: 211, german: "mir", english: "me (dative)", type: "Personal Pronoun" },
-                    { id: 212, german: "dir", english: "you (dative)", type: "Personal Pronoun" }
-                ],
+                    this.nouns = [
+                        { id: 1, german: "der Mann", english: "man", category: "Noun with Article" },
+                        { id: 2, german: "die Frau", english: "woman", category: "Noun with Article" },
+                        { id: 3, german: "das Kind", english: "child", category: "Noun with Article" }
+                    ];
+
+                    this.articles_pronouns = [
+                        { id: 101, german: "der", english: "the (masc. nom.)", type: "Definite Article" },
+                        { id: 201, german: "ich", english: "I", type: "Personal Pronoun" },
+                        { id: 202, german: "du", english: "you (informal singular)", type: "Personal Pronoun" }
+                    ];
+                },
 
                 get currentDataset() {
                     if (this.activeTab === 'verbs') return this.verbs;
@@ -415,9 +333,8 @@
         }
     </script>
 
-    <!-- APP SCRIPT & OFFLINE SERVICE WORKER REGISTRATION -->
+    <!-- SERVICE WORKER REGISTRATION -->
     <script>
-        // Register Service Worker for offline caching
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
@@ -425,9 +342,6 @@
                     .catch(err => console.log('ServiceWorker registration failed:', err));
             });
         }
-        
-        // ... rest of your Alpine.js app logic ...
     </script>
 </body>
 </html>
-
