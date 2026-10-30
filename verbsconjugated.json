@@ -1,6 +1,5 @@
 
-german_verbs_400.json
-100%
+
 [
   {
     "id": 1,
@@ -10180,12 +10179,5 @@ german_verbs_400.json
       "ihr": "werdet beispiel351",
       "sie_Sie": "werden beispiel351"
     }
-  },
-  {
-    "id": 352,
-    "verb": "beispiel352",
-    "translation": "example translation 352",
-    "present": {
-      "ich": "beispiel352e",
-      "du": "beisp
-Displaying german_verbs_400.json.
+  }}
+
