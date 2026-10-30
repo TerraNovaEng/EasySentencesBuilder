@@ -104,19 +104,25 @@
                 </div>
             </div>
 
-            <!-- WORD CARDS GRID -->
+            <!-- WORD CARDS GRID with Color-Coded Category Styling -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-[500px] overflow-y-auto pr-2">
                 <template x-for="item in filteredItems" :key="(item.id || item.german) + '-' + activeTab">
                     <div @click="selectItem(item)" 
-                         class="bg-slate-900/90 hover:bg-slate-700/80 border border-slate-700/80 rounded-xl p-3.5 transition cursor-pointer shadow hover:border-purple-400 flex flex-col justify-between group">
+                         class="border rounded-xl p-3.5 transition cursor-pointer shadow flex flex-col justify-between group"
+                         :class="{
+                             'bg-purple-950/30 border-purple-800/60 hover:border-purple-400': activeTab === 'verbs',
+                             'bg-emerald-950/30 border-emerald-800/60 hover:border-emerald-400': activeTab === 'grammar',
+                             'bg-blue-950/30 border-blue-800/60 hover:border-blue-400': activeTab === 'nouns',
+                             'bg-amber-950/30 border-amber-800/60 hover:border-amber-400': activeTab === 'articles_pronouns'
+                         }">
                         <div>
                             <div class="flex justify-between items-start gap-1">
-                                <span class="font-bold text-emerald-300 text-sm group-hover:text-purple-300" x-text="item.german"></span>
-                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-purple-300" x-text="item.category || item.type"></span>
+                                <span class="font-bold text-white text-sm group-hover:text-purple-300" x-text="item.german"></span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-slate-300" x-text="item.category || item.type"></span>
                             </div>
-                            <p class="text-xs text-blue-200/90 bg-blue-950/40 border border-blue-900/50 rounded px-2 py-1 mt-2 font-mono" x-text="item.english"></p>
+                            <p class="text-xs text-slate-300 bg-slate-900/60 border border-slate-800 rounded px-2 py-1 mt-2 font-mono" x-text="item.english"></p>
                         </div>
-                        <span class="text-[10px] text-emerald-400 font-mono mt-3 text-right group-hover:underline">+ Hinzufügen</span>
+                        <span class="text-[10px] text-purple-400 font-mono mt-3 text-right group-hover:underline">+ Hinzufügen</span>
                     </div>
                 </template>
             </div>
@@ -166,21 +172,26 @@
                 articles_pronouns: [],
 
                 async initData() {
-                    // Helper fetch wrapper with fallback
-                    const loadJSON = async (file, fallback) => {
+                    console.log("Initializing EasySentencesBuilder...");
+                    
+                    // Helper to safely fetch JSON files with fallback
+                    const loadJSON = async (filename, fallback) => {
                         try {
-                            let res = await fetch('./' + file);
-                            if (res.ok) return await res.json();
+                            let res = await fetch('./' + filename);
+                            if (res.ok) {
+                                let data = await res.json();
+                                return Array.isArray(data) ? data : (data.words || data.items || data.verbs || fallback);
+                            }
                         } catch (e) {
-                            console.log(`Could not load ${file}, using fallback.`);
+                            console.warn(`Could not load ${filename}, using fallback.`);
                         }
                         return fallback;
                     };
 
-                    // 1. Verbs (verbsconjugated.json / commonverbs.json / verbs.JSON)
+                    // 1. Verbs
                     let rawVerbs = await loadJSON('verbsconjugated.json', await loadJSON('commonverbs.json', []));
-                    this.verbs = rawVerbs.map(v => ({
-                        id: v.id,
+                    this.verbs = rawVerbs.map((v, idx) => ({
+                        id: v.id || idx + 1,
                         german: v.verb || v.german,
                         english: v.translation || v.english,
                         type: v.type || "Regular / Irregular",
@@ -194,19 +205,26 @@
                         ];
                     }
 
-                    // 2. Grammar / Connectors (SentenceBuilderArray.JSON or default)
-                    let rawGrammar = await loadJSON('SentenceBuilderArray.JSON', []);
-                    this.grammar = rawGrammar.length ? rawGrammar : [
-                        { id: 1, german: "und", english: "and", type: "Coordinating Conjunction" },
-                        { id: 2, german: "aber", english: "but / however", type: "Coordinating Conjunction" },
-                        { id: 6, german: "weil", english: "because (subordinating)", type: "Subordinating Conjunction" },
-                        { id: 7, german: "dass", english: "that (subordinating)", type: "Subordinating Conjunction" },
-                        { id: 21, german: "deshalb", english: "therefore / that is why", type: "Conjunctive Adverb" }
-                    ];
+                    // 2. Grammar / Connectors
+                    let rawGrammar = await loadJSON('SentenceBuilderArray.JSON', await loadJSON('SentenceBuilderArray.json', []));
+                    this.grammar = rawGrammar.map((g, idx) => ({
+                        id: g.id || idx + 1,
+                        german: g.german || g.word,
+                        english: g.english || g.translation,
+                        category: g.category || g.type || "Conjunction"
+                    }));
 
-                    // 3. Nouns (nounswitharticle & nounsohnearticles)
-                    let rawNounsWith = await loadJSON('nounswitharticle', []);
-                    let rawNounsWithout = await loadJSON('nounsohnearticles', []);
+                    if (this.grammar.length === 0) {
+                        this.grammar = [
+                            { id: 1, german: "und", english: "and", category: "Coordinating Conjunction" },
+                            { id: 2, german: "aber", english: "but / however", category: "Coordinating Conjunction" },
+                            { id: 3, german: "weil", english: "because (subordinating)", category: "Subordinating Conjunction" }
+                        ];
+                    }
+
+                    // 3. Nouns
+                    let rawNounsWith = await loadJSON('nounswitharticle.json', await loadJSON('nounswitharticle', []));
+                    let rawNounsWithout = await loadJSON('nounsohnearticles.json', await loadJSON('nounsohnearticles', []));
                     
                     let formattedNouns = [...rawNounsWith, ...rawNounsWithout].map((n, idx) => ({
                         id: n.id || idx + 1,
@@ -217,13 +235,12 @@
 
                     this.nouns = formattedNouns.length ? formattedNouns : [
                         { id: 1, german: "der Mann", english: "man", category: "Noun with Article" },
-                        { id: 2, german: "die Frau", english: "woman", category: "Noun with Article" },
-                        { id: 3, german: "das Kind", english: "child", category: "Noun with Article" }
+                        { id: 2, german: "die Frau", english: "woman", category: "Noun with Article" }
                     ];
 
-                    // 4. Articles & Pronouns (articles.json & basicpronouns.json)
-                    let rawArticles = await loadJSON('articles.json', []);
-                    let rawPronouns = await loadJSON('basicpronouns.json', []);
+                    // 4. Articles & Pronouns
+                    let rawArticles = await loadJSON('articles.json', await loadJSON('articles', []));
+                    let rawPronouns = await loadJSON('basicpronouns.json', await loadJSON('basicpronouns', []));
 
                     let formattedAP = [...rawArticles, ...rawPronouns].map((item, idx) => ({
                         id: item.id || idx + 100,
@@ -234,8 +251,7 @@
 
                     this.articles_pronouns = formattedAP.length ? formattedAP : [
                         { id: 101, german: "der", english: "the (masc. nom.)", type: "Definite Article" },
-                        { id: 201, german: "ich", english: "I", type: "Personal Pronoun" },
-                        { id: 202, german: "du", english: "you (informal singular)", type: "Personal Pronoun" }
+                        { id: 201, german: "ich", english: "I", type: "Personal Pronoun" }
                     ];
                 },
 
@@ -375,14 +391,13 @@
     </script>
 
     <script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('Service Worker registered successfully:', reg.scope))
-                .catch(err => console.log('Service Worker registration failed:', err));
-        });
-    }
-</script>
-    
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered successfully:', reg.scope))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>
