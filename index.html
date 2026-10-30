@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EasySentencesBuilder | TerraNova Engineering Lab</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇩🇪</text></svg>">
     <!-- PWA Manifest & Theme -->
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#2563eb">
@@ -39,19 +41,28 @@
 
         <!-- WORKSPACE / SENTENCE CANVAS -->
         <section class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl space-y-4">
-            <h2 class="text-sm font-semibold uppercase tracking-wider text-purple-300">Mein Satz (Satzwerkstatt)</h2>
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-purple-300">Mein Satz (Satzwerkstatt)</h2>
+                <!-- Sentence Builder Workspace Search/Filter -->
+                <div class="w-full sm:w-64">
+                    <input type="text" x-model="workspaceSearchQuery" placeholder="Im Satz filtern..." 
+                           class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-400 transition">
+                </div>
+            </div>
             
             <div class="min-h-[100px] bg-slate-950 border-2 border-dashed border-slate-700 rounded-xl p-4 flex flex-wrap items-center gap-2">
                 <template x-if="workspace.length === 0">
                     <span class="text-slate-500 text-sm font-sans italic">Klicken Sie unten auf Wörter, um Ihren Satz zu bauen...</span>
                 </template>
 
-                <template x-for="(item, index) in workspace" :key="index">
+                <template x-for="(item, index) in filteredWorkspace" :key="index">
                     <div class="flex items-center gap-1 bg-slate-800 border border-slate-600 text-white px-3 py-1.5 rounded-lg text-sm shadow-md animate-fade-in">
+                        <!-- Distinct coloring: German card term in Emerald, English hint/translation in Blue-Gray -->
                         <span class="font-bold text-emerald-300" x-text="formatTokenDisplay(item, index)"></span>
+                        <span class="text-[10px] text-blue-300 opacity-80 font-mono" x-text="'[' + item.english + ']'"></span>
                         <span class="text-[10px] opacity-60 font-mono" x-text="'(' + (item.category || item.type) + ')'"></span>
                         
-                        <!-- Actions: Move Left, Move Right, Remove -->
+                        <!-- Actions -->
                         <div class="flex items-center gap-1 ml-2 border-l border-slate-700 pl-2">
                             <button @click="moveToken(index, -1)" x-show="index > 0" class="hover:text-purple-300 text-xs">←</button>
                             <button @click="moveToken(index, 1)" x-show="index < workspace.length - 1" class="hover:text-purple-300 text-xs">→</button>
@@ -94,17 +105,19 @@
                 </div>
             </div>
 
-            <!-- WORD CARDS GRID -->
+            <!-- WORD CARDS GRID (Distinct German vs English card styling) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-[500px] overflow-y-auto pr-2">
                 <template x-for="item in filteredItems" :key="(item.id || item.german) + '-' + activeTab">
                     <div @click="selectItem(item)" 
                          class="bg-slate-900/90 hover:bg-slate-700/80 border border-slate-700/80 rounded-xl p-3.5 transition cursor-pointer shadow hover:border-purple-400 flex flex-col justify-between group">
                         <div>
                             <div class="flex justify-between items-start gap-1">
-                                <span class="font-bold text-white text-sm group-hover:text-purple-300" x-text="item.german"></span>
+                                <!-- German Card Component (Emerald Theme) -->
+                                <span class="font-bold text-emerald-300 text-sm group-hover:text-purple-300" x-text="item.german"></span>
                                 <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-purple-300" x-text="item.category || item.type"></span>
                             </div>
-                            <p class="text-xs text-slate-400 mt-1" x-text="item.english"></p>
+                            <!-- English Translation Card Component (Distinct Slate/Blue Theme) -->
+                            <p class="text-xs text-blue-200/90 bg-blue-950/40 border border-blue-900/50 rounded px-2 py-1 mt-2 font-mono" x-text="item.english"></p>
                         </div>
                         <span class="text-[10px] text-emerald-400 font-mono mt-3 text-right group-hover:underline">+ Hinzufügen</span>
                     </div>
@@ -125,30 +138,12 @@
             <p class="text-xs text-slate-300">Wählen Sie die passende Form für Ihren Satz aus:</p>
 
             <div class="grid grid-cols-2 gap-2" x-if="selectedVerb?.conjugation">
-                <button @click="addConjugatedVerb('ich', selectedVerb.conjugation.ich)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
-                    <span class="text-[10px] text-slate-400 block font-mono">ich</span>
-                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.ich"></span>
-                </button>
-                <button @click="addConjugatedVerb('du', selectedVerb.conjugation.du)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
-                    <span class="text-[10px] text-slate-400 block font-mono">du</span>
-                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.du"></span>
-                </button>
-                <button @click="addConjugatedVerb('er/sie/es', selectedVerb.conjugation.er_sie_es)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
-                    <span class="text-[10px] text-slate-400 block font-mono">er / sie / es</span>
-                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.er_sie_es"></span>
-                </button>
-                <button @click="addConjugatedVerb('wir', selectedVerb.conjugation.wir)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
-                    <span class="text-[10px] text-slate-400 block font-mono">wir</span>
-                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.wir"></span>
-                </button>
-                <button @click="addConjugatedVerb('ihr', selectedVerb.conjugation.ihr)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
-                    <span class="text-[10px] text-slate-400 block font-mono">ihr</span>
-                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.ihr"></span>
-                </button>
-                <button @click="addConjugatedVerb('sie/Sie', selectedVerb.conjugation.sie_Sie)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
-                    <span class="text-[10px] text-slate-400 block font-mono">sie / Sie</span>
-                    <span class="text-sm font-bold text-white" x-text="selectedVerb?.conjugation?.sie_Sie"></span>
-                </button>
+                <template x-for="(form, pronoun) in selectedVerb.conjugation">
+                    <button @click="addConjugatedVerb(pronoun, form)" class="bg-slate-900 hover:bg-purple-600 border border-slate-700 p-2.5 rounded-xl text-left transition">
+                        <span class="text-[10px] text-slate-400 block font-mono" x-text="pronoun"></span>
+                        <span class="text-sm font-bold text-white" x-text="form"></span>
+                    </button>
+                </template>
             </div>
 
             <button @click="addInfinitiveVerb()" class="w-full bg-slate-700 hover:bg-slate-600 text-white text-xs font-medium py-2 rounded-xl transition mt-2">
@@ -158,13 +153,12 @@
     </div>
 
     <!-- APP SCRIPT & INTEGRATED DATASETS -->
-
-<!-- APP SCRIPT & INTEGRATED DATASETS -->
     <script>
         function sentenceBuilderApp() {
             return {
                 activeTab: 'verbs',
                 searchQuery: '',
+                workspaceSearchQuery: '',
                 workspace: [],
                 showVerbModal: false,
                 selectedVerb: null,
@@ -179,7 +173,6 @@
                         let res = await fetch('./verbsconjugated.json');
                         if (res.ok) {
                             let rawVerbs = await res.json();
-                            // Map JSON keys to match app expectations (verb -> german, translation -> english, present -> conjugation)
                             this.verbs = rawVerbs.map(v => ({
                                 id: v.id,
                                 german: v.verb || v.german,
@@ -196,7 +189,6 @@
                         ];
                     }
 
-                    // Default static datasets for grammar, nouns, and articles/pronouns
                     this.grammar = [
                         { id: 1, german: "und", english: "and", type: "Coordinating Conjunction" },
                         { id: 2, german: "aber", english: "but / however", type: "Coordinating Conjunction" },
@@ -234,6 +226,16 @@
                         item.english.toLowerCase().includes(q) ||
                         (item.category && item.category.toLowerCase().includes(q)) ||
                         (item.type && item.type.toLowerCase().includes(q))
+                    );
+                },
+
+                get filteredWorkspace() {
+                    let q = this.workspaceSearchQuery.toLowerCase().trim();
+                    if (!q) return this.workspace;
+                    return this.workspace.filter(item =>
+                        item.german.toLowerCase().includes(q) ||
+                        item.english.toLowerCase().includes(q) ||
+                        (item.category && item.category.toLowerCase().includes(q))
                     );
                 },
 
@@ -340,17 +342,6 @@
                     }
                 }
             }
-        }
-    </script>
-
-    <!-- SERVICE WORKER REGISTRATION -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('ServiceWorker registered successfully:', reg.scope))
-                    .catch(err => console.log('ServiceWorker registration failed:', err));
-            });
         }
     </script>
 </body>
