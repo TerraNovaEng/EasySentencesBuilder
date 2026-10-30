@@ -158,6 +158,8 @@
     </div>
 
     <!-- APP SCRIPT & INTEGRATED DATASETS -->
+
+<!-- APP SCRIPT & INTEGRATED DATASETS -->
     <script>
         function sentenceBuilderApp() {
             return {
@@ -176,7 +178,15 @@
                     try {
                         let res = await fetch('./verbsconjugated.json');
                         if (res.ok) {
-                            this.verbs = await res.json();
+                            let rawVerbs = await res.json();
+                            // Map JSON keys to match app expectations (verb -> german, translation -> english, present -> conjugation)
+                            this.verbs = rawVerbs.map(v => ({
+                                id: v.id,
+                                german: v.verb || v.german,
+                                english: v.translation || v.english,
+                                type: v.type || "Regular / Irregular",
+                                conjugation: v.present || v.conjugation
+                            }));
                         }
                     } catch (e) {
                         console.log('Falling back to default verbs list:', e);
@@ -186,7 +196,7 @@
                         ];
                     }
 
-                    // Default static datasets for grammar, nouns, and articles/pronouns if not fetched separately
+                    // Default static datasets for grammar, nouns, and articles/pronouns
                     this.grammar = [
                         { id: 1, german: "und", english: "and", type: "Coordinating Conjunction" },
                         { id: 2, german: "aber", english: "but / however", type: "Coordinating Conjunction" },
