@@ -3,10 +3,17 @@ const ASSETS_TO_CACHE = [
   './index.html',
   './manifest.json',
   './physics.json',
-  './noarticle.json',
-  './pronouns.json',
+  './nounsohnearticle.json',
+  './basicpronouns.json',
   './verbs.json',
   './modifiers.json'
+  './nounswitharticle.json'
+  './verbsconjugated.json'
+  './commonverbs.json'
+  './basicpronouns.json'
+  './articles.json'
+
+  
 ];
 
 // Install Event: Cache essential assets
